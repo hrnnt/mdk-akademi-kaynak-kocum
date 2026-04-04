@@ -376,4 +376,99 @@ const kanallar = [
   {n:"VIP Fizik",d:"Fizik",s:"YKS",z:"orta"},
   {n:"Özcan Aykın",d:"Fizik",s:"YKS",z:"zor"},
   {n:"Görkem Şahin (Benim Hocam)",d:"Kimya",s:"YKS",z:"orta"},
-  {n:"Kimya Adası",d:"Kimya",s:"YKS
+  {n:"Kimya Adası",d:"Kimya",s:"YKS",z:"orta"},
+  {n:"Dr. Biyoloji",d:"Biyoloji",s:"YKS",z:"zor"},
+  {n:"Biosem",d:"Biyoloji",s:"YKS",z:"orta"},
+  {n:"Benim Hocam",d:"Tarih",s:"YKS",z:"orta"},
+  {n:"Coğrafyanın Kodları",d:"Coğrafya",s:"YKS",z:"orta"}
+];
+
+const state = { k: { sinav: '', ders: '', zorluk: '' }, y: { sinav: '', ders: '', zorluk: '' } };
+
+function setPanel(name, btn) {
+  document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('panel-' + name).classList.add('active');
+  btn.classList.add('active');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function setSinav(p, val, el) {
+  state[p].sinav = (state[p].sinav === val && val !== '') ? '' : val;
+  state[p].ders = ''; 
+  const strip = document.getElementById(p + '-sinav-strip');
+  strip.querySelectorAll('.chip').forEach(c => {
+    c.classList.remove('selected', 'selected-lgs', 'selected-yks');
+    if (c.dataset.val === state[p].sinav || (state[p].sinav === '' && c.dataset.val === '')) {
+      if(state[p].sinav === 'LGS') c.classList.add('selected-lgs');
+      else if(state[p].sinav === 'YKS') c.classList.add('selected-yks');
+      else c.classList.add('selected');
+    }
+  });
+  updateDersSelect(p);
+  render(p === 'k' ? 'kitap' : 'youtube');
+}
+
+function setZorluk(p, val, el) {
+  state[p].zorluk = (state[p].zorluk === val) ? '' : val;
+  const strip = document.getElementById(p + '-zorluk-strip');
+  strip.querySelectorAll('.chip').forEach(c => {
+    c.classList.remove('selected', 'selected-kolay', 'selected-orta', 'selected-zor', 'selected-joker');
+    if (c.dataset.val === state[p].zorluk || (state[p].zorluk === '' && c.dataset.val === '')) {
+      if(state[p].zorluk) c.classList.add('selected-' + state[p].zorluk);
+      else c.classList.add('selected');
+    }
+  });
+  render(p === 'k' ? 'kitap' : 'youtube');
+}
+
+function updateDersSelect(p) {
+  const s = state[p].sinav;
+  const list = s === 'LGS' ? LGS_DERS : s === 'YKS' ? YKS_DERS : ALL_DERS;
+  const select = document.getElementById(p + '-ders-select');
+  select.innerHTML = '<option value="">📚 Tüm Dersler</option>' + 
+    list.map(d => '<option value="' + d + '">' + d + '</option>').join('');
+  select.value = state[p].ders;
+}
+
+function setDers(p, val) {
+  state[p].ders = val;
+  render(p === 'k' ? 'kitap' : 'youtube');
+}
+
+function render(type) {
+  const p = type === 'kitap' ? 'k' : 'y';
+  const { sinav, ders, zorluk } = state[p];
+  const data = type === 'kitap' ? kitaplar : kanallar;
+  
+  const res = data.filter(x => (!sinav || x.s === sinav) && (!ders || x.d === ders) && (!zorluk || x.z === zorluk));
+  document.getElementById(p + '-count').textContent = res.length;
+  
+  const g = document.getElementById(p + '-grid');
+  if (!res.length) {
+    g.innerHTML = '<div class="empty-state"><p>Kaynak bulunamadı.</p></div>';
+    return;
+  }
+  
+  g.innerHTML = res.map((x, i) => {
+    const delay = Math.min(i * 0.03, 0.2);
+    const zLabel = { kolay: '🟢 Kolay', orta: '🟡 Orta', zor: '🔴 Zor', joker: '⚡ Joker' }[x.z] || x.z;
+    const isYks = x.s === 'YKS' ? 'yks' : '';
+    
+    return '<div class="card ' + (type === 'youtube' ? 'card-yt' : 'card-kitap') + '" style="animation-delay:' + delay + 's">' +
+      '<div class="card-name">' + x.n + '</div>' +
+      '<div class="card-footer">' +
+        '<span class="badge b-sinav ' + isYks + '">' + x.s + '</span>' +
+        '<span class="badge b-ders">' + x.d + '</span>' +
+        '<span class="badge b-' + x.z + '">' + zLabel + '</span>' +
+      '</div>' +
+    '</div>';
+  }).join('');
+}
+
+updateDersSelect('k'); 
+updateDersSelect('y'); 
+render('kitap');
+</script>
+</body>
+</html>
