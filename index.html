@@ -1,0 +1,900 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>MDK Akademi — Kaynak Rehberi</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #f0f2f8;
+  --surface: #ffffff;
+  --surface2: #f7f8fc;
+  --border: #e4e8f2;
+  --primary: #3730a3;
+  --primary-light: #eef0ff;
+  --primary-mid: #6366f1;
+  --accent: #f59e0b;
+  --text: #1a1d35;
+  --muted: #8b93b8;
+  --kolay-bg: #d1fae5; --kolay-fg: #065f46;
+  --orta-bg: #fef3c7;  --orta-fg: #92400e;
+  --zor-bg: #fee2e2;   --zor-fg: #991b1b;
+  --joker-bg: #ede9fe; --joker-fg: #5b21b6;
+  --yt-bg: #fff1f2;    --yt-fg: #be123c;
+  --nav-h: 64px;
+  --bottom-h: 72px;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+
+body {
+  font-family: 'Nunito', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  padding-bottom: calc(var(--bottom-h) + 16px);
+}
+
+/* ── TOP HEADER ── */
+.top-header {
+  background: var(--primary);
+  padding: 0 16px;
+  height: var(--nav-h);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 2px 20px rgba(55,48,163,0.25);
+}
+.header-brand { display: flex; align-items: center; gap: 10px; }
+.header-logo {
+  width: 36px; height: 36px; border-radius: 10px;
+  background: rgba(255,255,255,0.18);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 18px;
+}
+.header-title { font-size: 16px; font-weight: 900; color: #fff; line-height: 1.1; }
+.header-subtitle { font-size: 10px; color: rgba(255,255,255,0.65); font-weight: 600; }
+.header-badge {
+  background: var(--accent);
+  color: #fff;
+  font-size: 10px;
+  font-weight: 800;
+  padding: 4px 10px;
+  border-radius: 20px;
+  letter-spacing: 0.5px;
+}
+
+/* ── BOTTOM NAV ── */
+.bottom-nav {
+  position: fixed;
+  bottom: 0; left: 0; right: 0;
+  height: var(--bottom-h);
+  background: var(--surface);
+  border-top: 1.5px solid var(--border);
+  display: flex;
+  z-index: 100;
+  box-shadow: 0 -4px 20px rgba(0,0,0,0.07);
+  padding-bottom: env(safe-area-inset-bottom);
+}
+.nav-btn {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px 0;
+  position: relative;
+  transition: all 0.15s;
+}
+.nav-icon { font-size: 22px; line-height: 1; transition: transform 0.2s; }
+.nav-label { font-size: 10px; font-weight: 700; color: var(--muted); transition: color 0.15s; font-family: 'Nunito', sans-serif; }
+.nav-btn.active .nav-label { color: var(--primary); }
+.nav-btn.active .nav-icon { transform: translateY(-2px); }
+.nav-btn.active::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 50%;
+  transform: translateX(-50%);
+  width: 40px; height: 3px;
+  background: var(--primary);
+  border-radius: 0 0 4px 4px;
+}
+
+/* ── PANELS ── */
+.panel { display: none; padding: 16px 12px 8px; }
+.panel.active { display: block; }
+
+/* ── SECTION TITLE ── */
+.section-title {
+  font-size: 15px;
+  font-weight: 900;
+  color: var(--text);
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.section-title span { font-size: 18px; }
+
+/* ── FILTER STRIP ── */
+.filter-strip {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  padding-bottom: 8px;
+  margin-bottom: 12px;
+  scrollbar-width: none;
+}
+.filter-strip::-webkit-scrollbar { display: none; }
+
+.filter-group { display: flex; gap: 6px; flex-shrink: 0; }
+
+.chip {
+  height: 34px;
+  padding: 0 14px;
+  border-radius: 20px;
+  border: 1.5px solid var(--border);
+  background: var(--surface);
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.15s;
+  font-family: 'Nunito', sans-serif;
+  display: flex; align-items: center; gap: 5px;
+}
+.chip:hover, .chip.selected { background: var(--primary); color: #fff; border-color: var(--primary); }
+.chip.selected-lgs { background: #3730a3; color: #fff; border-color: #3730a3; }
+.chip.selected-yks { background: #0f766e; color: #fff; border-color: #0f766e; }
+.chip.selected-kolay { background: var(--kolay-fg); color: #fff; border-color: var(--kolay-fg); }
+.chip.selected-orta  { background: #d97706; color: #fff; border-color: #d97706; }
+.chip.selected-zor   { background: var(--zor-fg); color: #fff; border-color: var(--zor-fg); }
+.chip.selected-joker { background: var(--joker-fg); color: #fff; border-color: var(--joker-fg); }
+
+.chip-divider { width: 1.5px; background: var(--border); border-radius: 2px; flex-shrink: 0; align-self: stretch; margin: 4px 0; }
+
+/* ── DERS SCROLL ── */
+.ders-scroll {
+  display: flex; gap: 6px;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  padding-bottom: 8px;
+  margin-bottom: 14px;
+  scrollbar-width: none;
+}
+.ders-scroll::-webkit-scrollbar { display: none; }
+
+.ders-chip {
+  height: 30px;
+  padding: 0 12px;
+  border-radius: 16px;
+  border: 1.5px solid var(--border);
+  background: var(--surface);
+  color: var(--text);
+  font-size: 11px;
+  font-weight: 700;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.15s;
+  font-family: 'Nunito', sans-serif;
+  flex-shrink: 0;
+}
+.ders-chip:hover { border-color: var(--primary-mid); color: var(--primary); }
+.ders-chip.active { background: var(--primary-light); border-color: var(--primary); color: var(--primary); }
+
+/* ── COUNT ── */
+.result-count {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--muted);
+  margin-bottom: 12px;
+  padding: 0 2px;
+}
+
+/* ── CARDS ── */
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+}
+
+@media (min-width: 480px) {
+  .cards-grid { grid-template-columns: repeat(3, 1fr); }
+}
+
+.card {
+  background: var(--surface);
+  border: 1.5px solid var(--border);
+  border-radius: 16px;
+  padding: 14px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  transition: box-shadow 0.15s, transform 0.15s;
+  position: relative;
+  overflow: hidden;
+}
+.card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+}
+.card.card-kitap::before { background: linear-gradient(90deg, #6366f1, #8b5cf6); }
+.card.card-yt::before { background: linear-gradient(90deg, #ef4444, #f97316); }
+
+.card:active { transform: scale(0.98); box-shadow: none; }
+.card-name {
+  font-size: 12.5px;
+  font-weight: 800;
+  color: var(--text);
+  line-height: 1.35;
+  flex-grow: 1;
+}
+.card-desc {
+  font-size: 10.5px;
+  color: var(--muted);
+  line-height: 1.4;
+}
+.card-footer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  align-items: center;
+}
+.badge {
+  font-size: 10px;
+  font-weight: 800;
+  padding: 2px 7px;
+  border-radius: 20px;
+  letter-spacing: 0.2px;
+}
+.b-kolay { background: var(--kolay-bg); color: var(--kolay-fg); }
+.b-orta  { background: var(--orta-bg);  color: var(--orta-fg); }
+.b-zor   { background: var(--zor-bg);   color: var(--zor-fg); }
+.b-joker { background: var(--joker-bg); color: var(--joker-fg); }
+.b-ders  { background: var(--surface2); color: var(--muted); border: 1px solid var(--border); }
+.b-sinav { background: #e0e7ff; color: #3730a3; }
+
+.yt-link-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  margin-top: 4px;
+  font-size: 11px;
+  font-weight: 800;
+  color: #ef4444;
+  text-decoration: none;
+  background: var(--yt-bg);
+  padding: 4px 10px;
+  border-radius: 8px;
+  transition: background 0.15s;
+}
+.yt-link-btn:hover { background: #fecdd3; }
+.yt-link-btn::before { content: '▶'; font-size: 9px; }
+
+/* ── EMPTY ── */
+.empty-state {
+  text-align: center;
+  padding: 48px 24px;
+  color: var(--muted);
+}
+.empty-state .empty-icon { font-size: 40px; margin-bottom: 12px; }
+.empty-state p { font-size: 13px; font-weight: 700; }
+.empty-state small { font-size: 11px; }
+
+/* ── MANUEL PANEL ── */
+.manuel-header {
+  background: linear-gradient(135deg, #4f46e5, #7c3aed);
+  border-radius: 16px;
+  padding: 16px;
+  margin-bottom: 16px;
+  color: #fff;
+}
+.manuel-header h3 { font-size: 14px; font-weight: 900; margin-bottom: 4px; }
+.manuel-header p  { font-size: 11px; opacity: 0.8; }
+
+.form-card {
+  background: var(--surface);
+  border: 1.5px solid var(--border);
+  border-radius: 16px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+.form-row { display: flex; flex-direction: column; gap: 5px; }
+.form-row label {
+  font-size: 11px;
+  font-weight: 800;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+.form-row select,
+.form-row input,
+.form-row textarea {
+  width: 100%;
+  height: 42px;
+  border-radius: 10px;
+  border: 1.5px solid var(--border);
+  background: var(--surface2);
+  color: var(--text);
+  font-size: 13px;
+  font-weight: 600;
+  padding: 0 12px;
+  font-family: 'Nunito', sans-serif;
+  transition: border-color 0.15s;
+  -webkit-appearance: none;
+}
+.form-row select:focus,
+.form-row input:focus,
+.form-row textarea:focus {
+  outline: none;
+  border-color: var(--primary-mid);
+  background: #fff;
+}
+.form-row textarea { height: 72px; padding: 10px 12px; resize: none; }
+.form-row-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+
+.btn-add {
+  width: 100%;
+  height: 46px;
+  border-radius: 12px;
+  border: none;
+  background: linear-gradient(135deg, #4f46e5, #6366f1);
+  color: #fff;
+  font-size: 14px;
+  font-weight: 800;
+  cursor: pointer;
+  font-family: 'Nunito', sans-serif;
+  display: flex; align-items: center; justify-content: center; gap: 6px;
+  box-shadow: 0 4px 12px rgba(79,70,229,0.3);
+  transition: all 0.15s;
+}
+.btn-add:active { transform: scale(0.98); box-shadow: none; }
+
+.manuel-items { display: flex; flex-direction: column; gap: 8px; }
+.manuel-item {
+  background: var(--surface);
+  border: 1.5px solid #c7d2fe;
+  border-radius: 14px;
+  padding: 12px 14px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 10px;
+}
+.manuel-item-info { flex: 1; min-width: 0; }
+.manuel-item-name { font-size: 13px; font-weight: 800; color: var(--text); margin-bottom: 4px; }
+.manuel-item-meta { font-size: 11px; color: var(--muted); font-weight: 600; }
+.del-btn {
+  width: 30px; height: 30px;
+  border-radius: 8px;
+  border: none;
+  background: #fee2e2;
+  color: #dc2626;
+  font-size: 14px;
+  cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+  transition: background 0.15s;
+}
+.del-btn:active { background: #fecaca; }
+
+/* ── NASIL KULLANILIR ── */
+.how-card {
+  background: var(--surface);
+  border: 1.5px solid var(--border);
+  border-radius: 16px;
+  padding: 16px;
+  margin-bottom: 12px;
+}
+.how-card h3 { font-size: 13px; font-weight: 900; color: var(--primary); margin-bottom: 10px; }
+.how-step {
+  display: flex; align-items: flex-start; gap: 10px;
+  margin-bottom: 10px;
+}
+.how-step:last-child { margin-bottom: 0; }
+.step-num {
+  width: 24px; height: 24px;
+  border-radius: 8px;
+  background: var(--primary-light);
+  color: var(--primary);
+  font-size: 12px; font-weight: 900;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.step-text { font-size: 12px; font-weight: 600; color: var(--text); line-height: 1.5; padding-top: 3px; }
+.step-text strong { color: var(--primary); }
+
+/* ── ANIMATIONS ── */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.card { animation: fadeIn 0.2s ease both; }
+
+/* URL satırı gizli başlar */
+#m-url-row { display: none; }
+</style>
+</head>
+<body>
+
+<!-- TOP HEADER -->
+<header class="top-header">
+  <div class="header-brand">
+    <div class="header-logo">🎯</div>
+    <div>
+      <div class="header-title">MDK Akademi</div>
+      <div class="header-subtitle">LGS & YKS Kaynak Rehberi</div>
+    </div>
+  </div>
+  <div class="header-badge">@mdk_akademi</div>
+</header>
+
+<!-- PANEL: KİTAPLAR -->
+<div id="panel-kitap" class="panel active">
+  <div class="section-title"><span>📚</span> Kitap Önerileri</div>
+
+  <div class="filter-strip" id="k-sinav-strip">
+    <div class="chip" data-val="" onclick="setSinav('k','',this)">Tümü</div>
+    <div class="chip" data-val="LGS" onclick="setSinav('k','LGS',this)">🏫 LGS</div>
+    <div class="chip" data-val="YKS" onclick="setSinav('k','YKS',this)">🎓 YKS</div>
+    <div class="chip-divider"></div>
+    <div class="chip" data-val="kolay" onclick="setZorluk('k','kolay',this)">🟢 Kolay</div>
+    <div class="chip" data-val="orta"  onclick="setZorluk('k','orta',this)">🟡 Orta</div>
+    <div class="chip" data-val="zor"   onclick="setZorluk('k','zor',this)">🔴 Zor</div>
+    <div class="chip" data-val="joker" onclick="setZorluk('k','joker',this)">⚡ Joker</div>
+  </div>
+
+  <div class="ders-scroll" id="k-ders-scroll"></div>
+
+  <div class="result-count" id="k-count"></div>
+  <div class="cards-grid" id="k-grid"></div>
+</div>
+
+<!-- PANEL: YOUTUBE -->
+<div id="panel-youtube" class="panel">
+  <div class="section-title"><span>▶️</span> YouTube Kanalları</div>
+
+  <div class="filter-strip" id="y-sinav-strip">
+    <div class="chip" data-val="" onclick="setSinav('y','',this)">Tümü</div>
+    <div class="chip" data-val="LGS" onclick="setSinav('y','LGS',this)">🏫 LGS</div>
+    <div class="chip" data-val="YKS" onclick="setSinav('y','YKS',this)">🎓 YKS</div>
+    <div class="chip-divider"></div>
+    <div class="chip" data-val="kolay" onclick="setZorluk('y','kolay',this)">🟢 Kolay</div>
+    <div class="chip" data-val="orta"  onclick="setZorluk('y','orta',this)">🟡 Orta</div>
+    <div class="chip" data-val="zor"   onclick="setZorluk('y','zor',this)">🔴 Zor</div>
+  </div>
+
+  <div class="ders-scroll" id="y-ders-scroll"></div>
+
+  <div class="result-count" id="y-count"></div>
+  <div class="cards-grid" id="y-grid"></div>
+</div>
+
+<!-- PANEL: MANUEL EKLE -->
+<div id="panel-manuel" class="panel">
+  <div class="manuel-header">
+    <h3>✏️ Kendi Kaynağını Ekle</h3>
+    <p>Listeye dahil olmayan kitap veya kanal ekleyebilirsin</p>
+  </div>
+
+  <div class="form-card">
+    <div class="form-row-2">
+      <div class="form-row">
+        <label>Tür</label>
+        <select id="m-tip" onchange="toggleUrl()">
+          <option value="kitap">📚 Kitap</option>
+          <option value="youtube">▶ YouTube</option>
+        </select>
+      </div>
+      <div class="form-row">
+        <label>Sınav</label>
+        <select id="m-sinav">
+          <option>LGS</option><option>YKS</option>
+        </select>
+      </div>
+    </div>
+    <div class="form-row-2">
+      <div class="form-row">
+        <label>Ders</label>
+        <select id="m-ders">
+          <option>Türkçe</option><option>Matematik</option><option>Geometri</option>
+          <option>Fen Bilimleri</option><option>İnkılap Tarihi</option><option>Din Kültürü</option>
+          <option>İngilizce</option><option>Fizik</option><option>Kimya</option><option>Biyoloji</option>
+          <option>Tarih</option><option>Coğrafya</option><option>Edebiyat</option><option>Felsefe</option>
+        </select>
+      </div>
+      <div class="form-row">
+        <label>Seviye</label>
+        <select id="m-zorluk">
+          <option value="kolay">🟢 Kolay</option>
+          <option value="orta" selected>🟡 Orta</option>
+          <option value="zor">🔴 Zor</option>
+          <option value="joker">⚡ Joker</option>
+        </select>
+      </div>
+    </div>
+    <div class="form-row">
+      <label>Kaynak / Kanal Adı</label>
+      <input id="m-ad" placeholder="Adını yaz...">
+    </div>
+    <div class="form-row" id="m-url-row">
+      <label>YouTube Linki</label>
+      <input id="m-url" placeholder="https://youtube.com/@...">
+    </div>
+    <div class="form-row">
+      <label>Not (opsiyonel)</label>
+      <textarea id="m-aciklama" placeholder="Kısa bir not ekleyebilirsin..."></textarea>
+    </div>
+    <button class="btn-add" onclick="addManuel()">＋ Listeye Ekle</button>
+  </div>
+
+  <div class="manuel-items" id="m-list"></div>
+</div>
+
+<!-- PANEL: NASIL KULLANILIR -->
+<div id="panel-nasil" class="panel">
+  <div class="section-title"><span>💡</span> Nasıl Kullanılır?</div>
+
+  <div class="how-card">
+    <h3>📚 Kitaplar Sekmesi</h3>
+    <div class="how-step">
+      <div class="step-num">1</div>
+      <div class="step-text"><strong>LGS mi, YKS mi?</strong> — Önce sınav türünü seç. Listede sana uygun kitaplar kalır.</div>
+    </div>
+    <div class="how-step">
+      <div class="step-num">2</div>
+      <div class="step-text"><strong>Dersi seç</strong> — Ders çubuğunda ilgilendiğin derse dokun. Hemen filtreler.</div>
+    </div>
+    <div class="how-step">
+      <div class="step-num">3</div>
+      <div class="step-text"><strong>Seviye seç</strong> — 🟢 Kolay (başlangıç), 🟡 Orta (klasik soru bankası), 🔴 Zor (ileri seviye), ⚡ Joker (şampiyona için).</div>
+    </div>
+    <div class="how-step">
+      <div class="step-num">4</div>
+      <div class="step-text"><strong>Kartı gör</strong> — Kitabın adı ve varsa açıklaması görünür. Hocana danış, o kitabı al!</div>
+    </div>
+  </div>
+
+  <div class="how-card">
+    <h3>▶️ YouTube Kanalları Sekmesi</h3>
+    <div class="how-step">
+      <div class="step-num">1</div>
+      <div class="step-text">Aynı şekilde sınav + ders + seviye filtrele.</div>
+    </div>
+    <div class="how-step">
+      <div class="step-num">2</div>
+      <div class="step-text">Kartın altındaki <strong>"Kanala Git →"</strong> butonuna bas — doğrudan YouTube'a gider.</div>
+    </div>
+    <div class="how-step">
+      <div class="step-num">3</div>
+      <div class="step-text">Linki olmayan kanallar için kanal adını YouTube'da ara.</div>
+    </div>
+  </div>
+
+  <div class="how-card">
+    <h3>✏️ Manuel Ekle Sekmesi</h3>
+    <div class="how-step">
+      <div class="step-num">1</div>
+      <div class="step-text">Listede olmayan bir kitap veya kanal kullanıyorsan buradan ekleyebilirsin.</div>
+    </div>
+    <div class="how-step">
+      <div class="step-num">2</div>
+      <div class="step-text"><strong>Not:</strong> Eklediğin kaynaklar sadece senin telefondaki uygulamada görünür. Sayfayı kapattığında sıfırlanır.</div>
+    </div>
+  </div>
+
+  <div class="how-card">
+    <h3>🎯 Seviye Rehberi</h3>
+    <div class="how-step">
+      <div class="step-num" style="background:#d1fae5;color:#065f46">🟢</div>
+      <div class="step-text"><strong>Kolay:</strong> Temel konu pekiştirme, başlangıç seviyesi</div>
+    </div>
+    <div class="how-step">
+      <div class="step-num" style="background:#fef3c7;color:#92400e">🟡</div>
+      <div class="step-text"><strong>Orta:</strong> Klasik soru bankası, sınav ortalaması için</div>
+    </div>
+    <div class="how-step">
+      <div class="step-num" style="background:#fee2e2;color:#991b1b">🔴</div>
+      <div class="step-text"><strong>Zor:</strong> Yüksek puan hedefleyenler için zorlu sorular</div>
+    </div>
+    <div class="how-step">
+      <div class="step-num" style="background:#ede9fe;color:#5b21b6">⚡</div>
+      <div class="step-text"><strong>Joker:</strong> LGS/YKS şampiyonlarına özel, son sürtünme</div>
+    </div>
+  </div>
+</div>
+
+<!-- BOTTOM NAV -->
+<nav class="bottom-nav">
+  <button class="nav-btn active" onclick="setPanel('kitap',this)">
+    <span class="nav-icon">📚</span>
+    <span class="nav-label">Kitaplar</span>
+  </button>
+  <button class="nav-btn" onclick="setPanel('youtube',this)">
+    <span class="nav-icon">▶️</span>
+    <span class="nav-label">YouTube</span>
+  </button>
+  <button class="nav-btn" onclick="setPanel('manuel',this)">
+    <span class="nav-icon">✏️</span>
+    <span class="nav-label">Ekle</span>
+  </button>
+  <button class="nav-btn" onclick="setPanel('nasil',this)">
+    <span class="nav-icon">💡</span>
+    <span class="nav-label">Nasıl?</span>
+  </button>
+</nav>
+
+<script>
+// ── DATA ──────────────────────────────────────────────────
+const LGS_DERS = ["Türkçe","Matematik","Fen Bilimleri","İnkılap Tarihi","Din Kültürü","İngilizce"]
+const YKS_DERS = ["Türkçe","Matematik","Geometri","Fizik","Kimya","Biyoloji","Tarih","Coğrafya","Felsefe","Din Kültürü","Edebiyat"]
+const ALL_DERS  = [...new Set([...LGS_DERS,...YKS_DERS])]
+
+const kitaplar = [
+  {n:"Mozaik İntro Defter",d:"Türkçe",s:"LGS",z:"kolay"},{n:"İşleyen Zeka Yörünge",d:"Türkçe",s:"LGS",z:"kolay"},{n:"Hız Yayınları T",d:"Türkçe",s:"LGS",z:"kolay"},
+  {n:"Fenomen",d:"Türkçe",s:"LGS",z:"orta"},{n:"Tonguç Taktikli",d:"Türkçe",s:"LGS",z:"orta"},{n:"Günay Zoom",d:"Türkçe",s:"LGS",z:"orta"},
+  {n:"Bilfen Pro Bil (PISA)",d:"Türkçe",s:"LGS",z:"zor"},{n:"Nartest Pisa Tarzı",d:"Türkçe",s:"LGS",z:"zor"},{n:"Son Viraj Formula 1",d:"Türkçe",s:"LGS",z:"zor"},
+  {n:"Sinan Kuzucu MEB Böyle Sorar",d:"Türkçe",s:"LGS",z:"joker"},
+  {n:"Fenomen A",d:"Matematik",s:"LGS",z:"kolay"},{n:"Tonguç 0'dan 8'e",d:"Matematik",s:"LGS",z:"kolay"},{n:"Ankara Güçlendiren",d:"Matematik",s:"LGS",z:"kolay"},
+  {n:"Mozaik Çözülebilir Yeni Nesil",d:"Matematik",s:"LGS",z:"orta"},{n:"Hız Yayınları Normal",d:"Matematik",s:"LGS",z:"orta"},{n:"Bilfen Pro Test",d:"Matematik",s:"LGS",z:"orta"},
+  {n:"Okyanus Master",d:"Matematik",s:"LGS",z:"zor"},{n:"Bilfen Pro Bil",d:"Matematik",s:"LGS",z:"zor"},{n:"Hız Matematik Uzmanı",d:"Matematik",s:"LGS",z:"zor"},
+  {n:"Sinan Kuzucu Bi Tık Zor",d:"Matematik",s:"LGS",z:"joker"},
+  {n:"Fenomen A",d:"Fen Bilimleri",s:"LGS",z:"kolay"},{n:"Okyanus Classmate",d:"Fen Bilimleri",s:"LGS",z:"kolay"},{n:"Muba Mavi Seri",d:"Fen Bilimleri",s:"LGS",z:"kolay"},
+  {n:"Bilfen Pro Test",d:"Fen Bilimleri",s:"LGS",z:"orta"},{n:"Hız Yayınları F",d:"Fen Bilimleri",s:"LGS",z:"orta"},{n:"Kafa Dengi Mavi",d:"Fen Bilimleri",s:"LGS",z:"orta"},
+  {n:"Koral Varol Plus Kırmızı",d:"Fen Bilimleri",s:"LGS",z:"zor"},{n:"Nitelik Süper B",d:"Fen Bilimleri",s:"LGS",z:"zor"},{n:"Bilfen Pro Bil",d:"Fen Bilimleri",s:"LGS",z:"zor"},
+  {n:"Mebi Fen Soru Bankası",d:"Fen Bilimleri",s:"LGS",z:"joker"},
+  {n:"Okyanus Classmate",d:"İnkılap Tarihi",s:"LGS",z:"kolay"},{n:"Muba İlk Hasat",d:"İnkılap Tarihi",s:"LGS",z:"kolay"},{n:"Ankara Güçlendiren",d:"İnkılap Tarihi",s:"LGS",z:"kolay"},
+  {n:"Palme Plus",d:"İnkılap Tarihi",s:"LGS",z:"orta"},{n:"Fenomen Soru Bankası",d:"İnkılap Tarihi",s:"LGS",z:"orta"},{n:"Hız Uzman A",d:"İnkılap Tarihi",s:"LGS",z:"orta"},
+  {n:"Atom 4D",d:"İnkılap Tarihi",s:"LGS",z:"zor"},{n:"Palme Enerji",d:"İnkılap Tarihi",s:"LGS",z:"zor"},{n:"Son Viraj Formula 1",d:"İnkılap Tarihi",s:"LGS",z:"zor"},
+  {n:"Mebi İnkılap Soru Bankası",d:"İnkılap Tarihi",s:"LGS",z:"joker"},
+  {n:"Hız Tıkır Tıkır",d:"Din Kültürü",s:"LGS",z:"kolay"},{n:"Okyanus Classmate",d:"Din Kültürü",s:"LGS",z:"kolay"},{n:"Tonguç Taktikli",d:"Din Kültürü",s:"LGS",z:"kolay"},
+  {n:"Palme Plus",d:"Din Kültürü",s:"LGS",z:"orta"},{n:"Günay Zoom",d:"Din Kültürü",s:"LGS",z:"orta"},{n:"Hız D",d:"Din Kültürü",s:"LGS",z:"orta"},
+  {n:"Palme Enerji",d:"Din Kültürü",s:"LGS",z:"zor"},{n:"Atom 4D",d:"Din Kültürü",s:"LGS",z:"zor"},{n:"Bilfen Protest",d:"Din Kültürü",s:"LGS",z:"zor"},
+  {n:"Mebi & Sinan Kuzucu Din Seti",d:"Din Kültürü",s:"LGS",z:"joker"},
+  {n:"Hız Tıkır Tıkır",d:"İngilizce",s:"LGS",z:"kolay"},{n:"Tonguç Kota",d:"İngilizce",s:"LGS",z:"kolay"},{n:"Nitelik 8",d:"İngilizce",s:"LGS",z:"kolay"},
+  {n:"Tudem Equinox",d:"İngilizce",s:"LGS",z:"orta"},{n:"Hyper English",d:"İngilizce",s:"LGS",z:"orta"},{n:"More & More Star Words",d:"İngilizce",s:"LGS",z:"orta"},
+  {n:"Bilfen Protest",d:"İngilizce",s:"LGS",z:"zor"},{n:"Editör Kırmızı Kitap",d:"İngilizce",s:"LGS",z:"zor"},{n:"YDS Shall We",d:"İngilizce",s:"LGS",z:"zor"},
+  {n:"Mebi & Sinan Kuzucu İngilizce",d:"İngilizce",s:"LGS",z:"joker"},
+  {n:"Mozaik İntro Defter",d:"Türkçe",s:"YKS",z:"kolay"},{n:"İşleyen Zeka Yörünge",d:"Türkçe",s:"YKS",z:"kolay"},{n:"Hız Yayınları T",d:"Türkçe",s:"YKS",z:"kolay"},
+  {n:"Fenomen",d:"Türkçe",s:"YKS",z:"orta"},{n:"Tonguç Taktikli",d:"Türkçe",s:"YKS",z:"orta"},{n:"Günay Zoom",d:"Türkçe",s:"YKS",z:"orta"},{n:"345",d:"Türkçe",s:"YKS",z:"orta"},{n:"Paraf",d:"Türkçe",s:"YKS",z:"orta"},
+  {n:"Bilfen Pro Bil (PISA)",d:"Türkçe",s:"YKS",z:"zor"},{n:"Nartest Pisa Tarzı",d:"Türkçe",s:"YKS",z:"zor"},{n:"Son Viraj Formula 1",d:"Türkçe",s:"YKS",z:"zor"},{n:"Limit Kronometre",d:"Türkçe",s:"YKS",z:"zor"},
+  {n:"Sinan Kuzucu MEB Böyle Sorar",d:"Türkçe",s:"YKS",z:"joker"},
+  {n:"Aktif İlaç",d:"Matematik",s:"YKS",z:"kolay"},{n:"Mikro Orijinal",d:"Matematik",s:"YKS",z:"kolay"},{n:"Antrenmanlarla Matematik",d:"Matematik",s:"YKS",z:"kolay"},
+  {n:"345",d:"Matematik",s:"YKS",z:"orta"},{n:"Bilgi Sarmal",d:"Matematik",s:"YKS",z:"orta"},{n:"Hız ve Renk",d:"Matematik",s:"YKS",z:"orta"},{n:"Orijinal",d:"Matematik",s:"YKS",z:"orta"},
+  {n:"Endemik",d:"Matematik",s:"YKS",z:"zor"},{n:"Apotemi",d:"Matematik",s:"YKS",z:"zor"},{n:"Barış",d:"Matematik",s:"YKS",z:"zor"},
+  {n:"Sinan Kuzucu Bi Tık Zor",d:"Matematik",s:"YKS",z:"joker"},
+  {n:"345",d:"Geometri",s:"YKS",z:"orta"},{n:"Paraf",d:"Geometri",s:"YKS",z:"orta"},{n:"Bilgi Sarmal",d:"Geometri",s:"YKS",z:"orta"},
+  {n:"Orijinal",d:"Geometri",s:"YKS",z:"zor"},{n:"Acil",d:"Geometri",s:"YKS",z:"zor"},{n:"Karekök",d:"Geometri",s:"YKS",z:"zor"},
+  {n:"Aktif - 40 Seans",d:"Fizik",s:"YKS",z:"kolay"},{n:"Okyanus 40 Seans",d:"Fizik",s:"YKS",z:"kolay"},
+  {n:"345",d:"Fizik",s:"YKS",z:"orta"},{n:"Nihat Bilgin",d:"Fizik",s:"YKS",z:"orta"},{n:"Palme",d:"Fizik",s:"YKS",z:"orta"},{n:"Hız ve Renk",d:"Fizik",s:"YKS",z:"orta"},
+  {n:"Karaağaç",d:"Fizik",s:"YKS",z:"zor"},{n:"Apotemi",d:"Fizik",s:"YKS",z:"zor"},{n:"3D",d:"Fizik",s:"YKS",z:"zor"},
+  {n:"Aktif - 40 Seans",d:"Kimya",s:"YKS",z:"kolay"},
+  {n:"Orbital",d:"Kimya",s:"YKS",z:"orta"},{n:"Aydın",d:"Kimya",s:"YKS",z:"orta"},{n:"345",d:"Kimya",s:"YKS",z:"orta"},{n:"Bilgi Sarmal",d:"Kimya",s:"YKS",z:"orta"},
+  {n:"Karaağaç",d:"Kimya",s:"YKS",z:"zor"},{n:"3D",d:"Kimya",s:"YKS",z:"zor"},{n:"Apotemi",d:"Kimya",s:"YKS",z:"zor"},
+  {n:"Aktif - 40 Seans",d:"Biyoloji",s:"YKS",z:"kolay"},{n:"Hız ve Renk",d:"Biyoloji",s:"YKS",z:"kolay"},
+  {n:"Palme",d:"Biyoloji",s:"YKS",z:"orta"},{n:"Biyotik",d:"Biyoloji",s:"YKS",z:"orta"},{n:"345",d:"Biyoloji",s:"YKS",z:"orta"},{n:"Bilgi Sarmal",d:"Biyoloji",s:"YKS",z:"orta"},
+  {n:"Apotemi",d:"Biyoloji",s:"YKS",z:"zor"},{n:"3D",d:"Biyoloji",s:"YKS",z:"zor"},
+  {n:"ENS",d:"Tarih",s:"YKS",z:"kolay"},{n:"Kafa Dengi",d:"Tarih",s:"YKS",z:"kolay"},
+  {n:"345",d:"Tarih",s:"YKS",z:"orta"},{n:"Bilgi Sarmal",d:"Tarih",s:"YKS",z:"orta"},{n:"Hız ve Renk",d:"Tarih",s:"YKS",z:"orta"},{n:"Palme",d:"Tarih",s:"YKS",z:"orta"},
+  {n:"Limit",d:"Tarih",s:"YKS",z:"zor"},{n:"Karekök",d:"Tarih",s:"YKS",z:"zor"},{n:"3D",d:"Tarih",s:"YKS",z:"zor"},
+  {n:"Palme",d:"Coğrafya",s:"YKS",z:"kolay"},
+  {n:"Hız ve Renk",d:"Coğrafya",s:"YKS",z:"orta"},{n:"Bilgi Sarmal",d:"Coğrafya",s:"YKS",z:"orta"},{n:"345",d:"Coğrafya",s:"YKS",z:"orta"},{n:"Limit",d:"Coğrafya",s:"YKS",z:"orta"},
+  {n:"Karekök",d:"Coğrafya",s:"YKS",z:"zor"},{n:"3D",d:"Coğrafya",s:"YKS",z:"zor"},
+  {n:"Yayın Denizi",d:"Felsefe",s:"YKS",z:"orta"},{n:"Bilgi Sarmal",d:"Felsefe",s:"YKS",z:"orta"},{n:"Hız ve Renk",d:"Felsefe",s:"YKS",z:"orta"},
+  {n:"Limit",d:"Felsefe",s:"YKS",z:"zor"},{n:"Didaktik Kalem",d:"Felsefe",s:"YKS",z:"zor"},
+  {n:"Yayın Denizi",d:"Din Kültürü",s:"YKS",z:"orta"},{n:"Bilgi Sarmal",d:"Din Kültürü",s:"YKS",z:"orta"},
+  {n:"Limit",d:"Din Kültürü",s:"YKS",z:"zor"},{n:"Didaktik Kalem",d:"Din Kültürü",s:"YKS",z:"zor"},
+  {n:"Limit",d:"Edebiyat",s:"YKS",z:"orta"},{n:"Bilgi Sarmal",d:"Edebiyat",s:"YKS",z:"orta"},{n:"345",d:"Edebiyat",s:"YKS",z:"orta"},{n:"3D",d:"Edebiyat",s:"YKS",z:"orta"},
+  {n:"Karekök",d:"Edebiyat",s:"YKS",z:"zor"},{n:"Endemik",d:"Edebiyat",s:"YKS",z:"zor"},{n:"Palme",d:"Edebiyat",s:"YKS",z:"zor"},
+]
+
+const kanallar = [
+  {n:"Rüştü Hoca",d:"Türkçe",s:"LGS",z:"kolay",a:"LGS'de en çok önerilen Türkçe kanalı",u:"https://www.youtube.com/@rustuhoca"},
+  {n:"Tonguç LGS Hazırlık",d:"Türkçe",s:"LGS",z:"orta",a:"Müfredata uygun Türkçe + deneme çözümleri",u:"https://www.youtube.com/@tongucakademi"},
+  {n:"KR Akademi (Fırat Osman Baykal)",d:"Türkçe",s:"LGS",z:"orta",a:"Poster notlarla 31 video konu anlatımı",u:"https://www.youtube.com/@krakademi"},
+  {n:"İdris Hoca",d:"Türkçe",s:"LGS",z:"orta",a:"Taktikli soru çözümleri ve LGS kampları",u:""},
+  {n:"Neslihan Çopur",d:"Türkçe",s:"LGS",z:"kolay",a:"Anlaşılır ve akıcı Türkçe anlatımı",u:""},
+  {n:"Partikül Matematik (Melih Akgündüz)",d:"Matematik",s:"LGS",z:"kolay",a:"Her yıl yenilenen LGS mat videoları, en çok önerilen",u:"https://www.youtube.com/@partikulmatematik"},
+  {n:"Rehber Matematik",d:"Matematik",s:"LGS",z:"kolay",a:"1M+ abone, temel seviye için ideal",u:"https://www.youtube.com/@rehbermatematik"},
+  {n:"Şenol Hoca",d:"Matematik",s:"LGS",z:"orta",a:"YouTube'da konu anlatımı yapan ilk hocalardan",u:""},
+  {n:"Çopur Hoca (Yasin Çopur)",d:"Matematik",s:"LGS",z:"orta",a:"PDF notlar + aylık mini deneme sınavları",u:""},
+  {n:"LGS Hocam",d:"Matematik",s:"LGS",z:"orta",a:"Kendi kitabı üzerinden konu anlatımı",u:""},
+  {n:"Bıyıklı Matematik",d:"Matematik",s:"LGS",z:"zor",a:"Problemler kampıyla tanınan kanal",u:"https://www.youtube.com/@biyiklimatematik"},
+  {n:"Derslike",d:"Fen Bilimleri",s:"LGS",z:"orta",a:"Tüm LGS fen konularını dijital ortamda anlatan kanal",u:"https://www.youtube.com/@derslike"},
+  {n:"KR Akademi (İlbey Hoca)",d:"Fen Bilimleri",s:"LGS",z:"orta",a:"Poster notlarla fen konu anlatımı",u:"https://www.youtube.com/@krakademi"},
+  {n:"Özge Vural",d:"Fen Bilimleri",s:"LGS",z:"kolay",a:"35 videoda tüm LGS fen konuları",u:""},
+  {n:"Sosyal Bilgiler Dersliği",d:"İnkılap Tarihi",s:"LGS",z:"orta",a:"Sosyal bilgiler ve inkılap tarihi için güçlü kanal",u:""},
+  {n:"Sosyal Kale",d:"İnkılap Tarihi",s:"LGS",z:"orta",a:"Sosyal bilgiler ve inkılap videoları",u:""},
+  {n:"Alper Güneş",d:"İnkılap Tarihi",s:"LGS",z:"kolay",a:"Kitap yazarı, tüm konular kanaldan takip edilebilir",u:""},
+  {n:"Yusuf Keleş",d:"Din Kültürü",s:"LGS",z:"orta",a:"LGS Din Kültürü tüm konular",u:""},
+  {n:"Hocalara Geldik (İngilizce)",d:"İngilizce",s:"LGS",z:"orta",a:"LGS İngilizce için kapsamlı içerik",u:"https://www.youtube.com/@hocalarageldik"},
+  {n:"Deniz Hoca",d:"Türkçe",s:"YKS",z:"orta",a:"YKS Türkçe için önerilen kanallardan",u:""},
+  {n:"Kadir Gümüş",d:"Türkçe",s:"YKS",z:"zor",a:"Edebiyat ve Türkçe uzmanı",u:""},
+  {n:"Hocalara Geldik",d:"Türkçe",s:"YKS",z:"orta",a:"Kaliteli içerik, büyük oynatma listesi",u:"https://www.youtube.com/@hocalarageldik"},
+  {n:"Fulya Hoca",d:"Türkçe",s:"YKS",z:"orta",a:"PDF + slayt destekli anlatım, 4M+ izlenme",u:""},
+  {n:"Harun Ardıç",d:"Türkçe",s:"YKS",z:"orta",a:"2013'ten beri Türkçe ve Edebiyat, 4M+ izlenme",u:""},
+  {n:"Rehber Matematik",d:"Matematik",s:"YKS",z:"kolay",a:"1M+ abone, TYT temel için çok önerilen",u:"https://www.youtube.com/@rehbermatematik"},
+  {n:"Bıyıklı Matematik",d:"Matematik",s:"YKS",z:"orta",a:"Problemler kampıyla tanınan, Barış Yayınları entegreli",u:"https://www.youtube.com/@biyiklimatematik"},
+  {n:"Eyüp B. / SML Matematik",d:"Matematik",s:"YKS",z:"orta",a:"Barış Yayınları kitaplarıyla entegre, orta-zor seviye",u:""},
+  {n:"Mert Hoca",d:"Matematik",s:"YKS",z:"orta",a:"300 Soruda AYT Mat Full Tekrar — popüler kanal",u:""},
+  {n:"Tunç Kurt",d:"Matematik",s:"YKS",z:"zor",a:"İleri seviye matematik için tercih edilen",u:""},
+  {n:"Barış Çelenk (Barış Yayınları)",d:"Matematik",s:"YKS",z:"zor",a:"Kitap yazarı; Eyüp B. ve SML kanallarıyla entegre",u:""},
+  {n:"Kenan Kara",d:"Geometri",s:"YKS",z:"orta",a:"Geometri için çok önerilen kanal",u:""},
+  {n:"Merkeze Teğet",d:"Geometri",s:"YKS",z:"zor",a:"İleri seviye geometri",u:""},
+  {n:"VIP Fizik",d:"Fizik",s:"YKS",z:"orta",a:"TYT-AYT fizik için güçlü kanal",u:""},
+  {n:"Özcan Aykın",d:"Fizik",s:"YKS",z:"zor",a:"AYT fizik odaklı, Fizik Evi kanalı",u:""},
+  {n:"Benim Hocam Kimya",d:"Kimya",s:"YKS",z:"orta",a:"Kapsamlı kimya içeriği",u:""},
+  {n:"Kimya Adası",d:"Kimya",s:"YKS",z:"orta",a:"YKS kimya için aktif kanal",u:""},
+  {n:"Dr. Biyoloji",d:"Biyoloji",s:"YKS",z:"orta",a:"150 Soruda AYT Biyoloji Tekrarı ile popüler",u:""},
+  {n:"Benim Hocam Tarih",d:"Tarih",s:"YKS",z:"orta",a:"TYT ve AYT tarih için kapsamlı",u:""},
+  {n:"Soner Hoca",d:"Tarih",s:"YKS",z:"orta",a:"500 Soruda YKS Tarih kanalı",u:""},
+  {n:"Coğrafyanın Kodları",d:"Coğrafya",s:"YKS",z:"orta",a:"AYT coğrafya deneme çözümleri",u:""},
+  {n:"Hocalara Geldik (Coğrafya)",d:"Coğrafya",s:"YKS",z:"orta",a:"Geniş içerik havuzu",u:"https://www.youtube.com/@hocalarageldik"},
+  {n:"Kadir Gümüş (8 Günde AYT Edebiyat)",d:"Edebiyat",s:"YKS",z:"orta",a:"Edebiyat kampı formatında popüler içerik",u:""},
+  {n:"Tonguç Kampüs",d:"Edebiyat",s:"YKS",z:"orta",a:"Tonguç Akademi'nin YKS özel kanalı",u:""},
+  {n:"Felsefe Atölyesi",d:"Felsefe",s:"YKS",z:"orta",a:"AYT Felsefe Full Tekrar 200 soru",u:""},
+  {n:"OGM Materyal",d:"Din Kültürü",s:"YKS",z:"orta",a:"Din Kültürü AYT kampı",u:""},
+]
+
+let manuelData = []
+
+// ── STATE ────────────────────────────────────────────────
+const state = {
+  k: { sinav: '', ders: '', zorluk: '' },
+  y: { sinav: '', ders: '', zorluk: '' },
+}
+
+// ── PANEL NAVIGATION ────────────────────────────────────
+function setPanel(name, btn) {
+  document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'))
+  document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'))
+  document.getElementById('panel-' + name).classList.add('active')
+  btn.classList.add('active')
+  if (name === 'kitap')   render('kitap')
+  if (name === 'youtube') render('youtube')
+}
+
+// ── FILTER LOGIC ────────────────────────────────────────
+function setSinav(p, val, el) {
+  // Toggle off
+  if (state[p].sinav === val && val !== '') { val = ''; }
+  state[p].sinav = val
+  // Update chip visuals
+  document.querySelectorAll(`#${p==='k'?'k':'y'}-sinav-strip .chip`).forEach(c => {
+    c.classList.remove('selected','selected-lgs','selected-yks')
+    if (c.dataset.val === val) {
+      c.classList.add(val === 'LGS' ? 'selected-lgs' : val === 'YKS' ? 'selected-yks' : 'selected')
+    }
+  })
+  updateDersScroll(p)
+  render(p === 'k' ? 'kitap' : 'youtube')
+}
+
+function setZorluk(p, val, el) {
+  if (state[p].zorluk === val) { state[p].zorluk = ''; }
+  else { state[p].zorluk = val; }
+  // Update chip visuals for zorluk chips
+  document.querySelectorAll(`#${p==='k'?'k':'y'}-sinav-strip .chip[data-val="kolay"],
+    #${p==='k'?'k':'y'}-sinav-strip .chip[data-val="orta"],
+    #${p==='k'?'k':'y'}-sinav-strip .chip[data-val="zor"],
+    #${p==='k'?'k':'y'}-sinav-strip .chip[data-val="joker"]`).forEach(c => {
+    c.classList.remove('selected','selected-kolay','selected-orta','selected-zor','selected-joker')
+    if (c.dataset.val === state[p].zorluk) {
+      c.classList.add('selected-' + state[p].zorluk)
+    }
+  })
+  render(p === 'k' ? 'kitap' : 'youtube')
+}
+
+function setDers(p, val) {
+  state[p].ders = (state[p].ders === val) ? '' : val
+  updateDersScroll(p)
+  render(p === 'k' ? 'kitap' : 'youtube')
+}
+
+function updateDersScroll(p) {
+  const s = state[p].sinav
+  const list = s === 'LGS' ? LGS_DERS : s === 'YKS' ? YKS_DERS : ALL_DERS
+  const scrollId = p === 'k' ? 'k-ders-scroll' : 'y-ders-scroll'
+  const el = document.getElementById(scrollId)
+  el.innerHTML = `<div class="ders-chip ${state[p].ders === '' ? 'active' : ''}" onclick="setDers('${p}','')">Tümü</div>` +
+    list.map(d => `<div class="ders-chip ${state[p].ders === d ? 'active' : ''}" onclick="setDers('${p}','${d}')">${d}</div>`).join('')
+}
+
+// ── RENDER CARDS ────────────────────────────────────────
+function render(type) {
+  const p = type === 'kitap' ? 'k' : 'y'
+  const { sinav, ders, zorluk } = state[p]
+  const data = type === 'kitap' ? kitaplar : kanallar
+  const res = data.filter(x => (!sinav || x.s === sinav) && (!ders || x.d === ders) && (!zorluk || x.z === zorluk))
+  document.getElementById(p + '-count').textContent = res.length + ' kaynak listeleniyor'
+  const g = document.getElementById(p + '-grid')
+  if (!res.length) {
+    g.innerHTML = `<div class="empty-state" style="grid-column:1/-1">
+      <div class="empty-icon">🔍</div>
+      <p>Kaynak bulunamadı</p>
+      <small>Filtreleri değiştirerek tekrar dene</small>
+    </div>`
+    return
+  }
+  g.innerHTML = res.map((x, i) => `
+    <div class="card ${type === 'youtube' ? 'card-yt' : 'card-kitap'}" style="animation-delay:${Math.min(i*0.03,0.3)}s">
+      <div class="card-name">${x.n}</div>
+      ${x.a ? `<div class="card-desc">${x.a}</div>` : ''}
+      <div class="card-footer">
+        <span class="badge b-${x.z}">${zorlukLabel(x.z)}</span>
+        <span class="badge b-ders">${x.d}</span>
+        <span class="badge b-sinav">${x.s}</span>
+      </div>
+      ${type === 'youtube' && x.u ? `<a class="yt-link-btn" href="${x.u}" target="_blank">Kanala Git</a>` : ''}
+    </div>`).join('')
+}
+
+function zorlukLabel(z) {
+  return { kolay: '🟢 Kolay', orta: '🟡 Orta', zor: '🔴 Zor', joker: '⚡ Joker' }[z] || z
+}
+
+// ── MANUEL ───────────────────────────────────────────────
+function toggleUrl() {
+  document.getElementById('m-url-row').style.display =
+    document.getElementById('m-tip').value === 'youtube' ? 'flex' : 'none'
+}
+
+function addManuel() {
+  const ad = document.getElementById('m-ad').value.trim()
+  if (!ad) { document.getElementById('m-ad').focus(); return }
+  manuelData.push({
+    tip: document.getElementById('m-tip').value,
+    sinav: document.getElementById('m-sinav').value,
+    ders: document.getElementById('m-ders').value,
+    ad,
+    zorluk: document.getElementById('m-zorluk').value,
+    url: document.getElementById('m-url').value.trim(),
+    aciklama: document.getElementById('m-aciklama').value.trim()
+  })
+  document.getElementById('m-ad').value = ''
+  document.getElementById('m-url').value = ''
+  document.getElementById('m-aciklama').value = ''
+  renderManuel()
+}
+
+function removeManuel(i) { manuelData.splice(i, 1); renderManuel() }
+
+function renderManuel() {
+  const el = document.getElementById('m-list')
+  if (!manuelData.length) { el.innerHTML = ''; return }
+  el.innerHTML = manuelData.map((x, i) => `
+    <div class="manuel-item">
+      <div class="manuel-item-info">
+        <div class="manuel-item-name">${x.ad}</div>
+        <div class="manuel-item-meta">${x.sinav} · ${x.ders} · ${zorlukLabel(x.zorluk)} · ${x.tip === 'youtube' ? '▶ YouTube' : '📚 Kitap'}</div>
+        ${x.aciklama ? `<div style="font-size:11px;color:#64748b;margin-top:3px">${x.aciklama}</div>` : ''}
+        ${x.url ? `<a href="${x.url}" target="_blank" style="font-size:11px;color:#4f46e5;font-weight:800;display:inline-block;margin-top:4px">Link →</a>` : ''}
+      </div>
+      <button class="del-btn" onclick="removeManuel(${i})">✕</button>
+    </div>`).join('')
+}
+
+// ── INIT ─────────────────────────────────────────────────
+updateDersScroll('k')
+updateDersScroll('y')
+render('kitap')
+</script>
+</body>
+</html>
