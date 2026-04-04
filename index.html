@@ -39,28 +39,20 @@ body {
   padding-bottom: calc(var(--bottom-h) + 20px);
 }
 
-/* ── TOP HEADER (APP BAR) ── */
 .top-header {
   background: linear-gradient(135deg, var(--primary), var(--primary-hover));
   padding: 0 20px;
   height: var(--nav-h);
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  position: sticky;
-  top: 0;
-  z-index: 100;
+  display: flex; align-items: center; justify-content: space-between;
+  position: sticky; top: 0; z-index: 100;
   box-shadow: 0 4px 20px rgba(67, 56, 202, 0.2);
-  border-bottom-left-radius: 16px;
-  border-bottom-right-radius: 16px;
+  border-bottom-left-radius: 16px; border-bottom-right-radius: 16px;
 }
 .header-brand { display: flex; align-items: center; gap: 12px; }
 .header-logo {
   width: 40px; height: 40px; border-radius: 12px;
-  background: rgba(255,255,255,0.2);
-  display: flex; align-items: center; justify-content: center;
-  font-size: 20px;
-  box-shadow: inset 0 2px 4px rgba(255,255,255,0.1);
+  background: rgba(255,255,255,0.2); display: flex; align-items: center; justify-content: center;
+  font-size: 20px; box-shadow: inset 0 2px 4px rgba(255,255,255,0.1);
 }
 .header-title { font-size: 18px; font-weight: 900; color: #fff; line-height: 1.1; letter-spacing: 0.2px; }
 .header-subtitle { font-size: 11px; color: rgba(255,255,255,0.75); font-weight: 700; }
@@ -70,14 +62,11 @@ body {
   box-shadow: 0 2px 8px rgba(245, 158, 11, 0.4);
 }
 
-/* ── BOTTOM NAV (iOS STYLE) ── */
 .bottom-nav {
   position: fixed; bottom: 0; left: 0; right: 0; height: var(--bottom-h);
-  background: rgba(255, 255, 255, 0.95);
-  backdrop-filter: blur(10px);
+  background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px);
   border-top: 1px solid var(--border);
-  display: flex; justify-content: space-around;
-  z-index: 100; padding-bottom: env(safe-area-inset-bottom);
+  display: flex; justify-content: space-around; z-index: 100; padding-bottom: env(safe-area-inset-bottom);
 }
 .nav-btn {
   flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center;
@@ -88,91 +77,43 @@ body {
 .nav-btn.active .nav-icon { transform: translateY(-3px) scale(1.1); filter: none; }
 .nav-btn.active .nav-label { color: var(--primary); }
 
-/* ── PANELS ── */
 .panel { display: none; padding: 20px 16px 10px; animation: fadePanel 0.3s ease; }
 .panel.active { display: block; }
 @keyframes fadePanel { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
-/* ── MDK AKADEMİ PROMO BANNER (REKLAM ALANI) ── */
 .promo-card {
   background: linear-gradient(135deg, var(--primary), #8b5cf6);
-  border-radius: 16px;
-  padding: 20px;
-  margin-bottom: 24px;
-  color: #fff;
-  box-shadow: 0 8px 20px rgba(67, 56, 202, 0.25);
-  position: relative;
-  overflow: hidden;
+  border-radius: 16px; padding: 20px; margin-bottom: 24px; color: #fff;
+  box-shadow: 0 8px 20px rgba(67, 56, 202, 0.25); position: relative; overflow: hidden;
 }
-.promo-card::after {
-  content: '🚀';
-  position: absolute;
-  right: -10px;
-  bottom: -20px;
-  font-size: 90px;
-  opacity: 0.15;
-  transform: rotate(-15deg);
-}
+.promo-card::after { content: '🚀'; position: absolute; right: -10px; bottom: -20px; font-size: 90px; opacity: 0.15; transform: rotate(-15deg); }
 .promo-content { position: relative; z-index: 2; }
 .promo-card h3 { font-size: 16px; font-weight: 900; margin-bottom: 8px; display: flex; align-items: center; gap: 8px; text-shadow: 0 2px 4px rgba(0,0,0,0.1); }
 .promo-card p { font-size: 12.5px; font-weight: 600; opacity: 0.95; margin-bottom: 14px; line-height: 1.5; text-shadow: 0 1px 2px rgba(0,0,0,0.1); }
 .promo-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  background: #fff;
-  color: var(--primary);
-  padding: 8px 16px;
-  border-radius: 20px;
-  font-size: 12px;
-  font-weight: 900;
-  text-decoration: none;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
-  transition: transform 0.2s;
+  display: inline-flex; align-items: center; gap: 6px; background: #fff; color: var(--primary);
+  padding: 8px 16px; border-radius: 20px; font-size: 12px; font-weight: 900;
+  text-decoration: none; box-shadow: 0 4px 10px rgba(0,0,0,0.15); transition: transform 0.2s;
 }
 .promo-btn:active { transform: scale(0.95); }
 
-/* ── SECTION TITLES ── */
 .section-title { font-size: 16px; font-weight: 900; color: var(--text); margin-bottom: 16px; display: flex; align-items: center; gap: 8px; }
 .section-title span { font-size: 20px; }
 
-/* ── FİLTRELER (AÇILIR MENÜ VE SARMA VAR) ── */
 .filter-container {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: 16px;
-  padding: 16px;
-  margin-bottom: 16px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.02);
+  background: var(--surface); border: 1px solid var(--border); border-radius: 16px;
+  padding: 16px; margin-bottom: 16px; box-shadow: 0 4px 12px rgba(0,0,0,0.02);
 }
-
-.filter-label {
-  font-size: 11px;
-  font-weight: 800;
-  color: var(--muted);
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-  margin-bottom: 8px;
-  display: block;
-}
-
-.chip-group {
-  display: flex;
-  flex-wrap: wrap; 
-  gap: 8px;
-  margin-bottom: 14px;
-}
+.filter-label { font-size: 11px; font-weight: 800; color: var(--muted); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 8px; display: block; }
+.chip-group { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 14px; }
 .chip-group:last-child { margin-bottom: 0; }
-
 .chip {
   height: 36px; padding: 0 16px; border-radius: 12px; border: 1.5px solid var(--border);
   background: var(--surface-alt); color: var(--muted); font-size: 13px; font-weight: 800;
-  cursor: pointer; transition: all 0.2s ease;
-  display: flex; align-items: center; justify-content: center; flex-grow: 1;
+  cursor: pointer; transition: all 0.2s ease; display: flex; align-items: center; justify-content: center; flex-grow: 1;
 }
 .chip:active { transform: scale(0.96); }
 .chip.selected { background: var(--primary); color: #fff; border-color: var(--primary); box-shadow: 0 4px 10px rgba(67, 56, 202, 0.2); }
-
 .chip.selected-lgs { background: #0284c7; color: #fff; border-color: #0284c7; }
 .chip.selected-yks { background: #059669; color: #fff; border-color: #059669; }
 .chip.selected-kolay { background: var(--kolay-fg); color: #fff; border-color: var(--kolay-fg); }
@@ -180,49 +121,30 @@ body {
 .chip.selected-zor   { background: var(--zor-fg); color: #fff; border-color: var(--zor-fg); }
 .chip.selected-joker { background: var(--joker-fg); color: #fff; border-color: var(--joker-fg); }
 
-/* MODERN AÇILIR MENÜ (SELECT) */
 .modern-select {
-  width: 100%;
-  height: 44px;
-  padding: 0 16px;
-  border-radius: 12px;
-  border: 1.5px solid var(--border);
-  background: #f8fafc;
-  font-family: 'Nunito', sans-serif;
-  font-size: 14px;
-  font-weight: 800;
-  color: var(--primary);
-  margin-bottom: 14px;
-  outline: none;
+  width: 100%; height: 44px; padding: 0 16px; border-radius: 12px; border: 1.5px solid var(--border);
+  background: #f8fafc url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="%234338ca" viewBox="0 0 16 16"><path d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"/></svg>') no-repeat right 16px center;
+  -webkit-appearance: none; appearance: none; font-family: 'Nunito', sans-serif; font-size: 14px; font-weight: 800;
+  color: var(--primary); margin-bottom: 14px; outline: none;
 }
-.modern-select:focus {
-  border-color: var(--primary);
-  box-shadow: 0 0 0 3px var(--primary-light);
-}
+.modern-select:focus { border-color: var(--primary); box-shadow: 0 0 0 3px var(--primary-light); }
 
-/* ── RESULT COUNT ── */
 .result-count { font-size: 12px; font-weight: 800; color: var(--muted); margin-bottom: 12px; padding: 0 4px; display: flex; justify-content: space-between; align-items: center; }
 .result-count span { background: var(--border); padding: 2px 8px; border-radius: 10px; color: var(--text); font-size: 11px; }
 
-/* ── CARDS GRID ── */
 .cards-grid { display: grid; grid-template-columns: 1fr; gap: 14px; }
 @media (min-width: 480px) { .cards-grid { grid-template-columns: repeat(2, 1fr); } }
 
-/* ── RESOURCE CARD ── */
 .card {
-  background: var(--surface); border-radius: 16px; padding: 16px;
-  display: flex; flex-direction: column; gap: 10px; position: relative; overflow: hidden;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.04); border: 1px solid var(--border);
-  transition: transform 0.15s;
+  background: var(--surface); border-radius: 16px; padding: 16px; display: flex; flex-direction: column; gap: 10px;
+  position: relative; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.04); border: 1px solid var(--border); transition: transform 0.15s;
 }
 .card:active { transform: scale(0.98); }
 .card::before { content: ''; position: absolute; top: 0; left: 0; bottom: 0; width: 5px; }
 .card.card-kitap::before { background: var(--primary); }
 .card.card-yt::before { background: var(--yt-fg); }
-
 .card-header { display: flex; justify-content: space-between; align-items: flex-start; gap: 10px; }
 .card-name { font-size: 15px; font-weight: 800; color: var(--text); line-height: 1.3; }
-
 .card-footer { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; margin-top: 4px; }
 .badge { font-size: 11px; font-weight: 800; padding: 4px 10px; border-radius: 8px; }
 .b-kolay { background: var(--kolay-bg); color: var(--kolay-fg); border: 1px solid var(--kolay-border); }
@@ -233,17 +155,9 @@ body {
 .b-sinav { background: #f0f9ff; color: #0284c7; border: 1px solid #bae6fd; }
 .b-sinav.yks { background: #ecfdf5; color: #059669; border: 1px solid #a7f3d0; }
 
-.yt-link-btn {
-  display: flex; align-items: center; justify-content: center; gap: 6px; margin-top: 8px;
-  font-size: 13px; font-weight: 800; color: #fff; text-decoration: none;
-  background: var(--yt-fg); padding: 10px; border-radius: 12px;
-}
-
-/* ── EMPTY STATE ── */
 .empty-state { text-align: center; padding: 60px 20px; }
 .empty-state p { font-size: 16px; font-weight: 800; color: var(--text); margin-bottom: 6px; }
 
-/* ── REHBER CARD (NASIL KULLANILIR) ── */
 .how-card { background: var(--surface); border-radius: 16px; padding: 20px; margin-bottom: 16px; box-shadow: 0 4px 12px rgba(0,0,0,0.03); border: 1px solid var(--border); }
 .how-card h3 { font-size: 15px; font-weight: 900; color: var(--primary); margin-bottom: 16px; display: flex; align-items: center; gap: 8px; }
 .how-step { display: flex; align-items: flex-start; gap: 12px; margin-bottom: 14px; }
@@ -265,11 +179,10 @@ body {
       <div class="header-subtitle">LGS & YKS Kaynak Rehberi</div>
     </div>
   </div>
-  <div class="header-badge">V 3.0</div>
+  <div class="header-badge">V 3.1</div>
 </header>
 
 <div id="panel-kitap" class="panel active">
-  
   <div class="promo-card">
     <div class="promo-content">
       <h3>Öğrenci Koçluğu & Hızlı Okuma</h3>
@@ -279,7 +192,6 @@ body {
   </div>
 
   <div class="section-title"><span>📚</span> Önerilen Kitaplar</div>
-
   <div class="filter-container">
     <span class="filter-label">Sınav Türü</span>
     <div class="chip-group" id="k-sinav-strip">
@@ -287,10 +199,8 @@ body {
       <div class="chip" data-val="LGS" onclick="setSinav('k','LGS',this)">🏫 LGS</div>
       <div class="chip" data-val="YKS" onclick="setSinav('k','YKS',this)">🎓 YKS</div>
     </div>
-
     <span class="filter-label">Ders Seçimi</span>
     <select class="modern-select" id="k-ders-select" onchange="setDers('k', this.value)"></select>
-
     <span class="filter-label">Zorluk Seviyesi</span>
     <div class="chip-group" id="k-zorluk-strip">
       <div class="chip selected" data-val="" onclick="setZorluk('k','',this)">Hepsi</div>
@@ -300,14 +210,12 @@ body {
       <div class="chip" data-val="joker" onclick="setZorluk('k','joker',this)">Joker</div>
     </div>
   </div>
-
   <div class="result-count">Bulunan Kaynaklar <span id="k-count">0</span></div>
   <div class="cards-grid" id="k-grid"></div>
 </div>
 
 <div id="panel-youtube" class="panel">
   <div class="section-title"><span>▶️</span> YouTube Kanalları</div>
-
   <div class="filter-container">
     <span class="filter-label">Sınav Türü</span>
     <div class="chip-group" id="y-sinav-strip">
@@ -315,19 +223,17 @@ body {
       <div class="chip" data-val="LGS" onclick="setSinav('y','LGS',this)">🏫 LGS</div>
       <div class="chip" data-val="YKS" onclick="setSinav('y','YKS',this)">🎓 YKS</div>
     </div>
-
     <span class="filter-label">Ders Seçimi</span>
     <select class="modern-select" id="y-ders-select" onchange="setDers('y', this.value)"></select>
-
     <span class="filter-label">Zorluk Seviyesi</span>
     <div class="chip-group" id="y-zorluk-strip">
       <div class="chip selected" data-val="" onclick="setZorluk('y','',this)">Hepsi</div>
       <div class="chip" data-val="kolay" onclick="setZorluk('y','kolay',this)">Kolay</div>
       <div class="chip" data-val="orta"  onclick="setZorluk('y','orta',this)">Orta</div>
       <div class="chip" data-val="zor"   onclick="setZorluk('y','zor',this)">Zor</div>
+      <div class="chip" data-val="joker" onclick="setZorluk('y','joker',this)">Joker</div>
     </div>
   </div>
-
   <div class="result-count">Bulunan Kanallar <span id="y-count">0</span></div>
   <div class="cards-grid" id="y-grid"></div>
 </div>
@@ -350,190 +256,124 @@ body {
     </div>
     <div class="how-step">
       <div class="step-num" style="background:var(--joker-bg);color:var(--joker-fg)">⚡</div>
-      <div class="step-text"><strong>Joker:</strong> LGS/YKS şampiyonluğu hedefleyenler için son nokta testler.</div>
+      <div class="step-text"><strong>Joker:</strong> LGS/YKS şampiyonluğu hedefleyenler için son nokta testler veya kamplar.</div>
     </div>
   </div>
 </div>
 
 <nav class="bottom-nav">
-  <button class="nav-btn active" onclick="setPanel('kitap',this)">
-    <span class="nav-icon">📚</span>
-    <span class="nav-label">Kitaplar</span>
-  </button>
-  <button class="nav-btn" onclick="setPanel('youtube',this)">
-    <span class="nav-icon">▶️</span>
-    <span class="nav-label">YouTube</span>
-  </button>
-  <button class="nav-btn" onclick="setPanel('nasil',this)">
-    <span class="nav-icon">💡</span>
-    <span class="nav-label">Rehber</span>
-  </button>
+  <button class="nav-btn active" onclick="setPanel('kitap',this)"><span class="nav-icon">📚</span><span class="nav-label">Kitaplar</span></button>
+  <button class="nav-btn" onclick="setPanel('youtube',this)"><span class="nav-icon">▶️</span><span class="nav-label">YouTube</span></button>
+  <button class="nav-btn" onclick="setPanel('nasil',this)"><span class="nav-icon">💡</span><span class="nav-label">Rehber</span></button>
 </nav>
 
 <script>
 const LGS_DERS = ["Türkçe","Matematik","Fen Bilimleri","İnkılap Tarihi","Din Kültürü","İngilizce"];
-const YKS_DERS = ["Türkçe","Matematik","Geometri","Fizik","Kimya","Biyoloji","Tarih","Coğrafya","Felsefe","Din Kültürü","Edebiyat"];
+const YKS_DERS = ["Türkçe","Matematik","Geometri","Fizik","Kimya","Biyoloji","Tarih","Coğrafya","Felsefe","Din Kültürü"];
 const ALL_DERS = [...new Set([...LGS_DERS,...YKS_DERS])].sort();
 
+// LGS ve YKS KOÇLUK ONAYLI GÜNCEL KİTAP LİSTESİ
 const kitaplar = [
-  {n:"Mozaik İntro Defter",d:"Türkçe",s:"LGS",z:"kolay"},{n:"İşleyen Zeka Yörünge",d:"Türkçe",s:"LGS",z:"kolay"},{n:"Hız Yayınları T",d:"Türkçe",s:"LGS",z:"kolay"},
-  {n:"Fenomen",d:"Türkçe",s:"LGS",z:"orta"},{n:"Tonguç Taktikli",d:"Türkçe",s:"LGS",z:"orta"},{n:"Günay Zoom",d:"Türkçe",s:"LGS",z:"orta"},
-  {n:"Bilfen Pro Bil (PISA)",d:"Türkçe",s:"LGS",z:"zor"},{n:"Nartest Pisa Tarzı",d:"Türkçe",s:"LGS",z:"zor"},{n:"Son Viraj Formula 1",d:"Türkçe",s:"LGS",z:"zor"},
-  {n:"Sinan Kuzucu MEB Böyle Sorar",d:"Türkçe",s:"LGS",z:"joker"},
-  {n:"Fenomen A",d:"Matematik",s:"LGS",z:"kolay"},{n:"Tonguç 0'dan 8'e",d:"Matematik",s:"LGS",z:"kolay"},{n:"Ankara Güçlendiren",d:"Matematik",s:"LGS",z:"kolay"},
-  {n:"Mozaik Çözülebilir Yeni Nesil",d:"Matematik",s:"LGS",z:"orta"},{n:"Hız Yayınları Normal",d:"Matematik",s:"LGS",z:"orta"},{n:"Bilfen Pro Test",d:"Matematik",s:"LGS",z:"orta"},
-  {n:"Okyanus Master",d:"Matematik",s:"LGS",z:"zor"},{n:"Bilfen Pro Bil",d:"Matematik",s:"LGS",z:"zor"},{n:"Hız Matematik Uzmanı",d:"Matematik",s:"LGS",z:"zor"},
-  {n:"Sinan Kuzucu Bi Tık Zor",d:"Matematik",s:"LGS",z:"joker"},
-  {n:"Fenomen A",d:"Fen Bilimleri",s:"LGS",z:"kolay"},{n:"Okyanus Classmate",d:"Fen Bilimleri",s:"LGS",z:"kolay"},{n:"Muba Mavi Seri",d:"Fen Bilimleri",s:"LGS",z:"kolay"},
-  {n:"Bilfen Pro Test",d:"Fen Bilimleri",s:"LGS",z:"orta"},{n:"Hız Yayınları F",d:"Fen Bilimleri",s:"LGS",z:"orta"},{n:"Kafa Dengi Mavi",d:"Fen Bilimleri",s:"LGS",z:"orta"},
-  {n:"Koral Varol Plus Kırmızı",d:"Fen Bilimleri",s:"LGS",z:"zor"},{n:"Nitelik Süper B",d:"Fen Bilimleri",s:"LGS",z:"zor"},{n:"Bilfen Pro Bil",d:"Fen Bilimleri",s:"LGS",z:"zor"},
-  {n:"Mebi Fen Soru Bankası",d:"Fen Bilimleri",s:"LGS",z:"joker"},
-  {n:"Okyanus Classmate",d:"İnkılap Tarihi",s:"LGS",z:"kolay"},{n:"Muba İlk Hasat",d:"İnkılap Tarihi",s:"LGS",z:"kolay"},{n:"Ankara Güçlendiren",d:"İnkılap Tarihi",s:"LGS",z:"kolay"},
-  {n:"Palme Plus",d:"İnkılap Tarihi",s:"LGS",z:"orta"},{n:"Fenomen Soru Bankası",d:"İnkılap Tarihi",s:"LGS",z:"orta"},{n:"Hız Uzman A",d:"İnkılap Tarihi",s:"LGS",z:"orta"},
-  {n:"Atom 4D",d:"İnkılap Tarihi",s:"LGS",z:"zor"},{n:"Palme Enerji",d:"İnkılap Tarihi",s:"LGS",z:"zor"},{n:"Son Viraj Formula 1",d:"İnkılap Tarihi",s:"LGS",z:"zor"},
-  {n:"Mebi İnkılap Soru Bankası",d:"İnkılap Tarihi",s:"LGS",z:"joker"},
-  {n:"Hız Tıkır Tıkır",d:"Din Kültürü",s:"LGS",z:"kolay"},{n:"Okyanus Classmate",d:"Din Kültürü",s:"LGS",z:"kolay"},{n:"Tonguç Taktikli",d:"Din Kültürü",s:"LGS",z:"kolay"},
-  {n:"Palme Plus",d:"Din Kültürü",s:"LGS",z:"orta"},{n:"Günay Zoom",d:"Din Kültürü",s:"LGS",z:"orta"},{n:"Hız D",d:"Din Kültürü",s:"LGS",z:"orta"},
-  {n:"Palme Enerji",d:"Din Kültürü",s:"LGS",z:"zor"},{n:"Atom 4D",d:"Din Kültürü",s:"LGS",z:"zor"},{n:"Bilfen Protest",d:"Din Kültürü",s:"LGS",z:"zor"},
-  {n:"Mebi & Sinan Kuzucu Din Seti",d:"Din Kültürü",s:"LGS",z:"joker"},
-  {n:"Hız Tıkır Tıkır",d:"İngilizce",s:"LGS",z:"kolay"},{n:"Tonguç Kota",d:"İngilizce",s:"LGS",z:"kolay"},{n:"Nitelik 8",d:"İngilizce",s:"LGS",z:"kolay"},
-  {n:"Tudem Equinox",d:"İngilizce",s:"LGS",z:"orta"},{n:"Hyper English",d:"İngilizce",s:"LGS",z:"orta"},{n:"More & More Star Words",d:"İngilizce",s:"LGS",z:"orta"},
-  {n:"Bilfen Protest",d:"İngilizce",s:"LGS",z:"zor"},{n:"Editör Kırmızı Kitap",d:"İngilizce",s:"LGS",z:"zor"},{n:"YDS Shall We",d:"İngilizce",s:"LGS",z:"zor"},
-  {n:"Mebi & Sinan Kuzucu İngilizce",d:"İngilizce",s:"LGS",z:"joker"},
-  {n:"Mozaik İntro Defter",d:"Türkçe",s:"YKS",z:"kolay"},{n:"İşleyen Zeka Yörünge",d:"Türkçe",s:"YKS",z:"kolay"},{n:"Hız Yayınları T",d:"Türkçe",s:"YKS",z:"kolay"},
-  {n:"Fenomen",d:"Türkçe",s:"YKS",z:"orta"},{n:"Tonguç Taktikli",d:"Türkçe",s:"YKS",z:"orta"},{n:"Günay Zoom",d:"Türkçe",s:"YKS",z:"orta"},{n:"345",d:"Türkçe",s:"YKS",z:"orta"},{n:"Paraf",d:"Türkçe",s:"YKS",z:"orta"},
-  {n:"Bilfen Pro Bil (PISA)",d:"Türkçe",s:"YKS",z:"zor"},{n:"Nartest Pisa Tarzı",d:"Türkçe",s:"YKS",z:"zor"},{n:"Son Viraj Formula 1",d:"Türkçe",s:"YKS",z:"zor"},{n:"Limit Kronometre",d:"Türkçe",s:"YKS",z:"zor"},
-  {n:"Sinan Kuzucu MEB Böyle Sorar",d:"Türkçe",s:"YKS",z:"joker"},
-  {n:"Aktif İlaç",d:"Matematik",s:"YKS",z:"kolay"},{n:"Mikro Orijinal",d:"Matematik",s:"YKS",z:"kolay"},{n:"Antrenmanlarla Matematik",d:"Matematik",s:"YKS",z:"kolay"},
-  {n:"345",d:"Matematik",s:"YKS",z:"orta"},{n:"Bilgi Sarmal",d:"Matematik",s:"YKS",z:"orta"},{n:"Hız ve Renk",d:"Matematik",s:"YKS",z:"orta"},{n:"Orijinal",d:"Matematik",s:"YKS",z:"orta"},
-  {n:"Endemik",d:"Matematik",s:"YKS",z:"zor"},{n:"Apotemi",d:"Matematik",s:"YKS",z:"zor"},{n:"Barış",d:"Matematik",s:"YKS",z:"zor"},
-  {n:"Sinan Kuzucu Bi Tık Zor",d:"Matematik",s:"YKS",z:"joker"},
-  {n:"345",d:"Geometri",s:"YKS",z:"orta"},{n:"Paraf",d:"Geometri",s:"YKS",z:"orta"},{n:"Bilgi Sarmal",d:"Geometri",s:"YKS",z:"orta"},
-  {n:"Orijinal",d:"Geometri",s:"YKS",z:"zor"},{n:"Acil",d:"Geometri",s:"YKS",z:"zor"},{n:"Karekök",d:"Geometri",s:"YKS",z:"zor"},
-  {n:"Aktif - 40 Seans",d:"Fizik",s:"YKS",z:"kolay"},{n:"Okyanus 40 Seans",d:"Fizik",s:"YKS",z:"kolay"},
-  {n:"345",d:"Fizik",s:"YKS",z:"orta"},{n:"Nihat Bilgin",d:"Fizik",s:"YKS",z:"orta"},{n:"Palme",d:"Fizik",s:"YKS",z:"orta"},{n:"Hız ve Renk",d:"Fizik",s:"YKS",z:"orta"},
-  {n:"Karaağaç",d:"Fizik",s:"YKS",z:"zor"},{n:"Apotemi",d:"Fizik",s:"YKS",z:"zor"},{n:"3D",d:"Fizik",s:"YKS",z:"zor"},
-  {n:"Aktif - 40 Seans",d:"Kimya",s:"YKS",z:"kolay"},
-  {n:"Orbital",d:"Kimya",s:"YKS",z:"orta"},{n:"Aydın",d:"Kimya",s:"YKS",z:"orta"},{n:"345",d:"Kimya",s:"YKS",z:"orta"},{n:"Bilgi Sarmal",d:"Kimya",s:"YKS",z:"orta"},
-  {n:"Karaağaç",d:"Kimya",s:"YKS",z:"zor"},{n:"3D",d:"Kimya",s:"YKS",z:"zor"},{n:"Apotemi",d:"Kimya",s:"YKS",z:"zor"},
-  {n:"Aktif - 40 Seans",d:"Biyoloji",s:"YKS",z:"kolay"},{n:"Hız ve Renk",d:"Biyoloji",s:"YKS",z:"kolay"},
-  {n:"Palme",d:"Biyoloji",s:"YKS",z:"orta"},{n:"Biyotik",d:"Biyoloji",s:"YKS",z:"orta"},{n:"345",d:"Biyoloji",s:"YKS",z:"orta"},{n:"Bilgi Sarmal",d:"Biyoloji",s:"YKS",z:"orta"},
-  {n:"Apotemi",d:"Biyoloji",s:"YKS",z:"zor"},{n:"3D",d:"Biyoloji",s:"YKS",z:"zor"},
-  {n:"ENS",d:"Tarih",s:"YKS",z:"kolay"},{n:"Kafa Dengi",d:"Tarih",s:"YKS",z:"kolay"},
-  {n:"345",d:"Tarih",s:"YKS",z:"orta"},{n:"Bilgi Sarmal",d:"Tarih",s:"YKS",z:"orta"},{n:"Hız ve Renk",d:"Tarih",s:"YKS",z:"orta"},{n:"Palme",d:"Tarih",s:"YKS",z:"orta"},
-  {n:"Limit",d:"Tarih",s:"YKS",z:"zor"},{n:"Karekök",d:"Tarih",s:"YKS",z:"zor"},{n:"3D",d:"Tarih",s:"YKS",z:"zor"},
-  {n:"Palme",d:"Coğrafya",s:"YKS",z:"kolay"},
-  {n:"Hız ve Renk",d:"Coğrafya",s:"YKS",z:"orta"},{n:"Bilgi Sarmal",d:"Coğrafya",s:"YKS",z:"orta"},{n:"345",d:"Coğrafya",s:"YKS",z:"orta"},{n:"Limit",d:"Coğrafya",s:"YKS",z:"orta"},
-  {n:"Karekök",d:"Coğrafya",s:"YKS",z:"zor"},{n:"3D",d:"Coğrafya",s:"YKS",z:"zor"},
-  {n:"Yayın Denizi",d:"Felsefe",s:"YKS",z:"orta"},{n:"Bilgi Sarmal",d:"Felsefe",s:"YKS",z:"orta"},{n:"Hız ve Renk",d:"Felsefe",s:"YKS",z:"orta"},
-  {n:"Limit",d:"Felsefe",s:"YKS",z:"zor"},{n:"Didaktik Kalem",d:"Felsefe",s:"YKS",z:"zor"},
-  {n:"Yayın Denizi",d:"Din Kültürü",s:"YKS",z:"orta"},{n:"Bilgi Sarmal",d:"Din Kültürü",s:"YKS",z:"orta"},
-  {n:"Limit",d:"Din Kültürü",s:"YKS",z:"zor"},{n:"Didaktik Kalem",d:"Din Kültürü",s:"YKS",z:"zor"},
-  {n:"Limit",d:"Edebiyat",s:"YKS",z:"orta"},{n:"Bilgi Sarmal",d:"Edebiyat",s:"YKS",z:"orta"},{n:"345",d:"Edebiyat",s:"YKS",z:"orta"},{n:"3D",d:"Edebiyat",s:"YKS",z:"orta"},
-  {n:"Karekök",d:"Edebiyat",s:"YKS",z:"zor"},{n:"Endemik",d:"Edebiyat",s:"YKS",z:"zor"},{n:"Palme",d:"Edebiyat",s:"YKS",z:"zor"}
+  // LGS TÜRKÇE
+  {n:"Ankara Yayınları Güçlendiren",d:"Türkçe",s:"LGS",z:"kolay"},
+  {n:"Hız Yayınları",d:"Türkçe",s:"LGS",z:"orta"},
+  {n:"Fenomen",d:"Türkçe",s:"LGS",z:"orta"},
+  {n:"Mozaik",d:"Türkçe",s:"LGS",z:"orta"},
+  {n:"Nartest Tane Tane / Mavi",d:"Türkçe",s:"LGS",z:"zor"},
+  {n:"Sinan Kuzucu Yayınları",d:"Türkçe",s:"LGS",z:"joker"},
+  
+  // LGS MATEMATİK
+  {n:"Ankara Yayınları Güçlendiren",d:"Matematik",s:"LGS",z:"kolay"},
+  {n:"Hız Yayınları",d:"Matematik",s:"LGS",z:"orta"},
+  {n:"Mozaik Yayınları",d:"Matematik",s:"LGS",z:"orta"},
+  {n:"Fenomen A",d:"Matematik",s:"LGS",z:"orta"},
+  {n:"Okyanus Master",d:"Matematik",s:"LGS",z:"zor"},
+  {n:"Fenomen B",d:"Matematik",s:"LGS",z:"zor"},
+  {n:"Sinan Kuzucu Yayınları",d:"Matematik",s:"LGS",z:"joker"},
+
+  // LGS FEN BİLİMLERİ
+  {n:"Muba Yayınları",d:"Fen Bilimleri",s:"LGS",z:"kolay"},
+  {n:"Hız Yayınları",d:"Fen Bilimleri",s:"LGS",z:"orta"},
+  {n:"Fenomen A",d:"Fen Bilimleri",s:"LGS",z:"orta"},
+  {n:"Nitelik Süper",d:"Fen Bilimleri",s:"LGS",z:"zor"},
+  {n:"Sinan Kuzucu Yayınları",d:"Fen Bilimleri",s:"LGS",z:"joker"},
+
+  // LGS DİĞER (Sosyal, Din, İng)
+  {n:"Hız Yayınları",d:"İnkılap Tarihi",s:"LGS",z:"orta"},
+  {n:"Palme Enerji",d:"İnkılap Tarihi",s:"LGS",z:"zor"},
+  {n:"Hız Yayınları",d:"Din Kültürü",s:"LGS",z:"orta"},
+  {n:"More & More",d:"İngilizce",s:"LGS",z:"orta"},
+  {n:"Sinan Kuzucu Din & İngilizce",d:"İngilizce",s:"LGS",z:"joker"},
+
+  // YKS TYT TÜRKÇE
+  {n:"Hız ve Renk",d:"Türkçe",s:"YKS",z:"kolay"},
+  {n:"Aktif Paragraf",d:"Türkçe",s:"YKS",z:"kolay"},
+  {n:"345 Yayınları",d:"Türkçe",s:"YKS",z:"orta"},
+  {n:"Bilgi Sarmal",d:"Türkçe",s:"YKS",z:"orta"},
+  {n:"Limit Kronometre Paragraf",d:"Türkçe",s:"YKS",z:"zor"},
+  {n:"Apotemi Paragraf",d:"Türkçe",s:"YKS",z:"joker"},
+
+  // YKS MATEMATİK (TYT & AYT)
+  {n:"Aktif Matematik",d:"Matematik",s:"YKS",z:"kolay"},
+  {n:"Antrenmanlarla Matematik",d:"Matematik",s:"YKS",z:"kolay"},
+  {n:"345 Yayınları",d:"Matematik",s:"YKS",z:"orta"},
+  {n:"Bilgi Sarmal",d:"Matematik",s:"YKS",z:"orta"},
+  {n:"3D Yayınları",d:"Matematik",s:"YKS",z:"zor"},
+  {n:"Orijinal Matematik",d:"Matematik",s:"YKS",z:"zor"},
+  {n:"Apotemi Fasikülleri",d:"Matematik",s:"YKS",z:"joker"},
+  {n:"Barış Çelenk Yayınları",d:"Matematik",s:"YKS",z:"joker"},
+
+  // YKS GEOMETRİ
+  {n:"Aktif Geometri",d:"Geometri",s:"YKS",z:"kolay"},
+  {n:"Bilgi Sarmal",d:"Geometri",s:"YKS",z:"orta"},
+  {n:"3D Yayınları",d:"Geometri",s:"YKS",z:"zor"},
+  {n:"Orijinal Geometri",d:"Geometri",s:"YKS",z:"joker"},
+
+  // YKS FEN (Fizik, Kimya, Biyoloji)
+  {n:"Aktif Fizik",d:"Fizik",s:"YKS",z:"kolay"},
+  {n:"345 Yayınları",d:"Fizik",s:"YKS",z:"orta"},
+  {n:"3D Yayınları",d:"Fizik",s:"YKS",z:"zor"},
+  {n:"Nihat Bilgin Yayınları",d:"Fizik",s:"YKS",z:"joker"},
+
+  {n:"Orbital Yayınları",d:"Kimya",s:"YKS",z:"orta"},
+  {n:"345 Yayınları",d:"Kimya",s:"YKS",z:"orta"},
+  {n:"Aydın Yayınları",d:"Kimya",s:"YKS",z:"zor"},
+  {n:"3D Yayınları",d:"Kimya",s:"YKS",z:"joker"},
+
+  {n:"Biyotik",d:"Biyoloji",s:"YKS",z:"kolay"},
+  {n:"Palme",d:"Biyoloji",s:"YKS",z:"orta"},
+  {n:"Bilgi Sarmal",d:"Biyoloji",s:"YKS",z:"orta"},
+  {n:"Dr. Biyoloji",d:"Biyoloji",s:"YKS",z:"zor"},
+  {n:"Apotemi Sistemler",d:"Biyoloji",s:"YKS",z:"joker"},
+
+  // YKS SOSYAL
+  {n:"Hız ve Renk",d:"Tarih",s:"YKS",z:"kolay"},
+  {n:"345 Yayınları",d:"Tarih",s:"YKS",z:"orta"},
+  {n:"Limit Yayınları",d:"Tarih",s:"YKS",z:"zor"},
+  
+  {n:"Hız ve Renk",d:"Coğrafya",s:"YKS",z:"kolay"},
+  {n:"Bilgi Sarmal",d:"Coğrafya",s:"YKS",z:"orta"}
 ];
 
+// LGS ve YKS KOÇLUK ONAYLI KANAL LİSTESİ
 const kanallar = [
-  {n:"Rüştü Hoca",d:"Türkçe",s:"LGS",z:"kolay",u:"https://www.youtube.com/@rustuhoca"},
-  {n:"Tonguç LGS Hazırlık",d:"Türkçe",s:"LGS",z:"orta",u:"https://www.youtube.com/@tongucakademi"},
-  {n:"KR Akademi",d:"Türkçe",s:"LGS",z:"orta",u:"https://www.youtube.com/@krakademi"},
-  {n:"Partikül Matematik",d:"Matematik",s:"LGS",z:"kolay",u:"https://www.youtube.com/@partikulmatematik"},
-  {n:"Rehber Matematik",d:"Matematik",s:"LGS",z:"kolay",u:"https://www.youtube.com/@rehbermatematik"},
-  {n:"Bıyıklı Matematik",d:"Matematik",s:"LGS",z:"zor",u:"https://www.youtube.com/@biyiklimatematik"},
-  {n:"Derslike",d:"Fen Bilimleri",s:"LGS",z:"orta",u:"https://www.youtube.com/@derslike"},
-  {n:"Hocalara Geldik",d:"İngilizce",s:"LGS",z:"orta",u:"https://www.youtube.com/@hocalarageldik"},
-  {n:"Hocalara Geldik",d:"Türkçe",s:"YKS",z:"orta",u:"https://www.youtube.com/@hocalarageldik"},
-  {n:"Rehber Matematik",d:"Matematik",s:"YKS",z:"kolay",u:"https://www.youtube.com/@rehbermatematik"},
-  {n:"Bıyıklı Matematik",d:"Matematik",s:"YKS",z:"orta",u:"https://www.youtube.com/@biyiklimatematik"}
-];
+  // LGS KANALLARI
+  {n:"Türkçeci Muharrem",d:"Türkçe",s:"LGS",z:"orta"},
+  {n:"Tonguç LGS",d:"Türkçe",s:"LGS",z:"orta"},
+  {n:"Partikül Matematik",d:"Matematik",s:"LGS",z:"orta"},
+  {n:"LGS Hocam",d:"Matematik",s:"LGS",z:"zor"},
+  {n:"Fatih Olfas",d:"Fen Bilimleri",s:"LGS",z:"orta"},
+  {n:"Sosyal Kale",d:"İnkılap Tarihi",s:"LGS",z:"orta"},
 
-const state = { k: { sinav: '', ders: '', zorluk: '' }, y: { sinav: '', ders: '', zorluk: '' } };
-
-function setPanel(name, btn) {
-  document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
-  document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
-  document.getElementById('panel-' + name).classList.add('active');
-  btn.classList.add('active');
-  window.scrollTo({ top: 0, behavior: 'smooth' });
-}
-
-function setSinav(p, val, el) {
-  state[p].sinav = (state[p].sinav === val && val !== '') ? '' : val;
-  state[p].ders = ''; 
-  const strip = document.getElementById(p + '-sinav-strip');
-  strip.querySelectorAll('.chip').forEach(c => {
-    c.classList.remove('selected', 'selected-lgs', 'selected-yks');
-    if (c.dataset.val === state[p].sinav || (state[p].sinav === '' && c.dataset.val === '')) {
-      if(state[p].sinav === 'LGS') c.classList.add('selected-lgs');
-      else if(state[p].sinav === 'YKS') c.classList.add('selected-yks');
-      else c.classList.add('selected');
-    }
-  });
-  updateDersSelect(p);
-  render(p === 'k' ? 'kitap' : 'youtube');
-}
-
-function setZorluk(p, val, el) {
-  state[p].zorluk = (state[p].zorluk === val) ? '' : val;
-  const strip = document.getElementById(p + '-zorluk-strip');
-  strip.querySelectorAll('.chip').forEach(c => {
-    c.classList.remove('selected', 'selected-kolay', 'selected-orta', 'selected-zor', 'selected-joker');
-    if (c.dataset.val === state[p].zorluk || (state[p].zorluk === '' && c.dataset.val === '')) {
-      if(state[p].zorluk) c.classList.add('selected-' + state[p].zorluk);
-      else c.classList.add('selected');
-    }
-  });
-  render(p === 'k' ? 'kitap' : 'youtube');
-}
-
-function updateDersSelect(p) {
-  const s = state[p].sinav;
-  const list = s === 'LGS' ? LGS_DERS : s === 'YKS' ? YKS_DERS : ALL_DERS;
-  const select = document.getElementById(p + '-ders-select');
-  select.innerHTML = '<option value="">📚 Tüm Dersler</option>' + 
-    list.map(d => '<option value="' + d + '">' + d + '</option>').join('');
-  select.value = state[p].ders;
-}
-
-function setDers(p, val) {
-  state[p].ders = val;
-  render(p === 'k' ? 'kitap' : 'youtube');
-}
-
-function render(type) {
-  const p = type === 'kitap' ? 'k' : 'y';
-  const { sinav, ders, zorluk } = state[p];
-  const data = type === 'kitap' ? kitaplar : kanallar;
-  
-  const res = data.filter(x => (!sinav || x.s === sinav) && (!ders || x.d === ders) && (!zorluk || x.z === zorluk));
-  document.getElementById(p + '-count').textContent = res.length;
-  
-  const g = document.getElementById(p + '-grid');
-  if (!res.length) {
-    g.innerHTML = '<div class="empty-state"><p>Kaynak bulunamadı.</p></div>';
-    return;
-  }
-  
-  g.innerHTML = res.map((x, i) => {
-    const delay = Math.min(i * 0.03, 0.2);
-    const zLabel = { kolay: '🟢 Kolay', orta: '🟡 Orta', zor: '🔴 Zor', joker: '⚡ Joker' }[x.z] || x.z;
-    const isYks = x.s === 'YKS' ? 'yks' : '';
-    const ytBtn = (type === 'youtube' && x.u) ? '<a class="yt-link-btn" href="' + x.u + '" target="_blank">▶ Kanala Git</a>' : '';
-    
-    return '<div class="card ' + (type === 'youtube' ? 'card-yt' : 'card-kitap') + '" style="animation-delay:' + delay + 's">' +
-      '<div class="card-name">' + x.n + '</div>' +
-      '<div class="card-footer">' +
-        '<span class="badge b-sinav ' + isYks + '">' + x.s + '</span>' +
-        '<span class="badge b-ders">' + x.d + '</span>' +
-        '<span class="badge b-' + x.z + '">' + zLabel + '</span>' +
-      '</div>' + ytBtn +
-    '</div>';
-  }).join('');
-}
-
-updateDersSelect('k'); 
-updateDersSelect('y'); 
-render('kitap');
-</script>
-</body>
-</html>
+  // YKS KANALLARI
+  {n:"Rüştü Hoca ile Türkçe",d:"Türkçe",s:"YKS",z:"orta"},
+  {n:"Kadir Gümüş",d:"Türkçe",s:"YKS",z:"zor"},
+  {n:"Rehber Matematik",d:"Matematik",s:"YKS",z:"kolay"},
+  {n:"Mert Hoca",d:"Matematik",s:"YKS",z:"orta"},
+  {n:"Bıyıklı Matematik",d:"Matematik",s:"YKS",z:"orta"},
+  {n:"Eyüp B. Matematik",d:"Matematik",s:"YKS",z:"joker"},
+  {n:"Kenan Kara ile Geometri",d:"Geometri",s:"YKS",z:"orta"},
+  {n:"VIP Fizik",d:"Fizik",s:"YKS",z:"orta"},
+  {n:"Özcan Aykın",d:"Fizik",s:"YKS",z:"zor"},
+  {n:"Görkem Şahin (Benim Hocam)",d:"Kimya",s:"YKS",z:"orta"},
+  {n:"Kimya Adası",d:"Kimya",s:"YKS
