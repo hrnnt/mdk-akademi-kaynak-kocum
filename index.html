@@ -1,333 +1,312 @@
-import React, { useState, useMemo } from 'react';
-import { 
-  Search, BookOpen, Youtube, GraduationCap, Layers, Filter, Trophy, 
-  Star, ChevronRight, Target, Sparkles, Globe, Zap, BarChart3, 
-  LibraryBig, BookCheck, ClipboardCheck 
-} from 'lucide-react';
-
-/**
- * MDK_DATA: Tüm Excel, PDF, Görsel ve Kod geçmişindeki verilerin 
- * konsolide edilmiş en kapsamlı halidir.
- */
-const MDK_DATA = {
-  YKS: {
-    soru_bankalari: [
-      { id: 1, ders: 'Matematik', seviye: 'Başlangıç', kaynaklar: ['Kafa Dengi - Hiç Matematik', 'Şenol Hoca - Alıştırmalarla Mat', 'Antrenmanlarla Matematik', 'Doktrin Sıfırdan Sonsuza', 'Tonguç - Matematiğe İlk Adım', 'Karekök 0', 'Mert Hoca Başlangıç', 'Aktif Matematik', 'Sonuç Yayınları Fasikül'] },
-      { id: 2, ders: 'Matematik', seviye: 'Kolay', kaynaklar: ['Acil İlaç', 'Mikro Orijinal', '4K Yayınları', 'Testokul (+)', 'Eğitim Vadisi', 'Miray', 'Nego Temelden Zirveye', 'Matematik Kulübü', 'Şenol Hoca Merhaba TYT', 'Kafa Dengi SÖS', 'Okyanus 40 Seans (-)'] },
-      { id: 3, ders: 'Matematik', seviye: 'Orta', kaynaklar: ['Üç Dört Beş (345)', 'Bilgi Sarmal', 'Metin Parkur', 'Rasyonel Yayınları', 'Vip', 'Çap', 'Hız ve Renk', 'Yayın Denizi Pro', 'Full Matematik', 'Okyanus Iceberg', 'Gür Yayınları', 'Toprak', 'Paraf (Mavi)', 'Yanıt', 'Soru Kalesi', 'Avantaj', 'Karekök (Orta)'] },
-      { id: 4, ders: 'Matematik', seviye: 'Zor', kaynaklar: ['Apotemi', 'Orijinal', 'Acil', '3D', 'Endemik', 'Kafadengi Challenger', 'Metin', 'Birey B/C', 'Polimat', 'Supara', 'Ergi', 'Ulti', 'Kida', 'Aydın', 'Derece Yayınları', 'Paylaşım'] },
-      { id: 5, ders: 'Geometri', seviye: 'Kolay-Orta', kaynaklar: ['Aktif', 'Mikro Orijinal', 'Acil İlaç', 'Karekök 0', '345', 'Bilgi Sarmal', 'Toprak'] },
-      { id: 6, ders: 'Geometri', seviye: 'Zor', kaynaklar: ['Orijinal', 'Acil', 'Apotemi', '3D', 'Endemik', 'Karekök Zoru', 'Paraf (Zor)'] },
-      { id: 7, ders: 'Fizik', seviye: 'Kolay', kaynaklar: ['Aktif', 'Okyanus 40 Seans', 'Paraf (Kolay)', 'Kafa Dengi Süper Öğreten', 'Hız ve Renk (Turuncu)', 'Bes Yayınları', 'Testokul', 'Kartezyen', 'Antrenman', 'Binot'] },
-      { id: 8, ders: 'Fizik', seviye: 'Orta', kaynaklar: ['345', 'Nihat Bilgin', 'Ertan Sinan Şahin', 'Vip', 'Bilgi Sarmal', 'Toprak', 'Palme', 'Miray', 'Formülsüz Fizik', 'Altuğ Güneş', 'Aromat'] },
-      { id: 9, ders: 'Fizik', seviye: 'Zor', kaynaklar: ['3D', 'Apotemi', 'Karaağaç', 'Yayın Denizi Tek', 'Endemik', 'Esen', 'Nitelik Ters Yüz', 'Egzersiz'] },
-      { id: 10, ders: 'Kimya', seviye: 'Kolay', kaynaklar: ['Aktif', 'Okyanus 40 Seans', 'Antrenmanlarla Kimya', 'Karekök 0', 'Paraf (Kolay)', 'Binot', 'Testokul'] },
-      { id: 11, ders: 'Kimya', seviye: 'Orta', kaynaklar: ['345', 'Orbital', 'Palme', 'Bilgi Sarmal', 'Aydın', 'Miray', 'Toprak', 'Nitelik', 'Çap', 'Hız'] },
-      { id: 12, ders: 'Kimya', seviye: 'Zor', kaynaklar: ['3D', 'Apotemi', 'Endemik', 'Esen', 'Karaağaç', 'Kafa Dengi Ekstra'] },
-      { id: 13, ders: 'Biyoloji', seviye: 'Kolay', kaynaklar: ['Aktif', 'ENS', 'Hız ve Renk', 'Okyanus 40 Seans', 'Kafadengi SÖS', 'Binot', 'Testokul', 'Antrenman'] },
-      { id: 14, ders: 'Biyoloji', seviye: 'Orta', kaynaklar: ['345', 'Palme', 'Biyotik', 'Bilgi Sarmal', 'Aydın', 'Miray', 'Toprak', 'KR Akademi', 'Aromat', 'Çap'] },
-      { id: 15, ders: 'Biyoloji', seviye: 'Zor', kaynaklar: ['Apotemi', '3D', 'Endemik', 'Esen', 'Kafadengi Ekstra'] },
-      { id: 16, ders: 'Türkçe / Edebiyat', seviye: 'Kolay', kaynaklar: ['Fides', 'Arı', 'Birey A', 'Hız ve Renk', 'Yayın Denizi Tek', 'Limit Eser Özetleri', 'ENS', 'Seviye', 'Eis Daf'] },
-      { id: 17, ders: 'Türkçe / Edebiyat', seviye: 'Orta', kaynaklar: ['345', 'Palme', 'Bilgi Sarmal', 'Karekök', 'Benim Hocam', '3D', 'Paraf', 'Miray', 'Kafadengi'] },
-      { id: 18, ders: 'Türkçe / Edebiyat', seviye: 'Zor', kaynaklar: ['Limit', 'Kronometre', 'Apotemi', 'Endemik', 'Karekök (Zoru)', 'Data', 'Animonik', 'Altın Anahtar', 'Bilfen'] },
-      { id: 19, ders: 'Sosyal Bilimler', seviye: 'Kolay', kaynaklar: ['Test Okul', 'ENS Defter', 'Birey A', 'Eğitim Vadisi', '4K Yayınları', 'Kafa Dengi Extra'] },
-      { id: 20, ders: 'Sosyal Bilimler', seviye: 'Orta', kaynaklar: ['345', 'Benim Hocam', 'Hocalara Geldik', 'Bilgi Sarmal', 'KR Akademi', 'Toprak', 'Yanıt', 'Avantaj', 'Armada', 'Sınav 24 Adım'] },
-      { id: 21, ders: 'Sosyal Bilimler', seviye: 'Zor', kaynaklar: ['Limit', 'Apotemi', 'Ulti', 'Didaktik Kalem', 'Endemik', 'Simya', 'Bilfen'] }
-    ],
-    youtube_kanallari: [
-      { ders: 'Türkçe / Edebiyat', seviye: 'Öneri', kanallar: ['Rüştü Hoca', 'Türkçenin Matematiği', 'Deniz Hoca', 'Benim Hocam (Kadir Gümüş)', 'Nazlı Hocam', 'Paragrafı Sevdiren Hoca'] },
-      { ders: 'Matematik / Geometri', seviye: 'Öneri', kanallar: ['Bıyıklı Matematik', 'Rehber Matematik', 'Mert Hoca', 'Eyüp B.', 'Kenan Kara', 'Tunç Kurt', 'SML Hoca', 'Nurtaç Hoca', 'Matematiğin Güler Yüzü', 'Şenol Hoca'] },
-      { ders: 'Fen Bilimleri', seviye: 'Öneri', kanallar: ['Vip Fizik', 'Özcan Aykın', 'Dr. Biyoloji', 'Kimya Adası', 'Benim Hocam (Görkem Şahin)', 'Fizikfinito', 'Paraksilen Chemistry', 'Umut Öncül', 'Altuğ Güneş', 'Selin Hoca', 'Fizikevim', 'Ertan Sinan Şahin', 'Betül Hoca', 'FUNDAmentals'] },
-      { ders: 'Sosyal Bilimler', seviye: 'Öneri', kanallar: ['Sosyal Kale', 'Yavuz Tuna', 'Coğrafyanın Kodları', 'Benim Hocam', 'Sosyal Hocam', 'Felsefe Atölyesi', 'Yargı Plus', 'Selami Hoca', 'Sadettin Hoca'] }
-    ],
-    denemeler: [
-      // GENEL DENEMELER
-      { tip: 'TYT Genel', seviye: 'Kolay', liste: ['Aktif Kuvvet', 'ENS', 'Mikro Orijinal', 'Acil İlaç', 'Kafa Dengi', 'Miray', 'Hız ve Renk'] },
-      { tip: 'TYT Genel', seviye: 'Orta', liste: ['Full', '345', 'Bilgi Sarmal (Yıldızlar)', 'Hız ve Renk', 'Toprak', 'Ankara Dekatlon', 'Paraf', 'Tanım Senaryo', 'ODF'] },
-      { tip: 'TYT Genel', seviye: 'Zor', liste: ['Orijinal', '3D', 'Apotemi', 'Krallar Karması', 'Şöhretler Karması', 'Metin', 'Endemik', 'Limit', 'Özdebir', 'Aydın'] },
-      
-      // BRANŞ DENEMELERİ (image_036fc5 verileri eklendi)
-      { tip: 'Türkçe Branş', seviye: 'Kolay', liste: ['ENS', 'Hız ve Renk'] },
-      { tip: 'Türkçe Branş', seviye: 'Orta', liste: ['Bilgi Sarmal', 'Yayın Denizi'] },
-      { tip: 'Türkçe Branş', seviye: 'Zor', liste: ['Üç Dört Beş (345)', '3D', 'Apotemi', 'Limit'] },
-      
-      { tip: 'Matematik Branş', seviye: 'Kolay', liste: ['Aktif', 'Acil İlaç'] },
-      { tip: 'Matematik Branş', seviye: 'Orta', liste: ['Üç Dört Beş (345)', 'Bilgi Sarmal'] },
-      { tip: 'Matematik Branş', seviye: 'Zor', liste: ['3D', 'Orijinal', 'Apotemi', 'Metin'] },
-      
-      { tip: 'Sosyal Branş', seviye: 'Kolay', liste: ['ENS', 'Hız ve Renk'] },
-      { tip: 'Sosyal Branş', seviye: 'Orta', liste: ['Bilgi Sarmal', 'Üç Dört Beş (345)'] },
-      { tip: 'Sosyal Branş', seviye: 'Zor', liste: ['3D', 'Apotemi'] },
-      
-      { tip: 'Fen Branş', seviye: 'Kolay', liste: ['ENS', 'Hız ve Renk'] },
-      { tip: 'Fen Branş', seviye: 'Orta', liste: ['Bilgi Sarmal', 'Üç Dört Beş (345)', 'Orbital', 'Biyotik'] },
-      { tip: 'Fen Branş', seviye: 'Zor', liste: ['Apotemi', '3D', 'Paraf (Mor)'] },
-      
-      { tip: 'Geometri Branş', seviye: 'Kolay', liste: ['Aktif', 'Mikro Orijinal', 'Acil İlaç'] },
-      { tip: 'Geometri Branş', seviye: 'Orta', liste: ['Bilgi Sarmal', 'Toprak', 'Üç Dört Beş (345)'] },
-      { tip: 'Geometri Branş', seviye: 'Zor', liste: ['Orijinal', 'Acil', 'Karekök', '3D', 'Paraf (Mor)'] }
-    ],
-    okuma_listesi: [
-      { baslik: 'Kültürel Birikim', icerik: ['Dokuzuncu Hariciye Koğuşu - Peyami Safa', 'Kürk Mantolu Madonna - Sabahattin Ali', 'Mai ve Siyah - Halit Ziya', 'Aylak Adam - Yusuf Atılgan', 'Yaban - Yakup Kadri', 'Çalıkuşu - Reşat Nuri', 'Bize Göre - Ahmet Haşim', 'Kuyucaklı Yusuf - Sabahattin Ali', 'Sergüzeşt - Samipaşazade Sezai', 'Şair Evlenmesi - Şinasi', 'İntibah - Namık Kemal'] },
-      { baslik: 'Paragraf Performans', icerik: ['İnsanın Acısını İnsan Alır - Şükrü Erbaş', 'Eşref Saati - Şevket Rado', 'Yaşama Felsefesi - Nermi Uygur', 'Avucunuzdaki Kelebek - Ahmet Şerif İzgören', 'Şu Hortumlu Dünyada Fil Yalnız Bir Hayvandır - A. Şerif İzgören', 'Denemeli Denemesiz - Nermi Uygur'] }
-    ],
-    net_bazli: [
-      { baslik: 'TYT Matematik Netine Göre', icerik: ['0-5 Net: Aktif - Acil İlaç - Mikro Orijinal', '5-10 Net: 345 - Hız ve Renk', '10-20 Net: Bilgi Sarmal - Orijinal', '20-30 Net: 3D - Endemik - Acil', '30+ Net: Barış - Apotemi - Ergi'] }
-    ],
-    nokta_atis: [
-      { baslik: 'Problem Canavarı Paketleri', icerik: ['Aktif (Kolay)', 'Kafadengi Hiç Mat (Orta)', 'Apotemi (Zor)', 'Orijinal (Zor)', 'Didaktik (Zor)', 'Etkili (Zor)'] },
-      { baslik: 'AYT Fulleme Paketleri', icerik: ['Mat: Orijinal + Barış + Eyüp B', 'Geo: 345 + Paraf + Bilgi S.', 'Fizik: Palme + Paraf (İşlemsiz) + 3D', 'Kimya: Aydın + Orbital + Bilgi Sarmal', 'Biyoloji: Palme + Biyotik + Paraf', 'Edebiyat: Limit + Bilgi Sarmal + 3D'] }
-    ]
-  },
-  LGS: {
-    soru_bankalari: [
-      { id: 101, ders: 'Matematik', seviye: 'Kolay', kaynaklar: ['Hiper Zeka - Hiper Matematik', 'Nartest - Tane Tane', 'Mozaik İntro', 'İsem Akıllı Defter', 'Fenomen A (Sıfırdan Mantık)', 'Sadık Uygun', 'Tonguç Matematiğe İlk Adım', 'Arı Matemito', 'Newton Adım Adım', 'Av Favori', 'Matematus', 'Antrenman', 'Editör', 'Nige', 'Berkay', 'Ses Koro', 'İdol Başlangıç', 'Günay Bumerang'] },
-      { id: 102, ders: 'Matematik', seviye: 'Orta', kaynaklar: ['Bilfen Pro&Test', 'Hız', 'Mozaik', 'Ankara Güçlendiren', 'Fenomen Fasikül', 'Okyanus Classmate', 'Full Wonder', 'Ulti', 'Öncelik Etkinlikli', 'Hiper Zeka Sinerji', 'Gezegen Madalyon', 'Okyanus Premaster', 'Metin Parkur', 'Nartest İlk Adım', 'Etkili', 'Muba Mutlak Başarı'] },
-      { id: 103, ders: 'Matematik', seviye: 'Zor', kaynaklar: ['Okyanus Master', 'Köşebilgi Ultra', 'Newton Allstar', 'Sinan Kuzucu', 'Bilfen Pro&Bil', 'Nartest Prestige', 'Esen', 'DNA', 'Kuzucu', 'Nartest Power', 'Fenomen B', 'Nitelik Süper', 'Nartest Kırmızı Şampiyon', 'Netbil', 'Arı Var', 'Ankara Kazandıran'] },
-      { id: 104, ders: 'Türkçe', seviye: 'Kolay', kaynaklar: ['Hız', 'Okyanus', 'Tonguç', 'Mozaik Defter', 'Arı Akıllı Defter', 'Fenomen A', 'İşleyen Zeka Yörünge', 'Zeka Küpü', 'Av Kazanım', 'Newton Adım Adım', 'Arı Paragrafın Ritmi', 'Poster Notları KR'] },
-      { id: 105, ders: 'Türkçe', seviye: 'Orta', kaynaklar: ['Arı Başarı Var', 'Karekök', 'Ankara Güçlendiren', 'Muba', 'Tanım', 'Fenomen B', 'Günay Zoom', 'Okyanus Mod', 'Nartest Mod', 'Limit', 'Nitelik Süper', 'Çanta', 'Konsantrasyon'] },
-      { id: 106, ders: 'Türkçe', seviye: 'Zor', kaynaklar: ['Palme Plus', 'Fenomen', 'Bilfen Pro&Bil (PISA)', 'Tudem', 'Nitelik Süper', 'Newton Allstar', 'Nartest Prestige', 'Son Viraj Formula 1', 'Limit Kronometre', 'Okyanus Master', 'Kafadengi Challenger'] },
-      { id: 107, ders: 'Fen Bilimleri', seviye: 'Kolay', kaynaklar: ['Hiper Zeka', 'Atom Epizot', 'Çanta', 'Nige', 'Newton Adım Adım', 'Günay Bumerang', 'Sadık Uygun', 'İdol', 'Arı Akıllı Defter', 'Martı', 'Fenomen A'] },
-      { id: 108, ders: 'Fen Bilimleri', seviye: 'Orta', kaynaklar: ['Bilfen Pro Test', 'Martı', 'Nitelik Süper', 'Hız', 'Ankara Güçlendiren', 'Fenomen B', 'İşleyen Zeka', 'Muba Mutlak Başarı', 'Avantaj', 'Gezegen Madalyon', 'Kafadengi Challenger', 'Orbital'] },
-      { id: 109, ders: 'Fen Bilimleri', seviye: 'Zor', kaynaklar: ['Sinan Kuzucu', 'Okyanus Master', 'Nartest Power', 'Bilfen Pro&Bil', 'Mozaik', 'Koray Varol Plus Kırmızı', 'Son Viraj Drift', 'Tudem', 'Ankara Kazandıran', 'Nartest Kırmızı Power'] },
-      { id: 110, ders: 'İnkılap / Din / İng', seviye: 'Karma Seviye', kaynaklar: ['Okyanus Classmate (İnk-Din)', 'Muba İlk Hasat (İnk)', 'Ankara Güçlendiren (İnk)', 'Eker Dinlendiren (Din)', 'Eker Dinlendiren (Din)', 'Zeka Küpü (Din)', 'More More (İng)', 'Tudem (İng)', 'Legend English (Practice/Test)', 'İsem (İnk)', 'Legend of English reading/writing', 'Sil Baştan'] }
-    ],
-    youtube_kanallari: [
-      { ders: 'Branş Hocaları', seviye: 'Metin Önerisi', kanallar: ['Hasan Güler (Türkçe)', 'Çopur Hoca (Mat)', 'Partikül Matematik', 'Derslike (Fen)', 'Sosyal Bilgiler Dersliği', 'Din Kültürüm', 'Sil Baştan (İng)', 'Alper Hocam (İnk)', 'LGS English', 'İdris Hoca'] },
-      { ders: 'Kamp & Akademi', seviye: 'Metin Önerisi', kanallar: ['Benim Hocam LGS', 'Tonguç Akademi', 'KR Akademi', 'LGS & Lise Hocam', 'Şenol Hoca', 'Hız Ortaokul', 'LGS Rehberim', 'Hoca Kafası'] }
-    ],
-    denemeler: [
-      { tip: 'LGS Genel/Branş', seviye: 'Kolay', liste: ['Arı', 'Tonguç', 'ENS', 'Nar Deneme'] },
-      { tip: 'LGS Genel/Branş', seviye: 'Orta', liste: ['Adrenalin', 'Hız', 'Fenomen', 'İsem', 'Karekök', 'Gezegen Madalyon', 'Tanım 3lü Senaryo', 'Okyanus Master (Orta)'] },
-      { tip: 'LGS Genel/Branş', seviye: 'Zor', liste: ['Bilfen Pro Bil', 'İsem Farklı', 'Newton Allstar', 'Sinan Kuzucu', 'Esen', 'Okyanus Master', 'Ses Desibel', 'Merkez', 'Son Viraj'] }
-    ],
-    okuma_listesi: [
-      { baslik: 'LGS Okuma Önerileri', icerik: ['Şu Hortumlu Dünyada Fil Yalnız Bir Hayvandır - Ahmet Şerif İzgören', 'Denemeli Denemesiz - Nermi Uygur', 'Edebiyat ve Yeni Zamanların Kültürü - Semih Gümüş', 'İnsanın Acısını İnsan Alır - Şükrü Erbaş'] }
-    ],
-    nokta_atis: [
-      { baslik: 'LGS Şampiyon Paket', icerik: ['Sayısal: Fenomen A + Okyanus Master + Mebi Fen', 'Sözel: Sinan Kuzucu + Mozaik + Mebi İnkılap', 'Joker: Sinan Kuzucu Din Seti', 'Kamp: Mozaik Sömestir/LGS Kamp', 'Yaprak Test: İlk Önce Serisi'] }
-    ]
-  }
-};
-
-const App = () => {
-  const [selectedExam, setSelectedExam] = useState('YKS');
-  const [activeTab, setActiveTab] = useState('soru_bankalari');
-  const [searchTerm, setSearchTerm] = useState('');
-  const [filterSeviye, setFilterSeviye] = useState('Hepsi');
-
-  const navItems = [
-    { id: 'soru_bankalari', icon: BookOpen, label: 'Kitaplar' },
-    { id: 'youtube_kanallari', icon: Youtube, label: 'Kanallar' },
-    { id: 'denemeler', icon: Layers, label: 'Deneme' },
-    { id: 'okuma_listesi', icon: LibraryBig, label: 'Okuma' },
-    { id: 'net_bazli', icon: BarChart3, label: 'Netler' },
-    { id: 'nokta_atis', icon: Target, label: 'Nokta Atış' }
-  ];
-
-  const getSeviyeColor = (seviye) => {
-    const s = seviye.toLowerCase();
-    if (s.includes('başlangıç') || s.includes('0-5')) return 'bg-emerald-100 text-emerald-700 border-emerald-200';
-    if (s.includes('kolay')) return 'bg-cyan-100 text-cyan-700 border-cyan-200';
-    if (s.includes('orta')) return 'bg-amber-100 text-amber-700 border-amber-200';
-    if (s.includes('zor') || s.includes('ileri')) return 'bg-rose-100 text-rose-700 border-rose-200';
-    return 'bg-sky-100 text-sky-700 border-sky-200';
-  };
-
-  const filteredData = useMemo(() => {
-    const data = MDK_DATA[selectedExam][activeTab] || [];
-    return data.filter(item => {
-      const matchesSeviye = filterSeviye === 'Hepsi' || 
-                           (item.seviye && item.seviye.toLowerCase().includes(filterSeviye.toLowerCase()));
-      const term = searchTerm.toLowerCase();
-      const matchesSearch = 
-        (item.ders?.toLowerCase().includes(term)) || 
-        (item.tip?.toLowerCase().includes(term)) ||
-        (item.baslik?.toLowerCase().includes(term)) ||
-        (item.kaynaklar?.some(k => k.toLowerCase().includes(term))) ||
-        (item.kanallar?.some(k => k.toLowerCase().includes(term))) ||
-        (item.liste?.some(k => k.toLowerCase().includes(term))) ||
-        (item.icerik?.some(k => k.toLowerCase().includes(term)));
-      
-      return matchesSeviye && matchesSearch;
-    });
-  }, [selectedExam, activeTab, searchTerm, filterSeviye]);
-
-  return (
-    <div className="min-h-screen bg-[#f8fafc] font-sans text-slate-900 pb-12">
-      {/* Mobil Header */}
-      <header className="bg-yellow-400 border-b-4 border-yellow-500 sticky top-0 z-50 shadow-lg">
-        <div className="max-w-6xl mx-auto px-4 py-4">
-          <div className="flex flex-col gap-4">
-            <div className="flex items-center justify-between">
-              <div className="flex items-center gap-2">
-                <div className="bg-white p-1.5 rounded-lg shadow-sm">
-                  <GraduationCap className="text-yellow-600 w-6 h-6" />
-                </div>
-                <div>
-                  <h1 className="text-lg font-black tracking-tighter text-slate-900 uppercase leading-none">MDK AKADEMİ</h1>
-                  <p className="text-[9px] font-bold text-yellow-900 uppercase tracking-widest mt-0.5">Rehberlik 2026</p>
-                </div>
-              </div>
-              <div className="flex bg-slate-900/10 p-1 rounded-xl backdrop-blur-sm shrink-0">
-                {['YKS', 'LGS'].map(exam => (
-                  <button
-                    key={exam}
-                    onClick={() => { setSelectedExam(exam); setFilterSeviye('Hepsi'); setActiveTab('soru_bankalari'); }}
-                    className={`px-6 py-1.5 rounded-lg font-black transition-all text-xs ${
-                      selectedExam === exam ? 'bg-white text-slate-900 shadow-sm' : 'text-slate-800/60'
-                    }`}
-                  >
-                    {exam}
-                  </button>
-                ))}
-              </div>
-            </div>
-
-            <div className="relative group">
-              <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 w-4 h-4 group-focus-within:text-yellow-600 transition-colors" />
-              <input 
-                type="text"
-                placeholder="Kaynak, hoca veya deneme ara..."
-                className="w-full pl-10 pr-4 py-2.5 rounded-xl border-none shadow-inner bg-white focus:bg-white focus:ring-4 focus:ring-yellow-600/10 transition-all text-sm font-bold placeholder:text-slate-300 uppercase"
-                value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
-              />
-            </div>
-          </div>
-        </div>
-      </header>
-
-      <main className="max-w-6xl mx-auto px-3 mt-6">
-        {/* Navigasyon Izgarası: Mobilde 3'lü dizilim */}
-        <div className="grid grid-cols-3 md:grid-cols-6 gap-2 mb-6">
-          {navItems.map((tab) => (
-            <button
-              key={tab.id}
-              onClick={() => setActiveTab(tab.id)}
-              className={`flex flex-col items-center justify-center gap-1.5 p-3 rounded-xl font-black transition-all border-2 relative overflow-hidden group ${
-                activeTab === tab.id 
-                ? 'bg-slate-900 text-white border-slate-900 shadow-md' 
-                : 'bg-white text-slate-400 border-white hover:border-slate-100 shadow-sm'
-              }`}
-            >
-              <tab.icon className={`w-5 h-5 relative z-10 ${activeTab === tab.id ? 'text-yellow-400' : 'text-slate-300'}`} />
-              <span className="text-[9px] uppercase tracking-tighter relative z-10 text-center leading-none">{tab.label}</span>
-              {activeTab === tab.id && <div className="absolute inset-0 bg-gradient-to-br from-slate-800 to-slate-900 opacity-60" />}
-            </button>
-          ))}
-        </div>
-
-        {/* Filtreler: Esnek yapılı */}
-        <div className="flex flex-wrap items-center gap-1.5 mb-6 bg-white/50 p-2 rounded-xl border border-slate-100 shadow-sm">
-          <div className="flex items-center gap-1.5 text-slate-400 font-black uppercase text-[8px] shrink-0 bg-white px-2 py-1 rounded-md border border-slate-100">
-            <Filter size={10} />
-            <span>Filtre</span>
-          </div>
-          {['Hepsi', 'Başlangıç', 'Kolay', 'Orta', 'Zor'].map((lvl) => (
-            <button
-              key={lvl}
-              onClick={() => setFilterSeviye(lvl)}
-              className={`px-3.5 py-1.5 rounded-lg text-[10px] font-black transition-all uppercase tracking-wider ${
-                filterSeviye === lvl 
-                ? 'bg-yellow-400 text-slate-900 shadow-sm' 
-                : 'bg-white text-slate-400 border border-slate-100'
-              }`}
-            >
-              {lvl}
-            </button>
-          ))}
-        </div>
-
-        {/* İçerik Kartları */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-          {filteredData.length > 0 ? (
-            filteredData.map((item, index) => (
-              <div 
-                key={index} 
-                className="bg-white rounded-2xl border border-slate-50 shadow-sm hover:shadow-md transition-all duration-300 group flex flex-col"
-              >
-                <div className="p-4 border-b border-slate-50 bg-slate-50/20 flex justify-between items-start relative">
-                  <div className="z-10 flex-1 pr-2">
-                    <h3 className="text-sm font-black text-slate-900 uppercase tracking-tight mb-1 leading-tight">
-                      {item.ders || item.tip || item.baslik}
-                    </h3>
-                    {item.seviye && (
-                      <div className={`inline-flex px-2 py-1 rounded-md text-[8px] font-black border uppercase tracking-widest shadow-sm ${getSeviyeColor(item.seviye)}`}>
-                        {item.seviye}
-                      </div>
-                    )}
-                  </div>
-                  <div className="bg-white p-2 rounded-xl shadow-sm text-yellow-500 border border-slate-50 shrink-0">
-                    {activeTab === 'youtube_kanallari' ? <Youtube size={16} /> : (activeTab === 'okuma_listesi' ? <LibraryBig size={16} /> : <Star size={16} />)}
-                  </div>
-                </div>
-                <div className="p-4 flex-grow bg-white rounded-b-2xl">
-                  <div className="space-y-3">
-                    {(item.kaynaklar || item.kanallar || item.liste || item.icerik).map((val, i) => (
-                      <div key={i} className="flex items-start gap-3">
-                        <div className="mt-1.5 w-1.5 h-1.5 rounded-full bg-yellow-400 shrink-0 shadow-sm" />
-                        <span className="text-slate-800 font-bold text-xs leading-tight tracking-tight uppercase">
-                          {val}
-                        </span>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              </div>
-            ))
-          ) : (
-            <div className="col-span-full py-16 text-center bg-white rounded-3xl border-2 border-dashed border-slate-100 shadow-inner">
-              <div className="bg-slate-50 w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-4 text-slate-200">
-                <Search size={24} />
-              </div>
-              <p className="text-slate-400 font-bold text-[10px] uppercase tracking-widest px-4">ARADIĞIN KRİTERDE İÇERİK BULUNAMADI. LÜTFEN FİLTREYİ TEMİZLE VEYA FARKLI BİR ARAMA YAP.</p>
-            </div>
-          )}
-        </div>
-
-        {/* Motivasyon Alanı */}
-        <div className="mt-10 bg-slate-900 rounded-3xl p-8 text-white relative overflow-hidden shadow-xl border-b-[8px] border-yellow-400">
-          <div className="relative z-10 flex flex-col items-center text-center">
-            <div className="bg-yellow-400 p-4 rounded-full shadow-lg mb-4">
-              <Trophy size={32} className="text-slate-900" />
-            </div>
-            <h2 className="text-xl font-black italic mb-2 tracking-tighter uppercase leading-none">
-              HEDEFE <span className="text-yellow-400">ODAKLAN.</span>
-            </h2>
-            <p className="text-slate-400 text-[10px] font-medium leading-relaxed italic max-w-xs">
-              BU REHBER, BİNLERCE DERECE ÖĞRENCİSİNİN STRATEJİLERİNDEN SÜZÜLEN "ALTIN FORMÜL"DÜR.
-              <span className="text-white block mt-3 font-black text-sm tracking-tighter uppercase not-italic">#BAŞARITESADÜFDEĞİLDİR</span>
-            </p>
-          </div>
-          <div className="absolute top-[-50px] right-[-50px] w-[150px] h-[150px] bg-yellow-400/10 rounded-full blur-[40px]" />
-          <div className="absolute bottom-[-50px] left-[-30px] w-[120px] h-[120px] bg-blue-600/10 rounded-full blur-[40px]" />
-        </div>
-      </main>
-
-      <footer className="mt-10 pb-10 text-center px-4">
-        <p className="text-slate-400 text-[8px] font-black tracking-[0.3em] uppercase mb-4">
-          MDK AKADEMİ • TÜRKİYE'NİN DERECE FABRİKASI
-        </p>
-        <div className="flex justify-center gap-1.5">
-          {[...Array(5)].map((_, i) => <div key={i} className={`h-1 rounded-full bg-slate-200 ${i === 2 ? 'w-8 bg-yellow-400 shadow-sm' : 'w-2'}`} />)}
-        </div>
-      </footer>
-
-      <style dangerouslySetInnerHTML={{ __html: `
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MDK AKADEMİ | Nihai Kaynak Rehberi 2026</title>
+    <!-- Tailwind CSS ve Lucide İkonları için CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap');
+        body { font-family: 'Inter', sans-serif; background-color: #f8fafc; }
         .no-scrollbar::-webkit-scrollbar { display: none; }
         .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
-        @font-face {
-          font-family: 'Inter';
-          font-style: normal;
-          font-weight: 900;
-          font-display: swap;
-          src: url(https://fonts.gstatic.com/s/inter/v13/UcCO3FwrK3iLTeHuS_fvQtMwCp50KnMw2boKoduKmMEVuGKYMZhrib2Bg-4.woff2) format('woff2');
-        }
-        body { font-family: 'Inter', system-ui, -apple-system, sans-serif; background-color: #f8fafc; text-transform: uppercase; }
-      `}} />
-    </div>
-  );
-};
+        .uppercase-all { text-transform: uppercase; }
+    </style>
+</head>
+<body>
+    <div id="root"></div>
 
-export default App;
+    <script type="text/babel">
+        const { useState, useMemo, useEffect } = React;
+
+        // İkon Bileşenleri
+        const Icon = ({ name, size = 24, className = "" }) => {
+            return <i data-lucide={name} className={className} style={{ width: size, height: size }}></i>;
+        };
+
+        const MDK_DATA = {
+            YKS: {
+                soru_bankalari: [
+                    { id: 1, ders: 'Matematik', seviye: 'Başlangıç', kaynaklar: ['Kafa Dengi - Hiç Matematik (+)', 'Şenol Hoca - Alıştırmalarla Mat', 'Antrenmanlarla Matematik', 'Doktrin Sıfırdan Sonsuza', 'Tonguç - Matematiğe İlk Adım', 'Karekök 0', 'Mert Hoca Başlangıç', 'Aktif Matematik', 'Sonuç Yayınları Fasikül'] },
+                    { id: 2, ders: 'Matematik', seviye: 'Kolay', kaynaklar: ['Acil İlaç', 'Mikro Orijinal', '4K Yayınları (+)', 'Testokul (+)', 'Eğitim Vadisi (+)', 'Miray', 'Nego Temelden Zirveye', 'Matematik Kulübü', 'Şenol Hoca Merhaba TYT', 'Kafa Dengi SÖS', 'Okyanus 40 Seans (-)', 'Birey A'] },
+                    { id: 3, ders: 'Matematik', seviye: 'Orta', kaynaklar: ['Üç Dört Beş (345) (+)', 'Bilgi Sarmal', 'Metin Parkur', 'Rasyonel Yayınları', 'Vip', 'Çap', 'Hız ve Renk', 'Yayın Denizi Pro', 'Full Matematik', 'Okyanus Iceberg', 'Gür Yayınları', 'Toprak (+)', 'Paraf (Mavi)', 'Yanıt (+)', 'Soru Kalesi', 'Avantaj', 'Karekök (Orta)', '3D (Orta-Zor)'] },
+                    { id: 4, ders: 'Matematik', seviye: 'Zor', kaynaklar: ['Apotemi', 'Orijinal', 'Acil', '3D', 'Endemik', 'Kafadengi Challenger', 'Metin', 'Birey B/C', 'Polimat', 'Supara', 'Ergi', 'Ulti', 'Kida', 'Aydın', 'Derece Yayınları', 'Paylaşım', 'Barış Çelenk'] },
+                    { id: 5, ders: 'Geometri', seviye: 'Kolay-Orta', kaynaklar: ['Aktif', 'Mikro Orijinal', 'Acil İlaç', 'Karekök 0', '345', 'Bilgi Sarmal', 'Toprak', 'Kafadengi SÖS'] },
+                    { id: 6, ders: 'Geometri', seviye: 'Zor', kaynaklar: ['Orijinal', 'Acil', 'Apotemi', '3D', 'Endemik', 'Karekök Zoru', 'Paraf (Zor)'] },
+                    { id: 7, ders: 'Fizik', seviye: 'Kolay-Orta', kaynaklar: ['Aktif', 'Okyanus 40 Seans', 'Paraf (Kolay)', 'Kafa Dengi SÖS', 'Hız ve Renk (Turuncu)', 'Bes Yayınları', '345 (Orta)', 'Bilgi Sarmal (Orta)', 'Nihat Bilgin (Orta)', 'Ertan Sinan Şahin', 'Testokul', 'Binot'] },
+                    { id: 8, ders: 'Fizik', seviye: 'Zor', kaynaklar: ['3D', 'Apotemi', 'Karaağaç', 'Yayın Denizi Tek', 'Endemik', 'Esen', 'Altuğ Güneş', 'Nitelik Ters Yüz'] },
+                    { id: 9, ders: 'Kimya', seviye: 'Kolay-Orta', kaynaklar: ['Aktif', 'Okyanus 40 Seans', 'Antrenmanlarla Kimya', 'Karekök 0', 'Orbital (Orta)', '345 (Orta)', 'Palme (Orta)', 'Aydın (Orta)', 'Miray', 'Paraf', 'Hız'] },
+                    { id: 10, ders: 'Kimya', seviye: 'Zor', kaynaklar: ['3D', 'Apotemi', 'Endemik', 'Esen', 'Karaağaç', 'Kafa Dengi Ekstra'] },
+                    { id: 11, ders: 'Biyoloji', seviye: 'Kolay-Orta', kaynaklar: ['Aktif', 'ENS', 'Hız ve Renk', 'Kafadengi SÖS', 'Biyotik (Orta)', 'Palme (Orta)', '345 (Orta)', 'Aydın', 'Toprak', 'Binot'] },
+                    { id: 12, ders: 'Biyoloji', seviye: 'Zor', kaynaklar: ['Apotemi', '3D', 'Endemik', 'Esen', 'Kafadengi Ekstra'] },
+                    { id: 13, ders: 'Türkçe / Edebiyat', seviye: 'Kolay-Orta', kaynaklar: ['Fides', 'Arı', 'Birey A', 'Hız ve Renk', 'ENS', '345 (Orta)', 'Bilgi Sarmal (Orta)', 'Paraf', 'Miray', 'Benim Hocam'] },
+                    { id: 14, ders: 'Türkçe / Edebiyat', seviye: 'Zor', kaynaklar: ['Limit', 'Kronometre', 'Apotemi', 'Endemik', 'Karekök (Zoru)', 'Data', 'Animonik', 'Altın Anahtar', 'Bilfen'] },
+                    { id: 15, ders: 'Sosyal Bilimler', seviye: 'Kolay-Orta', kaynaklar: ['ENS Defter', 'Birey A', 'Eğitim Vadisi', '4K Yayınları', '345 (Orta)', 'Bilgi Sarmal (Orta)', 'Toprak', 'KR Akademi', 'Hız ve Renk'] },
+                    { id: 16, ders: 'Sosyal Bilimler', seviye: 'Zor', kaynaklar: ['Limit', 'Apotemi', 'Ulti', 'Didaktik Kalem', 'Endemik', 'Simya', 'Bilfen'] }
+                ],
+                youtube_kanallari: [
+                    { ders: 'Türkçe / Edebiyat', seviye: 'Tavsiye', kanallar: ['Rüştü Hoca', 'Türkçenin Matematiği', 'Deniz Hoca', 'Kadir Gümüş', 'Nazlı Hocam', 'Paragrafı Sevdiren Hoca'] },
+                    { ders: 'Matematik / Geometri', seviye: 'Tavsiye', kanallar: ['Bıyıklı Matematik', 'Rehber Matematik', 'Mert Hoca', 'Eyüp B.', 'Kenan Kara', 'Tunç Kurt', 'SML Hoca', 'Nurtaç Hoca', 'Matematiğin Güler Yüzü'] },
+                    { ders: 'Fen Bilimleri', seviye: 'Tavsiye', kanallar: ['Vip Fizik', 'Özcan Aykın', 'Dr. Biyoloji', 'Kimya Adası', 'Görkem Şahin', 'Fizikfinito', 'Paraksilen', 'Umut Öncül', 'Altuğ Güneş', 'Selin Hoca'] },
+                    { ders: 'Sosyal Bilimler', seviye: 'Tavsiye', kanallar: ['Sosyal Kale', 'Yavuz Tuna', 'Coğrafyanın Kodları', 'Benim Hocam', 'Sosyal Hocam', 'Felsefe Atölyesi', 'Yargı Plus', 'Selami Hoca'] }
+                ],
+                denemeler: [
+                    { tip: 'TYT Genel', seviye: 'Kolay-Orta', liste: ['Aktif Kuvvet', 'ENS', 'Mikro Orijinal', 'Acil İlaç', 'Kafa Dengi', 'Miray', 'Hız ve Renk', '345', 'Bilgi Sarmal Yıldızlar'] },
+                    { tip: 'TYT Genel', seviye: 'Zor', liste: ['Orijinal', '3D', 'Apotemi', 'Krallar Karması', 'Şöhretler Karması', 'Metin', 'Endemik', 'Limit', 'Özdebir', 'Aydın'] },
+                    { tip: 'Branş Denemeleri', seviye: 'Karma', liste: ['TÜRKÇE: ENS / B. SARMAL / 3D / APOTEMİ', 'MATEMATİK: AKTİF / 345 / ORİJİNAL / 3D', 'SOSYAL: ENS / 345 / 3D / APOTEMİ', 'FEN: HIZ VE RENK / BİYOTİK / APOTEMİ / 3D', 'GEOMETRİ: ACİL / TOPRAK / 3D / ORİJİNAL'] }
+                ],
+                okuma_listesi: [
+                    { baslik: 'Kültürel Birikim', icerik: ['Dokuzuncu Hariciye Koğuşu - Peyami Safa', 'Kürk Mantolu Madonna - Sabahattin Ali', 'Mai ve Siyah - Halit Ziya', 'Aylak Adam - Yusuf Atılgan', 'Yaban - Yakup Kadri', 'Çalıkuşu - Reşat Nuri', 'Bize Göre - Ahmet Haşim', 'Kuyucaklı Yusuf - Sabahattin Ali'] },
+                    { baslik: 'Paragraf Performans', icerik: ['İnsanın Acısını İnsan Alır - Şükrü Erbaş', 'Eşref Saati - Şevket Rado', 'Yaşama Felsefesi - Nermi Uygur', 'Avucunuzdaki Kelebek - Ahmet Şerif İzgören', 'Şu Hortumlu Dünyada Fil Yalnız Bir Hayvandır'] }
+                ],
+                net_bazli: [
+                    { baslik: 'Matematik Netine Göre', icerik: ['0-5 Net: Aktif - Acil İlaç - Mikro Orijinal', '5-10 Net: 345 - Hız ve Renk', '10-20 Net: Bilgi Sarmal - Orijinal', '20-30 Net: 3D - Endemik - Acil', '30+ Net: Barış - Apotemi - Ergi'] }
+                ],
+                nokta_atis: [
+                    { baslik: 'Problem Canavarı', icerik: ['Aktif (Kolay)', 'Kafadengi Hiç (Orta)', 'Tanım (Orta)', 'Apotemi (Zor)', 'Orijinal (Zor)', 'Didaktik (Zor)', 'Etkili (Zor)'] },
+                    { baslik: 'AYT Fulleme Paketleri', icerik: ['Mat: Orijinal + Barış + Eyüp B', 'Geo: 345 + Paraf + Bilgi S.', 'Fizik: Palme + 3D + Apotemi', 'Edebiyat: Limit + Bilgi Sarmal + 3D'] }
+                ]
+            },
+            LGS: {
+                soru_bankalari: [
+                    { id: 101, ders: 'Matematik', seviye: 'Kolay', kaynaklar: ['Hiper Zeka (Hiper Mat)', 'Nartest (Tane Tane)', 'Mozaik İntro', 'İsem Akıllı Defter', 'Fenomen A', 'Sadık Uygun', 'Tonguç (İlk Adım)', 'Arı Matemito', 'Newton Adım Adım', 'Av Favori', 'Matematus', 'Berkay', 'İdol Başlangıç', 'Günay Bumerang', 'Çanta Etkinlik', 'Muba Fasikül'] },
+                    { id: 102, ders: 'Matematik', seviye: 'Orta', kaynaklar: ['Bilfen Pro&Test', 'Hız Yayınları', 'Mozaik', 'Ankara Güçlendiren', 'Fenomen Fasikül', 'Okyanus Classmate', 'Full Wonder', 'Ulti', 'Öncelik Etkinlikli', 'Hiper Zeka Sinerji', 'Gezegen Madalyon', 'Okyanus Premaster', 'Metin Parkur', 'Nartest İlk Adım', 'Muba Mutlak Başarı', 'KVA', 'Zeka Küpü'] },
+                    { id: 103, ders: 'Matematik', seviye: 'Zor', kaynaklar: ['Okyanus Master', 'Köşebilgi Ultra', 'Newton Allstar', 'Sinan Kuzucu', 'Bilfen Pro&Bil', 'Nartest Prestige', 'Esen', 'DNA', 'Kuzucu', 'Nartest Power', 'Fenomen B', 'Nitelik Süper', 'Netbil', 'Arı Var', 'Ankara Kazandıran'] },
+                    { id: 104, ders: 'Türkçe', seviye: 'Kolay-Orta', kaynaklar: ['Hız', 'Okyanus', 'Tonguç', 'Mozaik Defter', 'Arı Akıllı Defter', 'Fenomen A', 'Karekök', 'Ankara Güçlendiren', 'Muba', 'Günay Zoom', 'Limit', 'Çanta', 'Zeka Küpü'] },
+                    { id: 105, ders: 'Türkçe', seviye: 'Zor', kaynaklar: ['Palme Plus', 'Fenomen', 'Bilfen Pro&Bil', 'Tudem', 'Nitelik Süper', 'Newton Allstar', 'Nartest Prestige', 'Son Viraj Formula 1', 'Limit Kronometre'] },
+                    { id: 106, ders: 'Fen Bilimleri', seviye: 'Kolay-Orta', kaynaklar: ['Hiper Zeka', 'Atom Epizot', 'Çanta', 'Newton Adım Adım', 'Günay Bumerang', 'Sadık Uygun', 'İdol', 'Bilfen Pro Test', 'Martı', 'Hız', 'Ankara Güçlendiren', 'Fenomen A'] },
+                    { id: 107, ders: 'Fen Bilimleri', seviye: 'Zor', kaynaklar: ['Sinan Kuzucu', 'Okyanus Master', 'Nartest Power', 'Bilfen Pro&Bil', 'Mozaik', 'Koray Varol Plus Kırmızı', 'Son Viraj Drift', 'Tudem', 'Ankara Kazandıran'] },
+                    { id: 108, ders: 'Sosyal / Din / İng', seviye: 'Karma', kaynaklar: ['İsem (İnk)', 'Muba İlk Hasat (İnk)', 'Ankara Güçlendiren (İnk)', 'Eker Dinlendiren', 'Zeka Küpü (Din)', 'More More (İng)', 'Tudem (İng)', 'Legend English', 'Sil Baştan', 'Negi (İnk)'] }
+                ],
+                youtube_kanallari: [
+                    { ders: 'LGS Branş Hocaları', seviye: 'Tavsiye', kanallar: ['Hasan Güler (Türkçe)', 'Çopur Hoca (Mat)', 'Partikül Matematik', 'Derslike (Fen)', 'Sosyal Bilgiler Dersliği', 'Din Kültürüm', 'Sil Baştan (İng)', 'Alper Hocam (İnk)', 'İdris Hoca'] },
+                    { ders: 'Akademi Kanalları', seviye: 'Tavsiye', kanallar: ['Benim Hocam LGS', 'Tonguç Akademi', 'KR Akademi', 'LGS & Lise Hocam', 'Şenol Hoca', 'Hız Ortaokul', 'LGS Rehberim'] }
+                ],
+                denemeler: [
+                    { tip: 'LGS Deneme', seviye: 'Kolay', liste: ['Arı', 'Tonguç', 'ENS', 'Nar Deneme'] },
+                    { tip: 'LGS Deneme', seviye: 'Orta', liste: ['Adrenalin', 'Hız', 'Fenomen', 'İsem', 'Karekök', 'Gezegen Madalyon', 'Okyanus Master (Orta)'] },
+                    { tip: 'LGS Deneme', seviye: 'Zor', liste: ['Bilfen Pro Bil', 'İsem Farklı', 'Newton Allstar', 'Sinan Kuzucu', 'Esen', 'Okyanus Master', 'Ses Desibel', 'Merkez'] }
+                ],
+                okuma_listesi: [
+                    { baslik: 'LGS Kitap Önerileri', icerik: ['Şu Hortumlu Dünyada Fil Yalnız Bir Hayvandır', 'Denemeli Denemesiz - Nermi Uygur', 'Edebiyat ve Yeni Zamanların Kültürü', 'İnsanın Acısını İnsan Alır', 'Avucunuzdaki Kelebek'] }
+                ],
+                nokta_atis: [
+                    { baslik: 'Şampiyon Paket', icerik: ['Sayısal: Fenomen A + Okyanus Master + Mebi Fen', 'Sözel: Sinan Kuzucu + Mozaik + Mebi İnkılap', 'Joker: Sinan Kuzucu Din Seti', 'Kamp: Mozaik LGS Kamp'] }
+                ]
+            }
+        };
+
+        const App = () => {
+            const [selectedExam, setSelectedExam] = useState('YKS');
+            const [activeTab, setActiveTab] = useState('soru_bankalari');
+            const [searchTerm, setSearchTerm] = useState('');
+            const [filterSeviye, setFilterSeviye] = useState('Hepsi');
+
+            useEffect(() => {
+                lucide.createIcons();
+            }, [selectedExam, activeTab, filterSeviye, searchTerm]);
+
+            const navItems = [
+                { id: 'soru_bankalari', icon: 'book-open', label: 'Kitaplar' },
+                { id: 'youtube_kanallari', icon: 'youtube', label: 'Kanallar' },
+                { id: 'denemeler', icon: 'layers', label: 'Deneme' },
+                { id: 'okuma_listesi', icon: 'library-big', label: 'Okuma' },
+                { id: 'net_bazli', icon: 'bar-chart-3', label: 'Netler' },
+                { id: 'nokta_atis', icon: 'target', label: 'Nokta Atış' }
+            ];
+
+            const getSeviyeColor = (seviye) => {
+                const s = seviye.toLowerCase();
+                if (s.includes('başlangıç') || s.includes('0-5')) return 'bg-emerald-100 text-emerald-700 border-emerald-200';
+                if (s.includes('kolay')) return 'bg-cyan-100 text-cyan-700 border-cyan-200';
+                if (s.includes('orta')) return 'bg-amber-100 text-amber-700 border-amber-200';
+                if (s.includes('zor') || s.includes('ileri')) return 'bg-rose-100 text-rose-700 border-rose-200';
+                return 'bg-sky-100 text-sky-700 border-sky-200';
+            };
+
+            const filteredData = useMemo(() => {
+                const data = MDK_DATA[selectedExam][activeTab] || [];
+                return data.filter(item => {
+                    const matchesSeviye = filterSeviye === 'Hepsi' || 
+                                         (item.seviye && item.seviye.toLowerCase().includes(filterSeviye.toLowerCase()));
+                    const term = searchTerm.toLowerCase();
+                    const matchesSearch = 
+                        (item.ders?.toLowerCase().includes(term)) || 
+                        (item.tip?.toLowerCase().includes(term)) ||
+                        (item.baslik?.toLowerCase().includes(term)) ||
+                        (item.kaynaklar?.some(k => k.toLowerCase().includes(term))) ||
+                        (item.kanallar?.some(k => k.toLowerCase().includes(term))) ||
+                        (item.liste?.some(k => k.toLowerCase().includes(term))) ||
+                        (item.icerik?.some(k => k.toLowerCase().includes(term)));
+                    
+                    return matchesSeviye && matchesSearch;
+                });
+            }, [selectedExam, activeTab, searchTerm, filterSeviye]);
+
+            return (
+                <div className="min-h-screen pb-12">
+                    <header className="bg-yellow-400 border-b-4 border-yellow-500 sticky top-0 z-50 shadow-lg">
+                        <div className="max-w-6xl mx-auto px-4 py-4">
+                            <div className="flex flex-col gap-4">
+                                <div className="flex items-center justify-between">
+                                    <div className="flex items-center gap-2">
+                                        <div className="bg-white p-1.5 rounded-lg shadow-sm">
+                                            <Icon name="graduation-cap" className="text-yellow-600" size={24} />
+                                        </div>
+                                        <div>
+                                            <h1 className="text-lg font-black tracking-tighter text-slate-900 leading-none">MDK AKADEMİ</h1>
+                                            <p className="text-[9px] font-bold text-yellow-900 uppercase tracking-widest mt-0.5">Rehberlik 2026</p>
+                                        </div>
+                                    </div>
+                                    <div className="flex bg-slate-900/10 p-1 rounded-xl backdrop-blur-sm shrink-0">
+                                        {['YKS', 'LGS'].map(exam => (
+                                            <button
+                                                key={exam}
+                                                onClick={() => { setSelectedExam(exam); setFilterSeviye('Hepsi'); setActiveTab('soru_bankalari'); }}
+                                                className={`px-6 py-1.5 rounded-lg font-black transition-all text-xs ${
+                                                    selectedExam === exam ? 'bg-white text-slate-900 shadow-sm' : 'text-slate-800/60'
+                                                }`}
+                                            >
+                                                {exam}
+                                            </button>
+                                        ))}
+                                    </div>
+                                </div>
+
+                                <div className="relative group">
+                                    <Icon name="search" className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400" size={16} />
+                                    <input 
+                                        type="text"
+                                        placeholder="KİTAP, HOCA VEYA DENEME ARA..."
+                                        className="w-full pl-10 pr-4 py-2.5 rounded-xl border-none shadow-inner bg-white focus:bg-white focus:ring-4 focus:ring-yellow-600/10 transition-all text-sm font-bold placeholder:text-slate-300 uppercase"
+                                        value={searchTerm}
+                                        onChange={(e) => setSearchTerm(e.target.value)}
+                                    />
+                                </div>
+                            </div>
+                        </div>
+                    </header>
+
+                    <main className="max-w-6xl mx-auto px-3 mt-6">
+                        <div className="grid grid-cols-3 md:grid-cols-6 gap-2 mb-6">
+                            {navItems.map((tab) => (
+                                <button
+                                    key={tab.id}
+                                    onClick={() => setActiveTab(tab.id)}
+                                    className={`flex flex-col items-center justify-center gap-1.5 p-3 rounded-xl font-black transition-all border-2 relative overflow-hidden group ${
+                                        activeTab === tab.id 
+                                        ? 'bg-slate-900 text-white border-slate-900 shadow-md' 
+                                        : 'bg-white text-slate-400 border-white hover:border-slate-100 shadow-sm'
+                                    }`}
+                                >
+                                    <Icon name={tab.icon} className={activeTab === tab.id ? 'text-yellow-400' : 'text-slate-300'} size={20} />
+                                    <span className="text-[9px] uppercase tracking-tighter relative z-10 text-center leading-none">{tab.label}</span>
+                                    {activeTab === tab.id && <div className="absolute inset-0 bg-gradient-to-br from-slate-800 to-slate-900 opacity-60" />}
+                                </button>
+                            ))}
+                        </div>
+
+                        <div className="flex flex-wrap items-center gap-1.5 mb-6 bg-white/50 p-2 rounded-xl border border-slate-100 shadow-sm">
+                            <div className="flex items-center gap-1.5 text-slate-400 font-black uppercase text-[8px] shrink-0 bg-white px-2 py-1 rounded-md border border-slate-100">
+                                <Icon name="filter" size={12} />
+                                <span>Filtre</span>
+                            </div>
+                            {['Hepsi', 'Başlangıç', 'Kolay', 'Orta', 'Zor'].map((lvl) => (
+                                <button
+                                    key={lvl}
+                                    onClick={() => setFilterSeviye(lvl)}
+                                    className={`px-3.5 py-1.5 rounded-lg text-[10px] font-black transition-all uppercase tracking-wider ${
+                                        filterSeviye === lvl 
+                                        ? 'bg-yellow-400 text-slate-900 shadow-sm' 
+                                        : 'bg-white text-slate-400 border border-slate-100'
+                                    }`}
+                                >
+                                    {lvl}
+                                </button>
+                            ))}
+                        </div>
+
+                        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                            {filteredData.length > 0 ? (
+                                filteredData.map((item, index) => (
+                                    <div 
+                                        key={index} 
+                                        className="bg-white rounded-2xl border border-slate-50 shadow-sm hover:shadow-md transition-all duration-300 group flex flex-col"
+                                    >
+                                        <div className="p-4 border-b border-slate-50 bg-slate-50/20 flex justify-between items-start">
+                                            <div>
+                                                <h3 className="text-sm font-black text-slate-900 uppercase tracking-tight mb-1 leading-tight">
+                                                    {item.ders || item.tip || item.baslik}
+                                                </h3>
+                                                {item.seviye && (
+                                                    <div className={`inline-flex px-2 py-1 rounded-md text-[8px] font-black border uppercase tracking-widest shadow-sm ${getSeviyeColor(item.seviye)}`}>
+                                                        {item.seviye}
+                                                    </div>
+                                                )}
+                                            </div>
+                                            <div className="bg-white p-2 rounded-xl shadow-sm text-yellow-500 border border-slate-50 shrink-0">
+                                                <Icon name={activeTab === 'youtube_kanallari' ? 'youtube' : (activeTab === 'okuma_listesi' ? 'library-big' : 'star')} size={16} />
+                                            </div>
+                                        </div>
+                                        <div className="p-4 flex-grow bg-white rounded-b-2xl">
+                                            <div className="space-y-3">
+                                                {(item.kaynaklar || item.kanallar || item.liste || item.icerik).map((val, i) => (
+                                                    <div key={i} className="flex items-start gap-3">
+                                                        <div className="mt-1.5 w-1.5 h-1.5 rounded-full bg-yellow-400 shrink-0" />
+                                                        <span className="text-slate-800 font-bold text-xs leading-tight tracking-tight uppercase">
+                                                            {val}
+                                                        </span>
+                                                    </div>
+                                                ))}
+                                            </div>
+                                        </div>
+                                    </div>
+                                ))
+                            ) : (
+                                <div className="col-span-full py-16 text-center bg-white rounded-3xl border-2 border-dashed border-slate-100 shadow-inner">
+                                    <Icon name="search" className="mx-auto mb-4 text-slate-200" size={32} />
+                                    <p className="text-slate-400 font-bold text-[10px] uppercase tracking-widest px-4">ARADIĞIN KRİTERDE İÇERİK BULUNAMADI.</p>
+                                </div>
+                            )}
+                        </div>
+
+                        <div className="mt-10 bg-slate-900 rounded-3xl p-8 text-white relative overflow-hidden shadow-xl border-b-[8px] border-yellow-400">
+                            <div className="relative z-10 flex flex-col items-center text-center">
+                                <div className="bg-yellow-400 p-4 rounded-full shadow-lg mb-4">
+                                    <Icon name="trophy" className="text-slate-900" size={32} />
+                                </div>
+                                <h2 className="text-xl font-black italic mb-2 tracking-tighter uppercase leading-none">
+                                    HEDEFE <span className="text-yellow-400">ODAKLAN.</span>
+                                </h2>
+                                <p className="text-slate-400 text-[10px] font-medium leading-relaxed italic max-w-xs uppercase">
+                                    BU REHBER, BİNLERCE DERECE ÖĞRENCİSİNİN STRATEJİLERİNDEN SÜZÜLEN "ALTIN FORMÜL"DÜR.
+                                    <span className="text-white block mt-3 font-black text-sm tracking-tighter uppercase not-italic">#BAŞARITESADÜFDEĞİLDİR</span>
+                                </p>
+                            </div>
+                            <div className="absolute top-[-50px] right-[-50px] w-[150px] h-[150px] bg-yellow-400/10 rounded-full blur-[40px]" />
+                            <div className="absolute bottom-[-50px] left-[-30px] w-[120px] h-[120px] bg-blue-600/10 rounded-full blur-[40px]" />
+                        </div>
+                    </main>
+
+                    <footer className="mt-10 pb-8 text-center px-4">
+                        <p className="text-slate-400 text-[9px] font-black tracking-[0.3em] uppercase mb-4">
+                            MDK AKADEMİ • TÜRKİYE'NİN DERECE FABRİKASI
+                        </p>
+                        <div className="flex justify-center gap-1">
+                            {[...Array(5)].map((_, i) => <div key={i} className={`h-1 rounded-full bg-slate-200 ${i === 2 ? 'w-8 bg-yellow-400 shadow-sm' : 'w-2.5'}`} />)}
+                        </div>
+                    </footer>
+                </div>
+            );
+        };
+
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<App />);
+    </script>
+</body>
+</html>
