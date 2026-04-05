@@ -22,6 +22,8 @@
   --orta-bg: #fef3c7;  --orta-fg: #92400e;
   --zor-bg: #fee2e2;   --zor-fg: #991b1b;
   --joker-bg: #ede9fe; --joker-fg: #5b21b6;
+  --lgs-bg: #e0f2fe;   --lgs-fg: #0284c7;
+  --yks-bg: #dcfce7;   --yks-fg: #059669;
   --nav-h: 64px;
   --bottom-h: 72px;
 }
@@ -46,37 +48,44 @@ body { font-family: 'Nunito', sans-serif; background: var(--bg); color: var(--te
 .nav-btn.active::before { content: ''; position: absolute; top: 0; left: 50%; transform: translateX(-50%); width: 36px; height: 3px; background: var(--primary); border-radius: 0 0 4px 4px; }
 
 /* PANELS */
-.panel { display: none; padding: 16px 12px 8px; }
+.panel { display: none; padding: 12px 12px 8px; }
 .panel.active { display: block; animation: fadeIn 0.25s ease; }
 @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
 
 /* SECTION TITLE */
 .section-title { font-size: 15px; font-weight: 900; color: var(--text); margin-bottom: 12px; display: flex; align-items: center; gap: 8px; }
 
-/* FILTER BOX */
-.filter-box { background: var(--surface); border: 1.5px solid var(--border); border-radius: 16px; padding: 14px; margin-bottom: 14px; }
-.filter-label { font-size: 10px; font-weight: 800; color: var(--muted); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 8px; display: block; }
-.chip-row { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 10px; }
-.chip-row:last-child { margin-bottom: 0; }
-.chip { height: 34px; padding: 0 14px; border-radius: 20px; border: 1.5px solid var(--border); background: var(--surface2); color: var(--muted); font-size: 12px; font-weight: 800; cursor: pointer; transition: all 0.15s; font-family: 'Nunito', sans-serif; display: flex; align-items: center; }
-.chip:active { transform: scale(0.96); }
-.chip.s-all  { }
-.chip.sel    { background: var(--primary); color: #fff; border-color: var(--primary); }
-.chip.sel-lgs { background: #0284c7; color: #fff; border-color: #0284c7; }
-.chip.sel-yks { background: #059669; color: #fff; border-color: #059669; }
-.chip.sel-kolay { background: var(--kolay-fg); color: #fff; border-color: var(--kolay-fg); }
-.chip.sel-orta  { background: #d97706; color: #fff; border-color: #d97706; }
-.chip.sel-zor   { background: var(--zor-fg); color: #fff; border-color: var(--zor-fg); }
-.chip.sel-joker { background: var(--joker-fg); color: #fff; border-color: var(--joker-fg); }
+/* ── SINAV SEÇİCİ (büyük butonlar) ── */
+.sinav-selector { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; margin-bottom: 12px; }
+.sinav-btn { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; padding: 12px 6px; border-radius: 14px; border: 2px solid var(--border); background: var(--surface); cursor: pointer; font-family: 'Nunito', sans-serif; transition: all 0.18s; }
+.sinav-btn .sb-icon { font-size: 22px; }
+.sinav-btn .sb-label { font-size: 11px; font-weight: 900; color: var(--muted); }
+.sinav-btn.active-all { border-color: var(--primary); background: var(--primary-light); }
+.sinav-btn.active-all .sb-label { color: var(--primary); }
+.sinav-btn.active-lgs { border-color: #0284c7; background: var(--lgs-bg); }
+.sinav-btn.active-lgs .sb-label { color: #0284c7; }
+.sinav-btn.active-yks { border-color: #059669; background: var(--yks-bg); }
+.sinav-btn.active-yks .sb-label { color: #059669; }
+.sinav-btn:active { transform: scale(0.96); }
+
+/* ZORLUK FİLTRE */
+.zorluk-row { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 12px; }
+.z-chip { height: 32px; padding: 0 13px; border-radius: 20px; border: 1.5px solid var(--border); background: var(--surface2); color: var(--muted); font-size: 12px; font-weight: 800; cursor: pointer; transition: all 0.15s; font-family: 'Nunito', sans-serif; display: flex; align-items: center; gap: 4px; }
+.z-chip:active { transform: scale(0.96); }
+.z-chip.zsel-all   { background: var(--primary); color: #fff; border-color: var(--primary); }
+.z-chip.zsel-kolay { background: var(--kolay-fg); color: #fff; border-color: var(--kolay-fg); }
+.z-chip.zsel-orta  { background: #d97706; color: #fff; border-color: #d97706; }
+.z-chip.zsel-zor   { background: var(--zor-fg); color: #fff; border-color: var(--zor-fg); }
+.z-chip.zsel-joker { background: var(--joker-fg); color: #fff; border-color: var(--joker-fg); }
 
 /* DERS SCROLL */
-.ders-scroll { display: flex; gap: 6px; overflow-x: auto; -webkit-overflow-scrolling: touch; padding-bottom: 6px; margin-bottom: 12px; scrollbar-width: none; }
+.ders-scroll { display: flex; gap: 6px; overflow-x: auto; -webkit-overflow-scrolling: touch; padding-bottom: 6px; margin-bottom: 10px; scrollbar-width: none; }
 .ders-scroll::-webkit-scrollbar { display: none; }
 .ders-chip { height: 30px; padding: 0 12px; border-radius: 16px; border: 1.5px solid var(--border); background: var(--surface); color: var(--text); font-size: 11px; font-weight: 700; cursor: pointer; white-space: nowrap; flex-shrink: 0; font-family: 'Nunito', sans-serif; transition: all 0.15s; }
 .ders-chip.active { background: var(--primary-light); border-color: var(--primary); color: var(--primary); }
 
 /* COUNT */
-.result-count { font-size: 11px; font-weight: 700; color: var(--muted); margin-bottom: 12px; }
+.result-count { font-size: 11px; font-weight: 700; color: var(--muted); margin-bottom: 10px; }
 
 /* CARDS GRID */
 .cards-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
@@ -91,7 +100,6 @@ body { font-family: 'Nunito', sans-serif; background: var(--bg); color: var(--te
 @keyframes slideUp { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
 .card-name { font-size: 12.5px; font-weight: 800; color: var(--text); line-height: 1.3; flex-grow: 1; }
-.card-desc { font-size: 10.5px; color: var(--muted); line-height: 1.4; }
 .card-footer { display: flex; flex-wrap: wrap; gap: 4px; }
 .badge { font-size: 10px; font-weight: 800; padding: 2px 7px; border-radius: 8px; }
 .b-kolay { background: var(--kolay-bg); color: var(--kolay-fg); }
@@ -99,8 +107,8 @@ body { font-family: 'Nunito', sans-serif; background: var(--bg); color: var(--te
 .b-zor   { background: var(--zor-bg);   color: var(--zor-fg); }
 .b-joker { background: var(--joker-bg); color: var(--joker-fg); }
 .b-ders  { background: var(--surface2); color: var(--muted); border: 1px solid var(--border); }
-.b-sinav-lgs { background: #e0f2fe; color: #0284c7; }
-.b-sinav-yks { background: #dcfce7; color: #059669; }
+.b-sinav-lgs { background: var(--lgs-bg); color: var(--lgs-fg); }
+.b-sinav-yks { background: var(--yks-bg); color: var(--yks-fg); }
 
 .yt-link { display: inline-flex; align-items: center; gap: 4px; margin-top: 2px; font-size: 11px; font-weight: 800; color: #ef4444; text-decoration: none; background: #fff1f2; padding: 3px 9px; border-radius: 7px; }
 
@@ -110,7 +118,7 @@ body { font-family: 'Nunito', sans-serif; background: var(--bg); color: var(--te
 .empty-state p { font-size: 13px; font-weight: 700; }
 
 /* BRANŞ PANEL */
-.brans-ders-tabs { display: flex; gap: 6px; overflow-x: auto; -webkit-overflow-scrolling: touch; padding-bottom: 8px; margin-bottom: 14px; scrollbar-width: none; }
+.brans-ders-tabs { display: flex; gap: 6px; overflow-x: auto; padding-bottom: 8px; margin-bottom: 14px; scrollbar-width: none; }
 .brans-ders-tabs::-webkit-scrollbar { display: none; }
 .bdt { height: 36px; padding: 0 14px; border-radius: 20px; border: 1.5px solid var(--border); background: var(--surface); color: var(--muted); font-size: 12px; font-weight: 800; cursor: pointer; white-space: nowrap; flex-shrink: 0; font-family: 'Nunito', sans-serif; transition: all 0.15s; }
 .bdt.active { background: var(--primary); color: #fff; border-color: var(--primary); }
@@ -149,22 +157,27 @@ body { font-family: 'Nunito', sans-serif; background: var(--bg); color: var(--te
 <!-- ════ PANEL: KİTAPLAR ════ -->
 <div id="panel-kitap" class="panel active">
   <div class="section-title"><span>📚</span> Kitap Önerileri</div>
-  <div class="filter-box">
-    <span class="filter-label">Sınav</span>
-    <div class="chip-row" id="k-sinav-row">
-      <div class="chip sel" data-v="" onclick="setSinav('k','',this)">Tümü</div>
-      <div class="chip" data-v="LGS" onclick="setSinav('k','LGS',this)">🏫 LGS</div>
-      <div class="chip" data-v="YKS" onclick="setSinav('k','YKS',this)">🎓 YKS</div>
-    </div>
-    <span class="filter-label">Zorluk</span>
-    <div class="chip-row" id="k-zorluk-row">
-      <div class="chip sel" data-v="" onclick="setZorluk('k','',this)">Hepsi</div>
-      <div class="chip" data-v="kolay" onclick="setZorluk('k','kolay',this)">🟢 Kolay</div>
-      <div class="chip" data-v="orta"  onclick="setZorluk('k','orta',this)">🟡 Orta</div>
-      <div class="chip" data-v="zor"   onclick="setZorluk('k','zor',this)">🔴 Zor</div>
-      <div class="chip" data-v="joker" onclick="setZorluk('k','joker',this)">⚡ Joker</div>
-    </div>
+
+  <div class="sinav-selector" id="k-sinav-sel">
+    <button class="sinav-btn active-all" data-v="" onclick="setSinav('k','',this)">
+      <span class="sb-icon">📋</span><span class="sb-label">Tümü</span>
+    </button>
+    <button class="sinav-btn" data-v="LGS" onclick="setSinav('k','LGS',this)">
+      <span class="sb-icon">🏫</span><span class="sb-label">LGS</span>
+    </button>
+    <button class="sinav-btn" data-v="YKS" onclick="setSinav('k','YKS',this)">
+      <span class="sb-icon">🎓</span><span class="sb-label">YKS / AYT</span>
+    </button>
   </div>
+
+  <div class="zorluk-row" id="k-zorluk-row">
+    <div class="z-chip zsel-all" data-v="" onclick="setZorluk('k','',this)">Hepsi</div>
+    <div class="z-chip" data-v="kolay" onclick="setZorluk('k','kolay',this)">🟢 Kolay</div>
+    <div class="z-chip" data-v="orta"  onclick="setZorluk('k','orta',this)">🟡 Orta</div>
+    <div class="z-chip" data-v="zor"   onclick="setZorluk('k','zor',this)">🔴 Zor</div>
+    <div class="z-chip" data-v="joker" onclick="setZorluk('k','joker',this)">⚡ Joker</div>
+  </div>
+
   <div class="ders-scroll" id="k-ders-scroll"></div>
   <div class="result-count" id="k-count"></div>
   <div class="cards-grid" id="k-grid"></div>
@@ -173,21 +186,26 @@ body { font-family: 'Nunito', sans-serif; background: var(--bg); color: var(--te
 <!-- ════ PANEL: YOUTUBE ════ -->
 <div id="panel-youtube" class="panel">
   <div class="section-title"><span>▶️</span> YouTube Kanalları</div>
-  <div class="filter-box">
-    <span class="filter-label">Sınav</span>
-    <div class="chip-row" id="y-sinav-row">
-      <div class="chip sel" data-v="" onclick="setSinav('y','',this)">Tümü</div>
-      <div class="chip" data-v="LGS" onclick="setSinav('y','LGS',this)">🏫 LGS</div>
-      <div class="chip" data-v="YKS" onclick="setSinav('y','YKS',this)">🎓 YKS</div>
-    </div>
-    <span class="filter-label">Zorluk</span>
-    <div class="chip-row" id="y-zorluk-row">
-      <div class="chip sel" data-v="" onclick="setZorluk('y','',this)">Hepsi</div>
-      <div class="chip" data-v="kolay" onclick="setZorluk('y','kolay',this)">🟢 Kolay</div>
-      <div class="chip" data-v="orta"  onclick="setZorluk('y','orta',this)">🟡 Orta</div>
-      <div class="chip" data-v="zor"   onclick="setZorluk('y','zor',this)">🔴 Zor</div>
-    </div>
+
+  <div class="sinav-selector" id="y-sinav-sel">
+    <button class="sinav-btn active-all" data-v="" onclick="setSinav('y','',this)">
+      <span class="sb-icon">📋</span><span class="sb-label">Tümü</span>
+    </button>
+    <button class="sinav-btn" data-v="LGS" onclick="setSinav('y','LGS',this)">
+      <span class="sb-icon">🏫</span><span class="sb-label">LGS</span>
+    </button>
+    <button class="sinav-btn" data-v="YKS" onclick="setSinav('y','YKS',this)">
+      <span class="sb-icon">🎓</span><span class="sb-label">YKS / AYT</span>
+    </button>
   </div>
+
+  <div class="zorluk-row" id="y-zorluk-row">
+    <div class="z-chip zsel-all" data-v="" onclick="setZorluk('y','',this)">Hepsi</div>
+    <div class="z-chip" data-v="kolay" onclick="setZorluk('y','kolay',this)">🟢 Kolay</div>
+    <div class="z-chip" data-v="orta"  onclick="setZorluk('y','orta',this)">🟡 Orta</div>
+    <div class="z-chip" data-v="zor"   onclick="setZorluk('y','zor',this)">🔴 Zor</div>
+  </div>
+
   <div class="ders-scroll" id="y-ders-scroll"></div>
   <div class="result-count" id="y-count"></div>
   <div class="cards-grid" id="y-grid"></div>
@@ -212,6 +230,10 @@ body { font-family: 'Nunito', sans-serif; background: var(--bg); color: var(--te
     <div class="cards-grid" id="d-orta"></div>
     <div class="deneme-sub">🔴 Zor Seviye</div>
     <div class="cards-grid" id="d-zor"></div>
+    <div class="deneme-sub">🔴+ Zor+ / ÖSYM Benzeri</div>
+    <div class="cards-grid" id="d-zorplus"></div>
+    <div class="deneme-sub">🔄 Aşamalı Setler</div>
+    <div class="cards-grid" id="d-asamali"></div>
   </div>
 
   <div class="deneme-section">
@@ -226,66 +248,24 @@ body { font-family: 'Nunito', sans-serif; background: var(--bg); color: var(--te
 
   <div class="how-card">
     <h3>📚 Kitaplar & ▶️ YouTube</h3>
-    <div class="how-step">
-      <div class="step-num">1</div>
-      <div class="step-text"><strong>Sınav seç:</strong> LGS mi, YKS mi? Butona dokun, liste güncellenir.</div>
-    </div>
-    <div class="how-step">
-      <div class="step-num">2</div>
-      <div class="step-text"><strong>Ders seç:</strong> Üstteki yatay çubuktan derse dokun.</div>
-    </div>
-    <div class="how-step">
-      <div class="step-num">3</div>
-      <div class="step-text"><strong>Seviye seç:</strong> 🟢 Kolay = başlangıç, 🟡 Orta = klasik soru bankası, 🔴 Zor = ileri seviye, ⚡ Joker = şampiyona.</div>
-    </div>
-    <div class="how-step">
-      <div class="step-num">4</div>
-      <div class="step-text">YouTube kanallarında <strong>Kanala Git →</strong> butonuna bas, doğrudan açılır.</div>
-    </div>
+    <div class="how-step"><div class="step-num">1</div><div class="step-text"><strong>Sınav seç:</strong> LGS mi, YKS mi? Büyük butona dokun, liste güncellenir.</div></div>
+    <div class="how-step"><div class="step-num">2</div><div class="step-text"><strong>Ders seç:</strong> Üstteki yatay çubuktan derse dokun.</div></div>
+    <div class="how-step"><div class="step-num">3</div><div class="step-text"><strong>Seviye seç:</strong> 🟢 Kolay = başlangıç, 🟡 Orta = klasik soru bankası, 🔴 Zor = ileri seviye, ⚡ Joker = şampiyona.</div></div>
+    <div class="how-step"><div class="step-num">4</div><div class="step-text">YouTube kanallarında <strong>Kanala Git →</strong> butonuna bas, doğrudan açılır.</div></div>
   </div>
 
   <div class="how-card">
     <h3>🎯 Branş Denemesi</h3>
-    <div class="how-step">
-      <div class="step-num">1</div>
-      <div class="step-text">YKS'de her dersin <strong>ayrı branş denemesi</strong> vardır. Üstten dersi seç.</div>
-    </div>
-    <div class="how-step">
-      <div class="step-num">2</div>
-      <div class="step-text">Kolay → Orta → Zor sırasıyla ilerle. Her seviyeden en az bir deneme setini tamamla.</div>
-    </div>
-  </div>
-
-  <div class="how-card">
-    <h3>📝 Genel Deneme (TYT–AYT)</h3>
-    <div class="how-step">
-      <div class="step-num">1</div>
-      <div class="step-text">Branş denemelerinden sonra <strong>genel deneme</strong> setlerine geç.</div>
-    </div>
-    <div class="how-step">
-      <div class="step-num">2</div>
-      <div class="step-text">Bilgi kartları ve kamplarla konuları pekiştir, yaprak testlerle süre çalış.</div>
-    </div>
+    <div class="how-step"><div class="step-num">1</div><div class="step-text">YKS'de her dersin <strong>ayrı branş denemesi</strong> vardır. Üstten dersi seç.</div></div>
+    <div class="how-step"><div class="step-num">2</div><div class="step-text">Kolay → Orta → Zor sırasıyla ilerle. Her seviyeden en az bir deneme setini tamamla.</div></div>
   </div>
 
   <div class="how-card">
     <h3>🎨 Seviye Rehberi</h3>
-    <div class="how-step">
-      <div class="step-num" style="background:var(--kolay-bg);color:var(--kolay-fg)">🟢</div>
-      <div class="step-text"><strong>Kolay:</strong> Temel konu pekiştirme, başlangıç seviyesi</div>
-    </div>
-    <div class="how-step">
-      <div class="step-num" style="background:var(--orta-bg);color:var(--orta-fg)">🟡</div>
-      <div class="step-text"><strong>Orta:</strong> Klasik soru bankası, sınav ortalaması için</div>
-    </div>
-    <div class="how-step">
-      <div class="step-num" style="background:var(--zor-bg);color:var(--zor-fg)">🔴</div>
-      <div class="step-text"><strong>Zor:</strong> Yüksek puan hedefleyenler için</div>
-    </div>
-    <div class="how-step">
-      <div class="step-num" style="background:var(--joker-bg);color:var(--joker-fg)">⚡</div>
-      <div class="step-text"><strong>Joker:</strong> LGS/YKS şampiyonlarına özel, son sürtünme</div>
-    </div>
+    <div class="how-step"><div class="step-num" style="background:var(--kolay-bg);color:var(--kolay-fg)">🟢</div><div class="step-text"><strong>Kolay:</strong> Temel konu pekiştirme, başlangıç</div></div>
+    <div class="how-step"><div class="step-num" style="background:var(--orta-bg);color:var(--orta-fg)">🟡</div><div class="step-text"><strong>Orta:</strong> Klasik soru bankası, sınav ortalaması için</div></div>
+    <div class="how-step"><div class="step-num" style="background:var(--zor-bg);color:var(--zor-fg)">🔴</div><div class="step-text"><strong>Zor:</strong> Yüksek puan hedefleyenler için</div></div>
+    <div class="how-step"><div class="step-num" style="background:var(--joker-bg);color:var(--joker-fg)">⚡</div><div class="step-text"><strong>Joker:</strong> LGS/YKS şampiyonlarına özel, son sürtünme</div></div>
   </div>
 </div>
 
@@ -300,489 +280,513 @@ body { font-family: 'Nunito', sans-serif; background: var(--bg); color: var(--te
 
 <script>
 // ════════════════════════════════════════════════════
-// DATA
+// DERS LİSTELERİ
 // ════════════════════════════════════════════════════
 const LGS_DERS = ["Türkçe","Matematik","Fen Bilimleri","İnkılap Tarihi","Din Kültürü","İngilizce"];
 const YKS_DERS = ["Türkçe","Paragraf","Matematik","Geometri","Fizik","Kimya","Biyoloji","Tarih","Coğrafya","Felsefe","Din Kültürü","Edebiyat"];
 const ALL_DERS = [...new Set([...LGS_DERS,...YKS_DERS])];
 
-// ── KİTAPLAR ──────────────────────────────────────
+// ════════════════════════════════════════════════════
+// KİTAPLAR
+// ════════════════════════════════════════════════════
 const kitaplar = [
-  // ═══ LGS MATEMATİK ═══
-  {n:"Arı Matemito Akıllı Defter",          d:"Matematik",     s:"LGS", z:"kolay"},
-  {n:"Mozaik İntro Akıllı Defter",          d:"Matematik",     s:"LGS", z:"kolay"},
-  {n:"Fenomen Fasikül (1-6)",               d:"Matematik",     s:"LGS", z:"kolay"},
-  {n:"Muba Fasikülleri",                    d:"Matematik",     s:"LGS", z:"kolay"},
-  {n:"Hız Yayınları",                       d:"Matematik",     s:"LGS", z:"orta"},
-  {n:"Mozaik Yayınları",                    d:"Matematik",     s:"LGS", z:"orta"},
-  {n:"Fenomen A",                           d:"Matematik",     s:"LGS", z:"orta"},
-  {n:"Ankara Güçlendiren",                  d:"Matematik",     s:"LGS", z:"orta"},
-  {n:"Nartest Mavi (Mod Serisi)",           d:"Matematik",     s:"LGS", z:"orta"},
-  {n:"Bilfen Pro&Test",                     d:"Matematik",     s:"LGS", z:"orta"},
-  {n:"Hız Uzman",                           d:"Matematik",     s:"LGS", z:"zor"},
-  {n:"Okyanus Master",                      d:"Matematik",     s:"LGS", z:"zor"},
-  {n:"Fenomen B",                           d:"Matematik",     s:"LGS", z:"zor"},
-  {n:"Köşebilgi Ultra Yeni Nesil",          d:"Matematik",     s:"LGS", z:"zor"},
-  {n:"Nitelik Süper 8",                     d:"Matematik",     s:"LGS", z:"zor"},
-  {n:"Nartest Kırmızı Şampiyon",            d:"Matematik",     s:"LGS", z:"zor"},
-  {n:"Bilfen Pro&Bil",                      d:"Matematik",     s:"LGS", z:"zor"},
-  {n:"Sinan Kuzucu Yayınları",              d:"Matematik",     s:"LGS", z:"joker"},
-  {n:"Tonguç Dinamo Zoru Bankası",          d:"Matematik",     s:"LGS", z:"joker"},
-  // ═══ LGS TÜRKÇE ═══
-  {n:"Hız Yayınları",                       d:"Türkçe",        s:"LGS", z:"kolay"},
-  {n:"Okyanus Yayınları",                   d:"Türkçe",        s:"LGS", z:"kolay"},
-  {n:"Tonguç Yayınları",                    d:"Türkçe",        s:"LGS", z:"kolay"},
-  {n:"Arı (Türkçede Stress Yok Başarı Var)",d:"Türkçe",        s:"LGS", z:"orta"},
-  {n:"Nitelik Süper",                       d:"Türkçe",        s:"LGS", z:"orta"},
-  {n:"Mozaik Yayınları",                    d:"Türkçe",        s:"LGS", z:"orta"},
-  {n:"Fenomen",                             d:"Türkçe",        s:"LGS", z:"orta"},
-  {n:"Muba Yayınları",                      d:"Türkçe",        s:"LGS", z:"orta"},
-  {n:"Ankara Güçlendiren",                  d:"Türkçe",        s:"LGS", z:"orta"},
-  {n:"Palme Plus",                          d:"Türkçe",        s:"LGS", z:"zor"},
-  {n:"Bilfen Pro&Bil",                      d:"Türkçe",        s:"LGS", z:"zor"},
-  {n:"Tudem",                               d:"Türkçe",        s:"LGS", z:"zor"},
-  {n:"Karekök",                             d:"Türkçe",        s:"LGS", z:"zor"},
-  {n:"Nartest Kırmızı Power",               d:"Türkçe",        s:"LGS", z:"zor"},
-  {n:"Sinan Kuzucu Yayınları",              d:"Türkçe",        s:"LGS", z:"joker"},
-  // ═══ LGS FEN BİLİMLERİ ═══
-  {n:"Hız Yayınları",                       d:"Fen Bilimleri", s:"LGS", z:"kolay"},
-  {n:"Atom Yayınları",                      d:"Fen Bilimleri", s:"LGS", z:"kolay"},
-  {n:"Çanta Yayınları",                     d:"Fen Bilimleri", s:"LGS", z:"kolay"},
-  {n:"Nige Yayınları",                      d:"Fen Bilimleri", s:"LGS", z:"kolay"},
-  {n:"Bilfen Pro&Bil",                      d:"Fen Bilimleri", s:"LGS", z:"orta"},
-  {n:"Martı Yayınları",                     d:"Fen Bilimleri", s:"LGS", z:"orta"},
-  {n:"Nitelik Süper",                       d:"Fen Bilimleri", s:"LGS", z:"orta"},
-  {n:"Ankara Güçlendiren",                  d:"Fen Bilimleri", s:"LGS", z:"orta"},
-  {n:"Tonguç Dinamo Zoru",                  d:"Fen Bilimleri", s:"LGS", z:"orta"},
-  {n:"Mozaik Yayınları",                    d:"Fen Bilimleri", s:"LGS", z:"orta"},
-  {n:"İşleyen Zeka",                        d:"Fen Bilimleri", s:"LGS", z:"zor"},
-  {n:"Son Viraj",                           d:"Fen Bilimleri", s:"LGS", z:"zor"},
-  {n:"Tudem",                               d:"Fen Bilimleri", s:"LGS", z:"zor"},
-  {n:"Okyanus Master",                      d:"Fen Bilimleri", s:"LGS", z:"zor"},
-  {n:"Nartest Kırmızı Power",               d:"Fen Bilimleri", s:"LGS", z:"zor"},
-  {n:"Sinan Kuzucu Yayınları",              d:"Fen Bilimleri", s:"LGS", z:"joker"},
-  // ═══ LGS İNKILAP TARİHİ ═══
-  {n:"İsem Yayınları",                      d:"İnkılap Tarihi",s:"LGS", z:"kolay"},
-  {n:"Nige Yayınları",                      d:"İnkılap Tarihi",s:"LGS", z:"kolay"},
-  {n:"Hız Yayınları",                       d:"İnkılap Tarihi",s:"LGS", z:"kolay"},
-  {n:"Sadık Uygun",                         d:"İnkılap Tarihi",s:"LGS", z:"kolay"},
-  {n:"Ankara Güçlendiren",                  d:"İnkılap Tarihi",s:"LGS", z:"orta"},
-  {n:"KVA Yayınları",                       d:"İnkılap Tarihi",s:"LGS", z:"orta"},
-  {n:"Nitelik Süper",                       d:"İnkılap Tarihi",s:"LGS", z:"orta"},
-  {n:"Çanta Yayınları",                     d:"İnkılap Tarihi",s:"LGS", z:"orta"},
-  {n:"Beyin Takımı",                        d:"İnkılap Tarihi",s:"LGS", z:"orta"},
-  {n:"Mozaik Yayınları",                    d:"İnkılap Tarihi",s:"LGS", z:"zor"},
-  {n:"Hız Uzman",                           d:"İnkılap Tarihi",s:"LGS", z:"zor"},
-  {n:"Son Viraj",                           d:"İnkılap Tarihi",s:"LGS", z:"zor"},
-  {n:"Bes Yayınları",                       d:"İnkılap Tarihi",s:"LGS", z:"zor"},
-  {n:"Akıllı Versiyon",                     d:"İnkılap Tarihi",s:"LGS", z:"joker"},
-  // ═══ LGS DİN KÜLTÜRÜ ═══
-  {n:"Hız Yayınları",                       d:"Din Kültürü",   s:"LGS", z:"kolay"},
-  {n:"Günay Yayınları",                     d:"Din Kültürü",   s:"LGS", z:"kolay"},
-  {n:"Eker Dinlendiren",                    d:"Din Kültürü",   s:"LGS", z:"orta"},
-  {n:"KVA Yayınları",                       d:"Din Kültürü",   s:"LGS", z:"orta"},
-  {n:"Ankara Güçlendiren",                  d:"Din Kültürü",   s:"LGS", z:"zor"},
-  {n:"Bilfen Pro Test",                     d:"Din Kültürü",   s:"LGS", z:"zor"},
-  {n:"Nitelik Süper",                       d:"Din Kültürü",   s:"LGS", z:"zor"},
-  {n:"Zeka Küpü",                           d:"Din Kültürü",   s:"LGS", z:"joker"},
-  // ═══ LGS İNGİLİZCE ═══
-  {n:"Hız Yayınları",                       d:"İngilizce",     s:"LGS", z:"kolay"},
-  {n:"Karekök",                             d:"İngilizce",     s:"LGS", z:"kolay"},
-  {n:"Ankara Güçlendiren",                  d:"İngilizce",     s:"LGS", z:"kolay"},
-  {n:"İsem Fark Yayınları",                 d:"İngilizce",     s:"LGS", z:"orta"},
-  {n:"KVA Yayınları",                       d:"İngilizce",     s:"LGS", z:"orta"},
-  {n:"Arı Yayınları",                       d:"İngilizce",     s:"LGS", z:"orta"},
-  {n:"More & More",                         d:"İngilizce",     s:"LGS", z:"zor"},
-  {n:"Tudem",                               d:"İngilizce",     s:"LGS", z:"zor"},
-  {n:"Sinan Kuzucu Yayınları",              d:"İngilizce",     s:"LGS", z:"joker"},
 
-  // ══════════════════════════════════
-  // ═══ YKS TÜRKÇE ═══
-  {n:"Fides Yayınları",                     d:"Türkçe",        s:"YKS", z:"kolay"},
-  {n:"Arı Yayınları",                       d:"Türkçe",        s:"YKS", z:"kolay"},
-  {n:"Kafadengi Süper Öğreten",             d:"Türkçe",        s:"YKS", z:"kolay"},
-  {n:"Eğitim Vadisi",                       d:"Türkçe",        s:"YKS", z:"kolay"},
-  {n:"Birey A",                             d:"Türkçe",        s:"YKS", z:"kolay"},
-  {n:"Karekök 0",                           d:"Türkçe",        s:"YKS", z:"kolay"},
-  {n:"Üç Dört Beş (345)",                   d:"Türkçe",        s:"YKS", z:"orta"},
-  {n:"Palme Yayınları",                     d:"Türkçe",        s:"YKS", z:"orta"},
-  {n:"Hız ve Renk",                         d:"Türkçe",        s:"YKS", z:"orta"},
-  {n:"Bilgi Sarmal",                        d:"Türkçe",        s:"YKS", z:"orta"},
-  {n:"Karekök",                             d:"Türkçe",        s:"YKS", z:"orta"},
-  {n:"Benim Hocam",                         d:"Türkçe",        s:"YKS", z:"orta"},
-  {n:"KR Akademi",                          d:"Türkçe",        s:"YKS", z:"orta"},
-  {n:"Mrkz Yayınları",                      d:"Türkçe",        s:"YKS", z:"orta"},
-  {n:"Yayın Denizi",                        d:"Türkçe",        s:"YKS", z:"orta"},
-  {n:"Bilfen Yayınları",                    d:"Türkçe",        s:"YKS", z:"zor"},
-  {n:"Apotemi Yayınları",                   d:"Türkçe",        s:"YKS", z:"zor"},
-  {n:"Limit Yayınları",                     d:"Türkçe",        s:"YKS", z:"zor"},
-  {n:"Endemik Yayınları",                   d:"Türkçe",        s:"YKS", z:"zor"},
-  {n:"Süre Yayınları",                      d:"Türkçe",        s:"YKS", z:"zor"},
-  {n:"Kafadengi Ekstra",                    d:"Türkçe",        s:"YKS", z:"zor"},
-  {n:"Paraf Yayınları",                     d:"Türkçe",        s:"YKS", z:"zor"},
-  // ═══ YKS PARAGRAF ═══
-  {n:"Arı Paragrafın Ritmi",               d:"Paragraf",      s:"YKS", z:"kolay"},
-  {n:"Tonguç Yayınları",                    d:"Paragraf",      s:"YKS", z:"kolay"},
-  {n:"Altüstü Yayınları",                   d:"Paragraf",      s:"YKS", z:"kolay"},
-  {n:"Yayın Denizi",                        d:"Paragraf",      s:"YKS", z:"orta"},
-  {n:"Konsantrasyon",                       d:"Paragraf",      s:"YKS", z:"orta"},
-  {n:"Arı Paragrafın Şifresi",             d:"Paragraf",      s:"YKS", z:"orta"},
-  {n:"Kafadengi Yayınları",                 d:"Paragraf",      s:"YKS", z:"orta"},
-  {n:"FDD Yayınları",                       d:"Paragraf",      s:"YKS", z:"orta"},
-  {n:"Limit Kronometre",                    d:"Paragraf",      s:"YKS", z:"zor"},
-  {n:"Mrkz Paragraf",                       d:"Paragraf",      s:"YKS", z:"zor"},
-  {n:"Endemik Yayınları",                   d:"Paragraf",      s:"YKS", z:"zor"},
-  {n:"Süre Yayınları",                      d:"Paragraf",      s:"YKS", z:"zor"},
-  // ═══ YKS MATEMATİK ═══
-  {n:"Aktif Yayınları",                     d:"Matematik",     s:"YKS", z:"kolay"},
-  {n:"Sonuç Yayınları",                     d:"Matematik",     s:"YKS", z:"kolay"},
-  {n:"Kafadengi Süper Öğreten",             d:"Matematik",     s:"YKS", z:"kolay"},
-  {n:"Okyanus 40 Seans",                    d:"Matematik",     s:"YKS", z:"kolay"},
-  {n:"Antrenmanlarla Matematik",            d:"Matematik",     s:"YKS", z:"kolay"},
-  {n:"Birey A",                             d:"Matematik",     s:"YKS", z:"kolay"},
-  {n:"Yarıçap Yayınları",                   d:"Matematik",     s:"YKS", z:"kolay"},
-  {n:"Acil İlaç",                           d:"Matematik",     s:"YKS", z:"kolay"},
-  {n:"Üç Dört Beş (345)",                   d:"Matematik",     s:"YKS", z:"orta"},
-  {n:"Bilgi Sarmal",                        d:"Matematik",     s:"YKS", z:"orta"},
-  {n:"Vip Yayınları",                       d:"Matematik",     s:"YKS", z:"orta"},
-  {n:"Karekök",                             d:"Matematik",     s:"YKS", z:"orta"},
-  {n:"Çap Yayınları",                       d:"Matematik",     s:"YKS", z:"orta"},
-  {n:"Full Yayınları",                      d:"Matematik",     s:"YKS", z:"orta"},
-  {n:"Hız ve Renk",                         d:"Matematik",     s:"YKS", z:"orta"},
-  {n:"Miray Yayınları",                     d:"Matematik",     s:"YKS", z:"orta"},
-  {n:"Palme Yayınları",                     d:"Matematik",     s:"YKS", z:"orta"},
-  {n:"Toprak Yayınları",                    d:"Matematik",     s:"YKS", z:"zor"},
-  {n:"Ulti Yayınları",                      d:"Matematik",     s:"YKS", z:"zor"},
-  {n:"Endemik Yayınları",                   d:"Matematik",     s:"YKS", z:"zor"},
-  {n:"Çözüm 3D",                            d:"Matematik",     s:"YKS", z:"zor"},
-  {n:"Orijinal Yayınları",                  d:"Matematik",     s:"YKS", z:"zor"},
-  {n:"Acil Yayınları",                      d:"Matematik",     s:"YKS", z:"zor"},
-  {n:"Barış Çelenk Yayınları",              d:"Matematik",     s:"YKS", z:"zor"},
-  {n:"Apotemi Fasikülleri",                 d:"Matematik",     s:"YKS", z:"zor"},
-  {n:"Karekök Zoru Bankası",                d:"Matematik",     s:"YKS", z:"joker"},
-  // ═══ YKS GEOMETRİ ═══
-  {n:"Aktif Geometri",                      d:"Geometri",      s:"YKS", z:"kolay"},
-  {n:"Üç Dört Beş (345)",                   d:"Geometri",      s:"YKS", z:"orta"},
-  {n:"Bilgi Sarmal",                        d:"Geometri",      s:"YKS", z:"orta"},
-  {n:"Toprak Yayınları",                    d:"Geometri",      s:"YKS", z:"orta"},
-  {n:"KR Akademi",                          d:"Geometri",      s:"YKS", z:"orta"},
-  {n:"Çap Yayınları",                       d:"Geometri",      s:"YKS", z:"orta"},
-  {n:"Acil Yayınları",                      d:"Geometri",      s:"YKS", z:"zor"},
-  {n:"Barış Çelenk Yayınları",              d:"Geometri",      s:"YKS", z:"zor"},
-  {n:"Orijinal Yayınları",                  d:"Geometri",      s:"YKS", z:"zor"},
-  // ═══ YKS FİZİK ═══
-  {n:"Aktif Yayınları",                     d:"Fizik",         s:"YKS", z:"kolay"},
-  {n:"Okyanus 40 Seans",                    d:"Fizik",         s:"YKS", z:"kolay"},
-  {n:"Paraf Yayınları",                     d:"Fizik",         s:"YKS", z:"kolay"},
-  {n:"Kafadengi Süper Öğreten",             d:"Fizik",         s:"YKS", z:"kolay"},
-  {n:"Hız ve Renk",                         d:"Fizik",         s:"YKS", z:"kolay"},
-  {n:"Birey A",                             d:"Fizik",         s:"YKS", z:"kolay"},
-  {n:"Üç Dört Beş (345)",                   d:"Fizik",         s:"YKS", z:"orta"},
-  {n:"Nihat Bilgin Yayınları",              d:"Fizik",         s:"YKS", z:"orta"},
-  {n:"Ertan Sinan Şahin Yayınları",         d:"Fizik",         s:"YKS", z:"orta"},
-  {n:"Formülsüz Fizik",                     d:"Fizik",         s:"YKS", z:"orta"},
-  {n:"Vip Yayınları",                       d:"Fizik",         s:"YKS", z:"orta"},
-  {n:"KR Akademi",                          d:"Fizik",         s:"YKS", z:"orta"},
-  {n:"Bilgi Sarmal",                        d:"Fizik",         s:"YKS", z:"orta"},
-  {n:"Palme Yayınları",                     d:"Fizik",         s:"YKS", z:"orta"},
-  {n:"Toprak Yayınları",                    d:"Fizik",         s:"YKS", z:"orta"},
-  {n:"Çözüm 3D",                            d:"Fizik",         s:"YKS", z:"zor"},
-  {n:"Apotemi Yayınları",                   d:"Fizik",         s:"YKS", z:"zor"},
-  {n:"Karaağaç Yayınları",                  d:"Fizik",         s:"YKS", z:"zor"},
-  {n:"Endemik Yayınları",                   d:"Fizik",         s:"YKS", z:"zor"},
-  {n:"Nitelik Ters Yüz",                    d:"Fizik",         s:"YKS", z:"zor"},
-  // ═══ YKS KİMYA ═══
-  {n:"Aktif Yayınları",                     d:"Kimya",         s:"YKS", z:"kolay"},
-  {n:"Okyanus 40 Seans",                    d:"Kimya",         s:"YKS", z:"kolay"},
-  {n:"Paraf Yayınları",                     d:"Kimya",         s:"YKS", z:"kolay"},
-  {n:"Kafadengi Süper Öğreten",             d:"Kimya",         s:"YKS", z:"kolay"},
-  {n:"Hız ve Renk",                         d:"Kimya",         s:"YKS", z:"kolay"},
-  {n:"Üç Dört Beş (345)",                   d:"Kimya",         s:"YKS", z:"orta"},
-  {n:"Orbital Yayınları",                   d:"Kimya",         s:"YKS", z:"orta"},
-  {n:"Palme Yayınları",                     d:"Kimya",         s:"YKS", z:"orta"},
-  {n:"Bilgi Sarmal",                        d:"Kimya",         s:"YKS", z:"orta"},
-  {n:"Aydın Yayınları",                     d:"Kimya",         s:"YKS", z:"orta"},
-  {n:"KR Akademi",                          d:"Kimya",         s:"YKS", z:"orta"},
-  {n:"Benim Hocam",                         d:"Kimya",         s:"YKS", z:"orta"},
-  {n:"Toprak Yayınları",                    d:"Kimya",         s:"YKS", z:"orta"},
-  {n:"Tudem Yayınları",                     d:"Kimya",         s:"YKS", z:"orta"},
-  {n:"Çözüm 3D",                            d:"Kimya",         s:"YKS", z:"zor"},
-  {n:"Apotemi Yayınları",                   d:"Kimya",         s:"YKS", z:"zor"},
-  {n:"Endemik Yayınları",                   d:"Kimya",         s:"YKS", z:"zor"},
-  {n:"Kafadengi Ekstra",                    d:"Kimya",         s:"YKS", z:"zor"},
-  // ═══ YKS BİYOLOJİ ═══
-  {n:"Aktif Öğrenme",                       d:"Biyoloji",      s:"YKS", z:"kolay"},
-  {n:"Kafadengi Süper Öğreten",             d:"Biyoloji",      s:"YKS", z:"kolay"},
-  {n:"Hız ve Renk",                         d:"Biyoloji",      s:"YKS", z:"kolay"},
-  {n:"ENS Yayınları",                       d:"Biyoloji",      s:"YKS", z:"kolay"},
-  {n:"Okyanus 40 Seans",                    d:"Biyoloji",      s:"YKS", z:"kolay"},
-  {n:"Birey A",                             d:"Biyoloji",      s:"YKS", z:"kolay"},
-  {n:"Üç Dört Beş (345)",                   d:"Biyoloji",      s:"YKS", z:"orta"},
-  {n:"KR Akademi",                          d:"Biyoloji",      s:"YKS", z:"orta"},
-  {n:"Palme Yayınları",                     d:"Biyoloji",      s:"YKS", z:"orta"},
-  {n:"Bilgi Sarmal",                        d:"Biyoloji",      s:"YKS", z:"orta"},
-  {n:"Biyotik Yayınları",                   d:"Biyoloji",      s:"YKS", z:"orta"},
-  {n:"Benim Hocam",                         d:"Biyoloji",      s:"YKS", z:"orta"},
-  {n:"Aydın Yayınları",                     d:"Biyoloji",      s:"YKS", z:"orta"},
-  {n:"Tonguç Fundamentals",                 d:"Biyoloji",      s:"YKS", z:"orta"},
-  {n:"Endemik Yayınları",                   d:"Biyoloji",      s:"YKS", z:"zor"},
-  {n:"Çözüm 3D",                            d:"Biyoloji",      s:"YKS", z:"zor"},
-  {n:"Apotemi Yayınları",                   d:"Biyoloji",      s:"YKS", z:"zor"},
-  {n:"Kafadengi Ekstra",                    d:"Biyoloji",      s:"YKS", z:"zor"},
-  // ═══ YKS TARİH ═══
-  {n:"Testokul Yayınları",                  d:"Tarih",         s:"YKS", z:"kolay"},
-  {n:"Birey A",                             d:"Tarih",         s:"YKS", z:"kolay"},
-  {n:"Eğitim Vadisi",                       d:"Tarih",         s:"YKS", z:"kolay"},
-  {n:"ENS Yayınları",                       d:"Tarih",         s:"YKS", z:"kolay"},
-  {n:"Üç Dört Beş (345)",                   d:"Tarih",         s:"YKS", z:"orta"},
-  {n:"Benim Hocam",                         d:"Tarih",         s:"YKS", z:"orta"},
-  {n:"Hocalara Geldik",                     d:"Tarih",         s:"YKS", z:"orta"},
-  {n:"Palme Yayınları",                     d:"Tarih",         s:"YKS", z:"orta"},
-  {n:"KR Akademi",                          d:"Tarih",         s:"YKS", z:"orta"},
-  {n:"Hız ve Renk",                         d:"Tarih",         s:"YKS", z:"orta"},
-  {n:"Çap Yayınları",                       d:"Tarih",         s:"YKS", z:"orta"},
-  {n:"Bilgi Sarmal",                        d:"Tarih",         s:"YKS", z:"zor"},
-  {n:"Limit Yayınları",                     d:"Tarih",         s:"YKS", z:"zor"},
-  {n:"Didaktik Kalem",                      d:"Tarih",         s:"YKS", z:"zor"},
-  {n:"Ulti Yayınları",                      d:"Tarih",         s:"YKS", z:"zor"},
-  {n:"Endemik Yayınları",                   d:"Tarih",         s:"YKS", z:"zor"},
-  {n:"Kafadengi Ekstra",                    d:"Tarih",         s:"YKS", z:"zor"},
-  // ═══ YKS COĞRAFYA ═══
-  {n:"Testokul Yayınları",                  d:"Coğrafya",      s:"YKS", z:"kolay"},
-  {n:"Birey A",                             d:"Coğrafya",      s:"YKS", z:"kolay"},
-  {n:"Eğitim Vadisi",                       d:"Coğrafya",      s:"YKS", z:"kolay"},
-  {n:"ENS Yayınları",                       d:"Coğrafya",      s:"YKS", z:"kolay"},
-  {n:"Üç Dört Beş (345)",                   d:"Coğrafya",      s:"YKS", z:"orta"},
-  {n:"Benim Hocam",                         d:"Coğrafya",      s:"YKS", z:"orta"},
-  {n:"Hocalara Geldik",                     d:"Coğrafya",      s:"YKS", z:"orta"},
-  {n:"Palme Yayınları",                     d:"Coğrafya",      s:"YKS", z:"orta"},
-  {n:"Hız ve Renk",                         d:"Coğrafya",      s:"YKS", z:"orta"},
-  {n:"E Coğrafya",                          d:"Coğrafya",      s:"YKS", z:"orta"},
-  {n:"Tonguç Coğrafik",                     d:"Coğrafya",      s:"YKS", z:"orta"},
-  {n:"Coğrafya Gurmesi",                    d:"Coğrafya",      s:"YKS", z:"orta"},
-  {n:"Limit Yayınları",                     d:"Coğrafya",      s:"YKS", z:"zor"},
-  {n:"Bilgi Sarmal",                        d:"Coğrafya",      s:"YKS", z:"zor"},
-  {n:"Simya Yayınları",                     d:"Coğrafya",      s:"YKS", z:"zor"},
-  {n:"Didaktik Kalem",                      d:"Coğrafya",      s:"YKS", z:"zor"},
-  {n:"Endemik Yayınları",                   d:"Coğrafya",      s:"YKS", z:"zor"},
-  // ═══ YKS FELSEFE ═══
-  {n:"Testokul Yayınları",                  d:"Felsefe",       s:"YKS", z:"kolay"},
-  {n:"Birey A",                             d:"Felsefe",       s:"YKS", z:"kolay"},
-  {n:"Eğitim Vadisi",                       d:"Felsefe",       s:"YKS", z:"kolay"},
-  {n:"ENS Yayınları",                       d:"Felsefe",       s:"YKS", z:"kolay"},
-  {n:"Hız ve Renk",                         d:"Felsefe",       s:"YKS", z:"orta"},
-  {n:"Benim Hocam",                         d:"Felsefe",       s:"YKS", z:"orta"},
-  {n:"Yayın Denizi",                        d:"Felsefe",       s:"YKS", z:"orta"},
-  {n:"Çap Yayınları",                       d:"Felsefe",       s:"YKS", z:"orta"},
-  {n:"Avantaj Yayınları",                   d:"Felsefe",       s:"YKS", z:"orta"},
-  {n:"Bilgi Sarmal",                        d:"Felsefe",       s:"YKS", z:"zor"},
-  {n:"Didaktik Kalem",                      d:"Felsefe",       s:"YKS", z:"zor"},
-  {n:"Ulti Yayınları",                      d:"Felsefe",       s:"YKS", z:"zor"},
-  {n:"Kafadengi Ekstra",                    d:"Felsefe",       s:"YKS", z:"zor"},
-  {n:"Mrkz Yayınları",                      d:"Felsefe",       s:"YKS", z:"zor"},
-  // ═══ YKS DİN KÜLTÜRÜ ═══
-  {n:"Testokul Yayınları",                  d:"Din Kültürü",   s:"YKS", z:"kolay"},
-  {n:"Birey A",                             d:"Din Kültürü",   s:"YKS", z:"kolay"},
-  {n:"Eğitim Vadisi",                       d:"Din Kültürü",   s:"YKS", z:"kolay"},
-  {n:"ENS Yayınları",                       d:"Din Kültürü",   s:"YKS", z:"kolay"},
-  {n:"Yayın Denizi",                        d:"Din Kültürü",   s:"YKS", z:"orta"},
-  {n:"Çap Yayınları",                       d:"Din Kültürü",   s:"YKS", z:"orta"},
-  {n:"Benim Hocam",                         d:"Din Kültürü",   s:"YKS", z:"orta"},
-  {n:"Avantaj Yayınları",                   d:"Din Kültürü",   s:"YKS", z:"orta"},
-  {n:"Bilgi Sarmal",                        d:"Din Kültürü",   s:"YKS", z:"zor"},
-  {n:"Didaktik Kalem",                      d:"Din Kültürü",   s:"YKS", z:"zor"},
-  {n:"Mrkz Yayınları",                      d:"Din Kültürü",   s:"YKS", z:"zor"},
-  // ═══ YKS EDEBİYAT ═══
-  {n:"Yayın Denizi Tek",                    d:"Edebiyat",      s:"YKS", z:"kolay"},
-  {n:"Okyanus Iceberg",                     d:"Edebiyat",      s:"YKS", z:"kolay"},
-  {n:"Limit Eser Özetleri",                 d:"Edebiyat",      s:"YKS", z:"kolay"},
-  {n:"Benim Hocam",                         d:"Edebiyat",      s:"YKS", z:"orta"},
-  {n:"Üç Dört Beş (345)",                   d:"Edebiyat",      s:"YKS", z:"orta"},
-  {n:"Hız Yayınları",                       d:"Edebiyat",      s:"YKS", z:"orta"},
-  {n:"Çözüm 3D",                            d:"Edebiyat",      s:"YKS", z:"orta"},
-  {n:"Mrkz Yayınları",                      d:"Edebiyat",      s:"YKS", z:"orta"},
-  {n:"Palme Yayınları",                     d:"Edebiyat",      s:"YKS", z:"orta"},
-  {n:"KR Akademi",                          d:"Edebiyat",      s:"YKS", z:"orta"},
-  {n:"Altın Anahtar",                       d:"Edebiyat",      s:"YKS", z:"orta"},
-  {n:"Karekök Yayınları",                   d:"Edebiyat",      s:"YKS", z:"zor"},
-  {n:"Bilgi Sarmal",                        d:"Edebiyat",      s:"YKS", z:"zor"},
-  {n:"Limit Yayınları",                     d:"Edebiyat",      s:"YKS", z:"zor"},
-  {n:"Endemik Yayınları",                   d:"Edebiyat",      s:"YKS", z:"zor"},
-  {n:"Kafadengi Ekstra",                    d:"Edebiyat",      s:"YKS", z:"zor"},
-  {n:"Animonik Yayınları",                  d:"Edebiyat",      s:"YKS", z:"joker"},
+  // ══════════════════════════════
+  // LGS MATEMATİK
+  // ══════════════════════════════
+  {n:"Fenomen A",                          d:"Matematik", s:"LGS", z:"kolay"},
+  {n:"Tonguç 0'dan 8'e",                   d:"Matematik", s:"LGS", z:"kolay"},
+  {n:"Ankara Güçlendiren",                 d:"Matematik", s:"LGS", z:"kolay"},
+  {n:"Arı Matemito Akıllı Defter",         d:"Matematik", s:"LGS", z:"kolay"},
+  {n:"Muba Fasikülleri",                   d:"Matematik", s:"LGS", z:"kolay"},
+  {n:"Mozaik Çözülebilir Yeni Nesil",      d:"Matematik", s:"LGS", z:"orta"},
+  {n:"Hız Yayınları Normal",               d:"Matematik", s:"LGS", z:"orta"},
+  {n:"Bilfen Pro Test",                    d:"Matematik", s:"LGS", z:"orta"},
+  {n:"Mozaik Yayınları",                   d:"Matematik", s:"LGS", z:"orta"},
+  {n:"Nartest Mavi (Mod Serisi)",          d:"Matematik", s:"LGS", z:"orta"},
+  {n:"Okyanus Master",                     d:"Matematik", s:"LGS", z:"zor"},
+  {n:"Bilfen Pro Bil",                     d:"Matematik", s:"LGS", z:"zor"},
+  {n:"Hız Matematik Uzmanı",               d:"Matematik", s:"LGS", z:"zor"},
+  {n:"Fenomen B",                          d:"Matematik", s:"LGS", z:"zor"},
+  {n:"Köşebilgi Ultra Yeni Nesil",         d:"Matematik", s:"LGS", z:"zor"},
+  {n:"Nitelik Süper 8",                    d:"Matematik", s:"LGS", z:"zor"},
+  {n:"Nartest Kırmızı Şampiyon",           d:"Matematik", s:"LGS", z:"zor"},
+  {n:"Sinan Kuzucu Bi Tık Zor",            d:"Matematik", s:"LGS", z:"joker"},
+  {n:"Tonguç Dinamo Zoru Bankası",         d:"Matematik", s:"LGS", z:"joker"},
+
+  // ══════════════════════════════
+  // LGS TÜRKÇE
+  // ══════════════════════════════
+  {n:"Mozaik İntro Defter",               d:"Türkçe", s:"LGS", z:"kolay"},
+  {n:"İşleyen Zeka Yörünge",              d:"Türkçe", s:"LGS", z:"kolay"},
+  {n:"Hız Yayınları T",                   d:"Türkçe", s:"LGS", z:"kolay"},
+  {n:"Okyanus Yayınları",                 d:"Türkçe", s:"LGS", z:"kolay"},
+  {n:"Tonguç Yayınları",                  d:"Türkçe", s:"LGS", z:"kolay"},
+  {n:"Fenomen",                           d:"Türkçe", s:"LGS", z:"orta"},
+  {n:"Tonguç Taktikli",                   d:"Türkçe", s:"LGS", z:"orta"},
+  {n:"Günay Zoom",                        d:"Türkçe", s:"LGS", z:"orta"},
+  {n:"Muba Yayınları",                    d:"Türkçe", s:"LGS", z:"orta"},
+  {n:"Ankara Güçlendiren",                d:"Türkçe", s:"LGS", z:"orta"},
+  {n:"Mozaik Yayınları",                  d:"Türkçe", s:"LGS", z:"orta"},
+  {n:"Nitelik Süper",                     d:"Türkçe", s:"LGS", z:"orta"},
+  {n:"Bilfen Pro Bil",                    d:"Türkçe", s:"LGS", z:"zor"},
+  {n:"Nartest Pisa Tarzı",                d:"Türkçe", s:"LGS", z:"zor"},
+  {n:"Son Viraj Formula 1",               d:"Türkçe", s:"LGS", z:"zor"},
+  {n:"Palme Plus",                        d:"Türkçe", s:"LGS", z:"zor"},
+  {n:"Karekök",                           d:"Türkçe", s:"LGS", z:"zor"},
+  {n:"Nartest Kırmızı Power",             d:"Türkçe", s:"LGS", z:"zor"},
+  {n:"Sinan Kuzucu MEB Böyle Sorar",      d:"Türkçe", s:"LGS", z:"joker"},
+  {n:"Sinan Kuzucu Yayınları",            d:"Türkçe", s:"LGS", z:"joker"},
+
+  // ══════════════════════════════
+  // LGS FEN BİLİMLERİ
+  // ══════════════════════════════
+  {n:"Fenomen A",                         d:"Fen Bilimleri", s:"LGS", z:"kolay"},
+  {n:"Okyanus Classmate",                 d:"Fen Bilimleri", s:"LGS", z:"kolay"},
+  {n:"Muba Mavi Seri",                    d:"Fen Bilimleri", s:"LGS", z:"kolay"},
+  {n:"Hız Yayınları",                     d:"Fen Bilimleri", s:"LGS", z:"kolay"},
+  {n:"Atom Yayınları",                    d:"Fen Bilimleri", s:"LGS", z:"kolay"},
+  {n:"Bilfen Pro Test",                   d:"Fen Bilimleri", s:"LGS", z:"orta"},
+  {n:"Hız Yayınları F",                   d:"Fen Bilimleri", s:"LGS", z:"orta"},
+  {n:"Kafa Dengi Mavi",                   d:"Fen Bilimleri", s:"LGS", z:"orta"},
+  {n:"Martı Yayınları",                   d:"Fen Bilimleri", s:"LGS", z:"orta"},
+  {n:"Nitelik Süper",                     d:"Fen Bilimleri", s:"LGS", z:"orta"},
+  {n:"Ankara Güçlendiren",                d:"Fen Bilimleri", s:"LGS", z:"orta"},
+  {n:"Mozaik Yayınları",                  d:"Fen Bilimleri", s:"LGS", z:"orta"},
+  {n:"Koral Varol Plus Kırmızı",          d:"Fen Bilimleri", s:"LGS", z:"zor"},
+  {n:"Nitelik Süper B",                   d:"Fen Bilimleri", s:"LGS", z:"zor"},
+  {n:"Bilfen Pro Bil",                    d:"Fen Bilimleri", s:"LGS", z:"zor"},
+  {n:"İşleyen Zeka",                      d:"Fen Bilimleri", s:"LGS", z:"zor"},
+  {n:"Son Viraj",                         d:"Fen Bilimleri", s:"LGS", z:"zor"},
+  {n:"Okyanus Master",                    d:"Fen Bilimleri", s:"LGS", z:"zor"},
+  {n:"Nartest Kırmızı Power",             d:"Fen Bilimleri", s:"LGS", z:"zor"},
+  {n:"Mebi Fen Soru Bankası",             d:"Fen Bilimleri", s:"LGS", z:"joker"},
+  {n:"Sinan Kuzucu Yayınları",            d:"Fen Bilimleri", s:"LGS", z:"joker"},
+
+  // ══════════════════════════════
+  // LGS İNKILAP TARİHİ
+  // ══════════════════════════════
+  {n:"Okyanus Classmate",                 d:"İnkılap Tarihi", s:"LGS", z:"kolay"},
+  {n:"Muba İlk Hasat",                    d:"İnkılap Tarihi", s:"LGS", z:"kolay"},
+  {n:"Ankara Güçlendiren",                d:"İnkılap Tarihi", s:"LGS", z:"kolay"},
+  {n:"İsem Yayınları",                    d:"İnkılap Tarihi", s:"LGS", z:"kolay"},
+  {n:"Hız Yayınları",                     d:"İnkılap Tarihi", s:"LGS", z:"kolay"},
+  {n:"Palme Plus",                        d:"İnkılap Tarihi", s:"LGS", z:"orta"},
+  {n:"Fenomen Soru Bankası",              d:"İnkılap Tarihi", s:"LGS", z:"orta"},
+  {n:"Hız Uzman A",                       d:"İnkılap Tarihi", s:"LGS", z:"orta"},
+  {n:"KVA Yayınları",                     d:"İnkılap Tarihi", s:"LGS", z:"orta"},
+  {n:"Nitelik Süper",                     d:"İnkılap Tarihi", s:"LGS", z:"orta"},
+  {n:"Beyin Takımı",                      d:"İnkılap Tarihi", s:"LGS", z:"orta"},
+  {n:"Atom 4D",                           d:"İnkılap Tarihi", s:"LGS", z:"zor"},
+  {n:"Palme Enerji",                      d:"İnkılap Tarihi", s:"LGS", z:"zor"},
+  {n:"Son Viraj Formula 1",               d:"İnkılap Tarihi", s:"LGS", z:"zor"},
+  {n:"Mozaik Yayınları",                  d:"İnkılap Tarihi", s:"LGS", z:"zor"},
+  {n:"Hız Uzman",                         d:"İnkılap Tarihi", s:"LGS", z:"zor"},
+  {n:"Mebi İnkılap Soru Bankası",         d:"İnkılap Tarihi", s:"LGS", z:"joker"},
+  {n:"Akıllı Versiyon",                   d:"İnkılap Tarihi", s:"LGS", z:"joker"},
+
+  // ══════════════════════════════
+  // LGS DİN KÜLTÜRÜ
+  // ══════════════════════════════
+  {n:"Hız Tıkır Tıkır",                  d:"Din Kültürü", s:"LGS", z:"kolay"},
+  {n:"Okyanus Classmate",                 d:"Din Kültürü", s:"LGS", z:"kolay"},
+  {n:"Tonguç Taktikli",                   d:"Din Kültürü", s:"LGS", z:"kolay"},
+  {n:"Hız Yayınları",                     d:"Din Kültürü", s:"LGS", z:"kolay"},
+  {n:"Palme Plus",                        d:"Din Kültürü", s:"LGS", z:"orta"},
+  {n:"Günay Zoom",                        d:"Din Kültürü", s:"LGS", z:"orta"},
+  {n:"Hız D",                             d:"Din Kültürü", s:"LGS", z:"orta"},
+  {n:"KVA Yayınları",                     d:"Din Kültürü", s:"LGS", z:"orta"},
+  {n:"Palme Enerji",                      d:"Din Kültürü", s:"LGS", z:"zor"},
+  {n:"Atom 4D",                           d:"Din Kültürü", s:"LGS", z:"zor"},
+  {n:"Bilfen Protest",                    d:"Din Kültürü", s:"LGS", z:"zor"},
+  {n:"Ankara Güçlendiren",                d:"Din Kültürü", s:"LGS", z:"zor"},
+  {n:"Nitelik Süper",                     d:"Din Kültürü", s:"LGS", z:"zor"},
+  {n:"Mebi & Sinan Kuzucu Din Seti",      d:"Din Kültürü", s:"LGS", z:"joker"},
+  {n:"Zeka Küpü",                         d:"Din Kültürü", s:"LGS", z:"joker"},
+
+  // ══════════════════════════════
+  // LGS İNGİLİZCE
+  // ══════════════════════════════
+  {n:"Hız Tıkır Tıkır",                  d:"İngilizce", s:"LGS", z:"kolay"},
+  {n:"Tonguç Kota",                       d:"İngilizce", s:"LGS", z:"kolay"},
+  {n:"Nitelik 8",                         d:"İngilizce", s:"LGS", z:"kolay"},
+  {n:"Hız Yayınları",                     d:"İngilizce", s:"LGS", z:"kolay"},
+  {n:"Karekök",                           d:"İngilizce", s:"LGS", z:"kolay"},
+  {n:"Ankara Güçlendiren",                d:"İngilizce", s:"LGS", z:"kolay"},
+  {n:"Tudem Equinox",                     d:"İngilizce", s:"LGS", z:"orta"},
+  {n:"Hyper English",                     d:"İngilizce", s:"LGS", z:"orta"},
+  {n:"More & More Star Words",            d:"İngilizce", s:"LGS", z:"orta"},
+  {n:"İsem Fark Yayınları",               d:"İngilizce", s:"LGS", z:"orta"},
+  {n:"KVA Yayınları",                     d:"İngilizce", s:"LGS", z:"orta"},
+  {n:"Arı Yayınları",                     d:"İngilizce", s:"LGS", z:"orta"},
+  {n:"Bilfen Protest",                    d:"İngilizce", s:"LGS", z:"zor"},
+  {n:"Editör Kırmızı Kitap",              d:"İngilizce", s:"LGS", z:"zor"},
+  {n:"YDS Shall We",                      d:"İngilizce", s:"LGS", z:"zor"},
+  {n:"More & More",                       d:"İngilizce", s:"LGS", z:"zor"},
+  {n:"Mebi & Sinan Kuzucu İngilizce SB",  d:"İngilizce", s:"LGS", z:"joker"},
+  {n:"Sinan Kuzucu Yayınları",            d:"İngilizce", s:"LGS", z:"joker"},
+
+  // ══════════════════════════════
+  // YKS TÜRKÇE
+  // ══════════════════════════════
+  {n:"Fides Yayınları",                   d:"Türkçe", s:"YKS", z:"kolay"},
+  {n:"Kafadengi Süper Öğreten",           d:"Türkçe", s:"YKS", z:"kolay"},
+  {n:"Eğitim Vadisi",                     d:"Türkçe", s:"YKS", z:"kolay"},
+  {n:"Edu – Hız ve Renk – Süre",          d:"Türkçe", s:"YKS", z:"kolay"},
+  {n:"Karekök 0",                         d:"Türkçe", s:"YKS", z:"kolay"},
+  {n:"Üç Dört Beş (345)",                 d:"Türkçe", s:"YKS", z:"orta"},
+  {n:"Bilgi Sarmal",                      d:"Türkçe", s:"YKS", z:"orta"},
+  {n:"Hız ve Renk",                       d:"Türkçe", s:"YKS", z:"orta"},
+  {n:"Palme Yayınları",                   d:"Türkçe", s:"YKS", z:"orta"},
+  {n:"Yayın Denizi",                      d:"Türkçe", s:"YKS", z:"orta"},
+  {n:"Benim Hocam",                       d:"Türkçe", s:"YKS", z:"orta"},
+  {n:"KR Akademi",                        d:"Türkçe", s:"YKS", z:"orta"},
+  {n:"Apotemi Yayınları",                 d:"Türkçe", s:"YKS", z:"zor"},
+  {n:"Limit Yayınları",                   d:"Türkçe", s:"YKS", z:"zor"},
+  {n:"Bilfen Pro Bil",                    d:"Türkçe", s:"YKS", z:"zor"},
+  {n:"Paraf Yayınları",                   d:"Türkçe", s:"YKS", z:"zor"},
+  {n:"Kafadengi Ekstra",                  d:"Türkçe", s:"YKS", z:"zor"},
+  {n:"Endemik Yayınları",                 d:"Türkçe", s:"YKS", z:"zor"},
+
+  // ══════════════════════════════
+  // YKS PARAGRAF
+  // ══════════════════════════════
+  {n:"Arı Paragrafın Ritmi",              d:"Paragraf", s:"YKS", z:"kolay"},
+  {n:"Hız ve Renk",                       d:"Paragraf", s:"YKS", z:"kolay"},
+  {n:"ENS Yayınları",                     d:"Paragraf", s:"YKS", z:"kolay"},
+  {n:"Fides Yayınları",                   d:"Paragraf", s:"YKS", z:"kolay"},
+  {n:"Yayın Denizi",                      d:"Paragraf", s:"YKS", z:"orta"},
+  {n:"Bilgi Sarmal",                      d:"Paragraf", s:"YKS", z:"orta"},
+  {n:"Sıfır Risk",                        d:"Paragraf", s:"YKS", z:"orta"},
+  {n:"Kafadengi Yayınları",               d:"Paragraf", s:"YKS", z:"orta"},
+  {n:"Paraf IQ",                          d:"Paragraf", s:"YKS", z:"zor"},
+  {n:"Limit Kronometre",                  d:"Paragraf", s:"YKS", z:"zor"},
+  {n:"Çözüm 3D",                          d:"Paragraf", s:"YKS", z:"zor"},
+  {n:"Apotemi Yayınları",                 d:"Paragraf", s:"YKS", z:"zor"},
+  {n:"Endemik Yayınları",                 d:"Paragraf", s:"YKS", z:"zor"},
+
+  // ══════════════════════════════
+  // YKS MATEMATİK
+  // ══════════════════════════════
+  {n:"Aktif Yayınları",                   d:"Matematik", s:"YKS", z:"kolay"},
+  {n:"Acil İlaç",                         d:"Matematik", s:"YKS", z:"kolay"},
+  {n:"Mikro Orijinal",                    d:"Matematik", s:"YKS", z:"kolay"},
+  {n:"Antremanlarla Matematik-1",         d:"Matematik", s:"YKS", z:"kolay"},
+  {n:"Kafadengi Süper Öğreten",           d:"Matematik", s:"YKS", z:"kolay"},
+  {n:"Üç Dört Beş (345)",                 d:"Matematik", s:"YKS", z:"orta"},
+  {n:"Bilgi Sarmal",                      d:"Matematik", s:"YKS", z:"orta"},
+  {n:"Hız ve Renk",                       d:"Matematik", s:"YKS", z:"orta"},
+  {n:"Full Yayınları",                    d:"Matematik", s:"YKS", z:"orta"},
+  {n:"Orijinal Yayınları",                d:"Matematik", s:"YKS", z:"orta"},
+  {n:"Miray Yayınları",                   d:"Matematik", s:"YKS", z:"orta"},
+  {n:"Etkili Matematik",                  d:"Matematik", s:"YKS", z:"orta"},
+  {n:"Çözüm 3D",                          d:"Matematik", s:"YKS", z:"zor"},
+  {n:"Apotemi Yayınları",                 d:"Matematik", s:"YKS", z:"zor"},
+  {n:"Endemik Yayınları",                 d:"Matematik", s:"YKS", z:"zor"},
+  {n:"Acil Yayınları",                    d:"Matematik", s:"YKS", z:"zor"},
+  {n:"Paraf (Mor)",                       d:"Matematik", s:"YKS", z:"zor"},
+  {n:"Barış Çelenk Yayınları",            d:"Matematik", s:"YKS", z:"zor"},
+  {n:"Karekök Zoru Bankası",              d:"Matematik", s:"YKS", z:"joker"},
+
+  // ══════════════════════════════
+  // YKS GEOMETRİ
+  // ══════════════════════════════
+  {n:"Aktif Geometri",                    d:"Geometri", s:"YKS", z:"kolay"},
+  {n:"Mikro Orijinal",                    d:"Geometri", s:"YKS", z:"kolay"},
+  {n:"İlaç Yayınları",                    d:"Geometri", s:"YKS", z:"kolay"},
+  {n:"Üç Dört Beş (345)",                 d:"Geometri", s:"YKS", z:"orta"},
+  {n:"Bilgi Sarmal",                      d:"Geometri", s:"YKS", z:"orta"},
+  {n:"Toprak Yayınları",                  d:"Geometri", s:"YKS", z:"orta"},
+  {n:"Endemik Yayınları",                 d:"Geometri", s:"YKS", z:"orta"},
+  {n:"Orijinal Yayınları",                d:"Geometri", s:"YKS", z:"zor"},
+  {n:"Acil Yayınları",                    d:"Geometri", s:"YKS", z:"zor"},
+  {n:"Karekök Geometri",                  d:"Geometri", s:"YKS", z:"zor"},
+  {n:"Çözüm 3D",                          d:"Geometri", s:"YKS", z:"zor"},
+  {n:"Paraf (Mor)",                       d:"Geometri", s:"YKS", z:"zor"},
+
+  // ══════════════════════════════
+  // YKS FİZİK
+  // ══════════════════════════════
+  {n:"Aktif Yayınları",                   d:"Fizik", s:"YKS", z:"kolay"},
+  {n:"Okyanus 40 Seans",                  d:"Fizik", s:"YKS", z:"kolay"},
+  {n:"Miray Yayınları",                   d:"Fizik", s:"YKS", z:"kolay"},
+  {n:"Hız ve Renk",                       d:"Fizik", s:"YKS", z:"kolay"},
+  {n:"Üç Dört Beş (345)",                 d:"Fizik", s:"YKS", z:"orta"},
+  {n:"Bilgi Sarmal",                      d:"Fizik", s:"YKS", z:"orta"},
+  {n:"Palme Yayınları",                   d:"Fizik", s:"YKS", z:"orta"},
+  {n:"Toprak Yayınları",                  d:"Fizik", s:"YKS", z:"orta"},
+  {n:"Nihat Bilgin Yayınları",            d:"Fizik", s:"YKS", z:"orta"},
+  {n:"Çap Yayınları",                     d:"Fizik", s:"YKS", z:"orta"},
+  {n:"Çözüm 3D",                          d:"Fizik", s:"YKS", z:"zor"},
+  {n:"Karaağaç Yayınları",                d:"Fizik", s:"YKS", z:"zor"},
+  {n:"Apotemi Yayınları",                 d:"Fizik", s:"YKS", z:"zor"},
+  {n:"Aydın Yayınları",                   d:"Fizik", s:"YKS", z:"zor"},
+  {n:"Endemik Yayınları",                 d:"Fizik", s:"YKS", z:"zor"},
+
+  // ══════════════════════════════
+  // YKS KİMYA
+  // ══════════════════════════════
+  {n:"Aktif Yayınları",                   d:"Kimya", s:"YKS", z:"kolay"},
+  {n:"Okyanus 40 Seans",                  d:"Kimya", s:"YKS", z:"kolay"},
+  {n:"Antremanlarla Kimya",               d:"Kimya", s:"YKS", z:"kolay"},
+  {n:"Karekök Yayınları (0)",             d:"Kimya", s:"YKS", z:"kolay"},
+  {n:"Üç Dört Beş (345)",                 d:"Kimya", s:"YKS", z:"orta"},
+  {n:"Orbital Yayınları",                 d:"Kimya", s:"YKS", z:"orta"},
+  {n:"Bilgi Sarmal",                      d:"Kimya", s:"YKS", z:"orta"},
+  {n:"Aydın Yayınları",                   d:"Kimya", s:"YKS", z:"orta"},
+  {n:"Çap Yayınları",                     d:"Kimya", s:"YKS", z:"orta"},
+  {n:"Nitelik Yayınları",                 d:"Kimya", s:"YKS", z:"orta"},
+  {n:"Çözüm 3D",                          d:"Kimya", s:"YKS", z:"zor"},
+  {n:"Karaağaç Yayınları",                d:"Kimya", s:"YKS", z:"zor"},
+  {n:"Apotemi Yayınları",                 d:"Kimya", s:"YKS", z:"zor"},
+  {n:"Limit Yayınları",                   d:"Kimya", s:"YKS", z:"zor"},
+  {n:"Aplam Yayınları",                   d:"Kimya", s:"YKS", z:"zor"},
+
+  // ══════════════════════════════
+  // YKS BİYOLOJİ
+  // ══════════════════════════════
+  {n:"Aktif Öğrenme",                     d:"Biyoloji", s:"YKS", z:"kolay"},
+  {n:"Hız ve Renk",                       d:"Biyoloji", s:"YKS", z:"kolay"},
+  {n:"ENS Yayınları",                     d:"Biyoloji", s:"YKS", z:"kolay"},
+  {n:"Okyanus 40 Seans",                  d:"Biyoloji", s:"YKS", z:"kolay"},
+  {n:"Palme Yayınları",                   d:"Biyoloji", s:"YKS", z:"orta"},
+  {n:"Üç Dört Beş (345)",                 d:"Biyoloji", s:"YKS", z:"orta"},
+  {n:"Bilgi Sarmal",                      d:"Biyoloji", s:"YKS", z:"orta"},
+  {n:"Biyotik Yayınları",                 d:"Biyoloji", s:"YKS", z:"orta"},
+  {n:"Aydın Yayınları",                   d:"Biyoloji", s:"YKS", z:"orta"},
+  {n:"Simulator Yayınları",               d:"Biyoloji", s:"YKS", z:"orta"},
+  {n:"Apotemi Yayınları",                 d:"Biyoloji", s:"YKS", z:"zor"},
+  {n:"Çözüm 3D",                          d:"Biyoloji", s:"YKS", z:"zor"},
+  {n:"Endemik Yayınları",                 d:"Biyoloji", s:"YKS", z:"zor"},
+  {n:"Paraf Yayınları",                   d:"Biyoloji", s:"YKS", z:"zor"},
+
+  // ══════════════════════════════
+  // YKS TARİH
+  // ══════════════════════════════
+  {n:"ENS Yayınları",                     d:"Tarih", s:"YKS", z:"kolay"},
+  {n:"Kafa Dengi",                        d:"Tarih", s:"YKS", z:"kolay"},
+  {n:"Üç Dört Beş (345)",                 d:"Tarih", s:"YKS", z:"orta"},
+  {n:"Bilgi Sarmal",                      d:"Tarih", s:"YKS", z:"orta"},
+  {n:"Hız ve Renk",                       d:"Tarih", s:"YKS", z:"orta"},
+  {n:"Benim Hocam",                       d:"Tarih", s:"YKS", z:"orta"},
+  {n:"Palme Yayınları",                   d:"Tarih", s:"YKS", z:"orta"},
+  {n:"Limit Yayınları",                   d:"Tarih", s:"YKS", z:"zor"},
+  {n:"Karekök Yayınları",                 d:"Tarih", s:"YKS", z:"zor"},
+  {n:"Çözüm 3D",                          d:"Tarih", s:"YKS", z:"zor"},
+  {n:"Endemik Yayınları",                 d:"Tarih", s:"YKS", z:"zor"},
+
+  // ══════════════════════════════
+  // YKS COĞRAFYA
+  // ══════════════════════════════
+  {n:"ENS Yayınları",                     d:"Coğrafya", s:"YKS", z:"kolay"},
+  {n:"Tonguç Akademi Yayınları",          d:"Coğrafya", s:"YKS", z:"kolay"},
+  {n:"Palme Yayınları (EIS)",             d:"Coğrafya", s:"YKS", z:"kolay"},
+  {n:"Üç Dört Beş (345)",                 d:"Coğrafya", s:"YKS", z:"orta"},
+  {n:"Bilgi Sarmal",                      d:"Coğrafya", s:"YKS", z:"orta"},
+  {n:"Hız ve Renk",                       d:"Coğrafya", s:"YKS", z:"orta"},
+  {n:"Palme Yayınları",                   d:"Coğrafya", s:"YKS", z:"orta"},
+  {n:"Limit Yayınları",                   d:"Coğrafya", s:"YKS", z:"orta"},
+  {n:"Benim Hocam",                       d:"Coğrafya", s:"YKS", z:"orta"},
+  {n:"Karekök Yayınları",                 d:"Coğrafya", s:"YKS", z:"zor"},
+  {n:"Bilgi Sarmal (Zor)",                d:"Coğrafya", s:"YKS", z:"zor"},
+  {n:"Limit Yayınları (Zor)",             d:"Coğrafya", s:"YKS", z:"zor"},
+  {n:"Endemik Yayınları",                 d:"Coğrafya", s:"YKS", z:"zor"},
+
+  // ══════════════════════════════
+  // YKS FELSEFE
+  // ══════════════════════════════
+  {n:"ENS Yayınları",                     d:"Felsefe", s:"YKS", z:"kolay"},
+  {n:"Hız ve Renk",                       d:"Felsefe", s:"YKS", z:"orta"},
+  {n:"Yayın Denizi",                      d:"Felsefe", s:"YKS", z:"orta"},
+  {n:"Apotemi Yayınları",                 d:"Felsefe", s:"YKS", z:"orta"},
+  {n:"Bilgi Sarmal",                      d:"Felsefe", s:"YKS", z:"zor"},
+  {n:"Limit Yayınları",                   d:"Felsefe", s:"YKS", z:"zor"},
+
+  // ══════════════════════════════
+  // YKS DİN KÜLTÜRÜ
+  // ══════════════════════════════
+  {n:"ENS Yayınları",                     d:"Din Kültürü", s:"YKS", z:"kolay"},
+  {n:"Hız ve Renk",                       d:"Din Kültürü", s:"YKS", z:"orta"},
+  {n:"Apotemi Yayınları",                 d:"Din Kültürü", s:"YKS", z:"orta"},
+  {n:"Yayın Denizi",                      d:"Din Kültürü", s:"YKS", z:"orta"},
+  {n:"Bilgi Sarmal",                      d:"Din Kültürü", s:"YKS", z:"zor"},
+  {n:"Limit Yayınları",                   d:"Din Kültürü", s:"YKS", z:"zor"},
+
+  // ══════════════════════════════
+  // YKS EDEBİYAT
+  // ══════════════════════════════
+  {n:"Yayın Denizi Tek",                  d:"Edebiyat", s:"YKS", z:"kolay"},
+  {n:"Limit Eser Özetleri",               d:"Edebiyat", s:"YKS", z:"kolay"},
+  {n:"Üç Dört Beş (345)",                 d:"Edebiyat", s:"YKS", z:"orta"},
+  {n:"Bilgi Sarmal",                      d:"Edebiyat", s:"YKS", z:"orta"},
+  {n:"Çözüm 3D",                          d:"Edebiyat", s:"YKS", z:"orta"},
+  {n:"Benim Hocam",                       d:"Edebiyat", s:"YKS", z:"orta"},
+  {n:"Karekök Yayınları",                 d:"Edebiyat", s:"YKS", z:"zor"},
+  {n:"Limit Yayınları",                   d:"Edebiyat", s:"YKS", z:"zor"},
+  {n:"Endemik Yayınları",                 d:"Edebiyat", s:"YKS", z:"zor"},
 ];
 
-// ── YOUTUBE KANALLARI ──────────────────────────────
+// ════════════════════════════════════════════════════
+// YOUTUBE KANALLARI
+// ════════════════════════════════════════════════════
 const kanallar = [
-  // LGS Türkçe
-  {n:"Rüştü Hoca",                    d:"Türkçe",        s:"LGS", z:"kolay", u:"https://www.youtube.com/@rustuhoca"},
-  {n:"Tonguç LGS Hazırlık",          d:"Türkçe",        s:"LGS", z:"orta",  u:"https://www.youtube.com/@tongucakademi"},
-  {n:"KR Akademi",                    d:"Türkçe",        s:"LGS", z:"orta",  u:"https://www.youtube.com/@krakademi"},
-  {n:"Neslihan Çopur",                d:"Türkçe",        s:"LGS", z:"kolay", u:""},
-  // LGS Matematik
-  {n:"Partikül Matematik",            d:"Matematik",     s:"LGS", z:"kolay", u:"https://www.youtube.com/@partikulmatematik"},
-  {n:"Rehber Matematik",              d:"Matematik",     s:"LGS", z:"kolay", u:"https://www.youtube.com/@rehbermatematik"},
-  {n:"Şenol Hoca",                    d:"Matematik",     s:"LGS", z:"orta",  u:""},
-  {n:"LGS Hocam",                     d:"Matematik",     s:"LGS", z:"orta",  u:""},
-  {n:"Bıyıklı Matematik",             d:"Matematik",     s:"LGS", z:"zor",   u:"https://www.youtube.com/@biyiklimatematik"},
-  // LGS Fen
-  {n:"Derslike",                      d:"Fen Bilimleri", s:"LGS", z:"orta",  u:"https://www.youtube.com/@derslike"},
-  {n:"KR Akademi (İlbey Hoca)",       d:"Fen Bilimleri", s:"LGS", z:"orta",  u:"https://www.youtube.com/@krakademi"},
-  {n:"Fatih Olfas",                   d:"Fen Bilimleri", s:"LGS", z:"orta",  u:""},
-  {n:"Özge Vural",                    d:"Fen Bilimleri", s:"LGS", z:"kolay", u:""},
-  // LGS İnkılap
-  {n:"Sosyal Kale",                   d:"İnkılap Tarihi",s:"LGS", z:"orta",  u:""},
-  {n:"Sosyal Bilgiler Dersliği",      d:"İnkılap Tarihi",s:"LGS", z:"orta",  u:""},
-  {n:"Alper Güneş",                   d:"İnkılap Tarihi",s:"LGS", z:"kolay", u:""},
-  // LGS Din
-  {n:"Yusuf Keleş",                   d:"Din Kültürü",   s:"LGS", z:"orta",  u:""},
-  // LGS İngilizce
-  {n:"Hocalara Geldik (İngilizce)",   d:"İngilizce",     s:"LGS", z:"orta",  u:"https://www.youtube.com/@hocalarageldik"},
-  // YKS Türkçe
-  {n:"Rüştü Hoca",                    d:"Türkçe",        s:"YKS", z:"orta",  u:"https://www.youtube.com/@rustuhoca"},
-  {n:"Türkçenin Matematiği",          d:"Türkçe",        s:"YKS", z:"orta",  u:""},
-  {n:"Deniz Hoca",                    d:"Türkçe",        s:"YKS", z:"orta",  u:""},
-  {n:"Benim Hocam (Kadir Gümüş)",    d:"Türkçe",        s:"YKS", z:"zor",   u:""},
-  {n:"Nazlı Hocam",                   d:"Türkçe",        s:"YKS", z:"orta",  u:""},
-  {n:"Paragrafı Sevdiren Hoca",       d:"Türkçe",        s:"YKS", z:"orta",  u:""},
-  // YKS Matematik
-  {n:"Rehber Matematik",              d:"Matematik",     s:"YKS", z:"kolay", u:"https://www.youtube.com/@rehbermatematik"},
-  {n:"Bıyıklı Matematik",             d:"Matematik",     s:"YKS", z:"orta",  u:"https://www.youtube.com/@biyiklimatematik"},
-  {n:"SML Hoca",                      d:"Matematik",     s:"YKS", z:"orta",  u:""},
-  {n:"Hocalara Geldik",               d:"Matematik",     s:"YKS", z:"orta",  u:"https://www.youtube.com/@hocalarageldik"},
-  {n:"Mert Hoca",                     d:"Matematik",     s:"YKS", z:"orta",  u:""},
-  {n:"Şenol Hoca",                    d:"Matematik",     s:"YKS", z:"orta",  u:""},
-  {n:"Matematiğin Güler Yüzü",        d:"Matematik",     s:"YKS", z:"kolay", u:""},
-  {n:"Eyüp B. (SML)",                 d:"Matematik",     s:"YKS", z:"zor",   u:""},
-  {n:"Benim Hocam Matematik",         d:"Matematik",     s:"YKS", z:"orta",  u:""},
-  // YKS Geometri
-  {n:"Kenan Kara",                    d:"Geometri",      s:"YKS", z:"orta",  u:""},
-  {n:"Nurtaç Hoca",                   d:"Geometri",      s:"YKS", z:"orta",  u:""},
-  {n:"Mert Hoca",                     d:"Geometri",      s:"YKS", z:"orta",  u:""},
-  {n:"Merkeze Teğet",                 d:"Geometri",      s:"YKS", z:"zor",   u:""},
-  {n:"Rehber Matematik",              d:"Geometri",      s:"YKS", z:"kolay", u:"https://www.youtube.com/@rehbermatematik"},
-  // YKS Fizik
-  {n:"Vip Fizik",                     d:"Fizik",         s:"YKS", z:"orta",  u:""},
-  {n:"Özcan Aykın",                   d:"Fizik",         s:"YKS", z:"zor",   u:""},
-  {n:"Fizikfinito",                   d:"Fizik",         s:"YKS", z:"orta",  u:""},
-  {n:"Umut Öncül",                    d:"Fizik",         s:"YKS", z:"orta",  u:""},
-  {n:"Altuğ Güneş",                   d:"Fizik",         s:"YKS", z:"orta",  u:""},
-  {n:"Ertan Sinan Şahin",             d:"Fizik",         s:"YKS", z:"zor",   u:""},
-  {n:"Fizikevim",                     d:"Fizik",         s:"YKS", z:"orta",  u:""},
-  // YKS Kimya
-  {n:"Benim Hocam (Görkem Şahin)",   d:"Kimya",         s:"YKS", z:"orta",  u:""},
-  {n:"Kimya Adası",                   d:"Kimya",         s:"YKS", z:"orta",  u:""},
-  {n:"Paraksilen Chemistry",          d:"Kimya",         s:"YKS", z:"zor",   u:""},
-  {n:"Meschemy Kimya",                d:"Kimya",         s:"YKS", z:"orta",  u:""},
-  // YKS Biyoloji
-  {n:"Dr. Biyoloji",                  d:"Biyoloji",      s:"YKS", z:"orta",  u:""},
-  {n:"Betül Hoca",                    d:"Biyoloji",      s:"YKS", z:"orta",  u:""},
-  {n:"Biosem",                        d:"Biyoloji",      s:"YKS", z:"orta",  u:""},
-  {n:"FUNDAmentals Biyoloji",         d:"Biyoloji",      s:"YKS", z:"kolay", u:""},
-  {n:"Senin Biyolojin",               d:"Biyoloji",      s:"YKS", z:"orta",  u:""},
-  {n:"Bekir Avşar",                   d:"Biyoloji",      s:"YKS", z:"zor",   u:""},
-  // YKS Tarih
-  {n:"Sosyal Kale",                   d:"Tarih",         s:"YKS", z:"orta",  u:""},
-  {n:"Sosyal Hocam",                  d:"Tarih",         s:"YKS", z:"orta",  u:""},
-  {n:"Benim Hocam Tarih",             d:"Tarih",         s:"YKS", z:"orta",  u:""},
-  {n:"KR Akademi",                    d:"Tarih",         s:"YKS", z:"orta",  u:"https://www.youtube.com/@krakademi"},
-  {n:"Yargı Plus",                    d:"Tarih",         s:"YKS", z:"zor",   u:""},
-  {n:"Selami Hoca",                   d:"Tarih",         s:"YKS", z:"orta",  u:""},
-  {n:"Sadettin Hoca",                 d:"Tarih",         s:"YKS", z:"zor",   u:""},
-  // YKS Coğrafya
-  {n:"Yavuz Tuna",                    d:"Coğrafya",      s:"YKS", z:"orta",  u:""},
-  {n:"Sosyal Hocam",                  d:"Coğrafya",      s:"YKS", z:"orta",  u:""},
-  {n:"Benim Hocam Coğrafya",          d:"Coğrafya",      s:"YKS", z:"orta",  u:""},
-  {n:"Coğrafya Cepte",                d:"Coğrafya",      s:"YKS", z:"kolay", u:""},
-  {n:"Coğrafyanın Kodları",           d:"Coğrafya",      s:"YKS", z:"orta",  u:""},
-  // YKS Edebiyat & Felsefe
-  {n:"Felsefe Atölyesi",              d:"Edebiyat",      s:"YKS", z:"orta",  u:""},
-  {n:"Sosyal Hocam",                  d:"Edebiyat",      s:"YKS", z:"orta",  u:""},
-  {n:"Benim Hocam Edebiyat",          d:"Edebiyat",      s:"YKS", z:"orta",  u:""},
-  {n:"Felsefe Atölyesi",              d:"Felsefe",       s:"YKS", z:"orta",  u:""},
-  {n:"Benim Hocam Felsefe",           d:"Felsefe",       s:"YKS", z:"orta",  u:""},
+  // ── LGS Türkçe ──
+  {n:"Rüştü Hoca",              d:"Türkçe",        s:"LGS", z:"kolay", u:"https://www.youtube.com/@rustuhoca"},
+  {n:"Emek Taştan",             d:"Türkçe",        s:"LGS", z:"kolay", u:""},
+  {n:"Tonguç LGS Hazırlık",    d:"Türkçe",        s:"LGS", z:"orta",  u:"https://www.youtube.com/@tongucakademi"},
+  {n:"KR Akademi",              d:"Türkçe",        s:"LGS", z:"orta",  u:"https://www.youtube.com/@krakademi"},
+  {n:"Neslihan Çopur",          d:"Türkçe",        s:"LGS", z:"kolay", u:""},
+  // ── LGS Matematik ──
+  {n:"Rehber Matematik",        d:"Matematik",     s:"LGS", z:"kolay", u:"https://www.youtube.com/@rehbermatematik"},
+  {n:"Partikül Matematik",      d:"Matematik",     s:"LGS", z:"kolay", u:"https://www.youtube.com/@partikulmatematik"},
+  {n:"Bıyıklı Matematik",       d:"Matematik",     s:"LGS", z:"orta",  u:"https://www.youtube.com/@biyiklimatematik"},
+  {n:"Şenol Hoca",              d:"Matematik",     s:"LGS", z:"orta",  u:""},
+  {n:"LGS Hocam",               d:"Matematik",     s:"LGS", z:"orta",  u:""},
+  // ── LGS Fen ──
+  {n:"Derslike",                d:"Fen Bilimleri", s:"LGS", z:"orta",  u:"https://www.youtube.com/@derslike"},
+  {n:"KR Akademi (İlbey Hoca)",d:"Fen Bilimleri", s:"LGS", z:"orta",  u:"https://www.youtube.com/@krakademi"},
+  {n:"Fatih Olfas",             d:"Fen Bilimleri", s:"LGS", z:"orta",  u:""},
+  {n:"Özge Vural",              d:"Fen Bilimleri", s:"LGS", z:"kolay", u:""},
+  // ── LGS İnkılap ──
+  {n:"Sosyal Kale",             d:"İnkılap Tarihi",s:"LGS", z:"orta",  u:""},
+  {n:"Alper Güneş",             d:"İnkılap Tarihi",s:"LGS", z:"kolay", u:""},
+  // ── LGS Din ──
+  {n:"Yusuf Keleş",             d:"Din Kültürü",   s:"LGS", z:"orta",  u:""},
+  // ── LGS İngilizce ──
+  {n:"Hocalara Geldik (İng)",   d:"İngilizce",     s:"LGS", z:"orta",  u:"https://www.youtube.com/@hocalarageldik"},
+
+  // ── YKS Türkçe ──
+  {n:"Rüştü Hoca",              d:"Türkçe",        s:"YKS", z:"kolay", u:"https://www.youtube.com/@rustuhoca"},
+  {n:"Emek Taştan",             d:"Türkçe",        s:"YKS", z:"kolay", u:""},
+  {n:"Aker Kartal",             d:"Türkçe",        s:"YKS", z:"orta",  u:""},
+  {n:"Türkçenin Matematiği",    d:"Türkçe",        s:"YKS", z:"orta",  u:""},
+  {n:"Deniz Hoca",              d:"Türkçe",        s:"YKS", z:"zor",   u:""},
+  {n:"Kadir Gümüş",             d:"Türkçe",        s:"YKS", z:"zor",   u:""},
+  // ── YKS Matematik ──
+  {n:"Rehber Matematik",        d:"Matematik",     s:"YKS", z:"kolay", u:"https://www.youtube.com/@rehbermatematik"},
+  {n:"Bıyıklı Matematik",       d:"Matematik",     s:"YKS", z:"orta",  u:"https://www.youtube.com/@biyiklimatematik"},
+  {n:"Mert Hoca",               d:"Matematik",     s:"YKS", z:"orta",  u:""},
+  {n:"SML Hoca",                d:"Matematik",     s:"YKS", z:"orta",  u:""},
+  {n:"Tunç Kurt",               d:"Matematik",     s:"YKS", z:"zor",   u:""},
+  {n:"Eyüp B.",                 d:"Matematik",     s:"YKS", z:"zor",   u:""},
+  {n:"Barış Çelenk",            d:"Matematik",     s:"YKS", z:"zor",   u:""},
+  // ── YKS Geometri ──
+  {n:"Kenan Kara",              d:"Geometri",      s:"YKS", z:"orta",  u:""},
+  {n:"Merkeze Teğet",           d:"Geometri",      s:"YKS", z:"zor",   u:""},
+  {n:"Mert Hoca",               d:"Geometri",      s:"YKS", z:"orta",  u:""},
+  {n:"Rehber Matematik",        d:"Geometri",      s:"YKS", z:"kolay", u:"https://www.youtube.com/@rehbermatematik"},
+  // ── YKS Fizik ──
+  {n:"VIP Fizik",               d:"Fizik",         s:"YKS", z:"orta",  u:""},
+  {n:"Özcan Aykın",             d:"Fizik",         s:"YKS", z:"zor",   u:""},
+  {n:"Fizikevim",               d:"Fizik",         s:"YKS", z:"orta",  u:""},
+  {n:"Fizipedia",               d:"Fizik",         s:"YKS", z:"orta",  u:""},
+  {n:"Nihat Bilgin",            d:"Fizik",         s:"YKS", z:"zor",   u:""},
+  // ── YKS Kimya ──
+  {n:"Kimya Adası",             d:"Kimya",         s:"YKS", z:"orta",  u:""},
+  {n:"Benim Hocam (Kimya)",     d:"Kimya",         s:"YKS", z:"orta",  u:""},
+  {n:"Paraksilen Chemistry",    d:"Kimya",         s:"YKS", z:"zor",   u:""},
+  // ── YKS Biyoloji ──
+  {n:"Dr. Biyoloji",            d:"Biyoloji",      s:"YKS", z:"orta",  u:""},
+  {n:"Biosem",                  d:"Biyoloji",      s:"YKS", z:"orta",  u:""},
+  {n:"Betül Hoca",              d:"Biyoloji",      s:"YKS", z:"orta",  u:""},
+  // ── YKS Tarih ──
+  {n:"Benim Hocam Tarih",       d:"Tarih",         s:"YKS", z:"orta",  u:""},
+  {n:"Soner Hoca",              d:"Tarih",         s:"YKS", z:"orta",  u:""},
+  {n:"KR Akademi",              d:"Tarih",         s:"YKS", z:"orta",  u:"https://www.youtube.com/@krakademi"},
+  {n:"Sosyal Kale",             d:"Tarih",         s:"YKS", z:"orta",  u:""},
+  // ── YKS Coğrafya ──
+  {n:"Coğrafyanın Kodları",     d:"Coğrafya",      s:"YKS", z:"orta",  u:""},
+  {n:"Yavuz Tuna",              d:"Coğrafya",      s:"YKS", z:"orta",  u:""},
+  {n:"Benim Hocam Coğrafya",    d:"Coğrafya",      s:"YKS", z:"orta",  u:""},
+  // ── YKS Edebiyat & Felsefe ──
+  {n:"Kadir Gümüş (Edebiyat)",  d:"Edebiyat",      s:"YKS", z:"orta",  u:""},
+  {n:"Felsefe Atölyesi",        d:"Felsefe",        s:"YKS", z:"orta",  u:""},
+  {n:"Benim Hocam Felsefe",     d:"Felsefe",        s:"YKS", z:"orta",  u:""},
 ];
 
-// ── BRANŞ DENEMESİ ─────────────────────────────────
+// ════════════════════════════════════════════════════
+// BRANŞ DENEMESİ
+// ════════════════════════════════════════════════════
 const bransData = {
   "Türkçe": {
-    kolay: ["ENS Yayınları"],
-    orta:  ["Sondaj","Hız ve Renk","Çap","Deneme Deposu","İKS","Kafadengi"],
-    zor:   ["Süre","Ulti","Didaktik","Yayın Denizi Pro","Branşlar Karması","Endemik","Esen 3Renk"]
-  },
-  "Matematik": {
-    kolay: ["Aktif","Acil İlaç","ENS Yayınları"],
-    orta:  ["Full","C1CELL","Hız ve Renk","Sondaj","Çap","Deneme Deposu","İKS","Tanım","Ankara Dekatlon","Kafadengi"],
-    zor:   ["Acil","Süre","Ulti","Didaktik","Yayın Denizi Pro","Pion","Branşlar Karması","Etkili","Esen 3Renk","Endemik"]
-  },
-  "Geometri": {
-    kolay: ["Aktif","ENS Yayınları"],
-    orta:  ["Full","Hız ve Renk","Sondaj","Etkili Geometri","Çap","Deneme Deposu","Tanım","Kafadengi"],
-    zor:   ["Acil","Ulti","Didaktik","Yayın Denizi Pro","Pion","Etkili","Endemik","Esen 3Renk"]
-  },
-  "Fizik": {
-    kolay: ["Mikro Orijinal","ENS Yayınları"],
-    orta:  ["Sondaj","Hız ve Renk","Çap","Deneme Deposu","İKS","Tanım","Kafadengi"],
-    zor:   ["Süre","Ulti","Didaktik","Yayın Denizi Pro","Branşlar Karması","Endemik","Esen 3Renk"]
-  },
-  "Kimya": {
-    kolay: ["ENS Yayınları"],
-    orta:  ["Sondaj","Hız ve Renk","Orbital","Çap","Deneme Deposu","İKS","Tanım","Kafadengi"],
-    zor:   ["Süre","Ulti","Didaktik","Yayın Denizi Pro","Branşlar Karması","Endemik","Esen 3Renk"]
-  },
-  "Biyoloji": {
-    kolay: ["ENS Yayınları"],
-    orta:  ["Sondaj","Hız ve Renk","Çap","Deneme Deposu","İKS","Tanım","Ankara Dekatlon","Kafadengi"],
-    zor:   ["Süre","Ulti","Didaktik","Yayın Denizi Pro","Branşlar Karması","Endemik","Esen 3Renk"]
-  },
-  "Tarih": {
-    kolay: ["ENS Yayınları"],
-    orta:  ["Hız ve Renk","Deneme Deposu","Çap","Ankara Dekatlon","Kafadengi"],
-    zor:   ["Didaktik","Yayın Denizi Pro","Esen 3Renk"]
-  },
-  "Coğrafya": {
-    kolay: ["ENS Yayınları"],
-    orta:  ["Hız ve Renk","Deneme Deposu","Çap","E Coğrafya","Ankara Dekatlon","Kafadengi"],
-    zor:   ["Didaktik","Yayın Denizi Pro","Esen 3Renk"]
-  },
-  "Felsefe": {
-    kolay: ["ENS Yayınları"],
-    orta:  ["Hız ve Renk","Deneme Deposu","Çap","Kafadengi"],
-    zor:   ["Didaktik","Yayın Denizi Pro"]
-  },
-  "Din Kültürü": {
-    kolay: ["ENS Yayınları"],
-    orta:  ["Hız ve Renk","Deneme Deposu","Çap","Ankara Dekatlon","Kafadengi"],
-    zor:   ["Didaktik","Yayın Denizi Pro"]
-  },
-  "Edebiyat": {
-    kolay: ["ENS Yayınları"],
-    orta:  ["Sondaj","Hız ve Renk","Çap","İKS","Deneme Deposu","Kafadengi"],
-    zor:   ["Süre","Ulti","Didaktik","Endemik","Yayın Denizi Pro","Branşlar Karması","Esen 3Renk"]
+    kolay: ["ENS Yayınları","Hız ve Renk","Miray"],
+    orta:  ["Üç Dört Beş (345)","Bilgi Sarmal","Yayın Denizi","Palme","Paraf","Kafadengi","Sondaj"],
+    zor:   ["Apotemi","Çözüm 3D","Limit","Endemik","Didaktik","Süre","Ulti"]
   },
   "Paragraf": {
-    kolay: ["ENS Yayınları"],
-    orta:  ["Sondaj","Hız ve Renk","Çap","Deneme Deposu","Kafadengi"],
-    zor:   ["Süre","Ulti","Didaktik","Yayın Denizi Pro","Esen 3Renk"]
+    kolay: ["ENS Yayınları","Hız ve Renk"],
+    orta:  ["Bilgi Sarmal","Yayın Denizi","Sıfır Risk","Kafadengi","Paraf"],
+    zor:   ["Paraf IQ","Limit Kronometre","Çözüm 3D","Apotemi","Endemik"]
+  },
+  "Matematik": {
+    kolay: ["Aktif","Acil İlaç","ENS Yayınları","Mikro Orijinal"],
+    orta:  ["Üç Dört Beş (345)","Full","Bilgi Sarmal","Hız ve Renk","Orijinal","Çap","Kafadengi","Etkili"],
+    zor:   ["Apotemi","Çözüm 3D","Endemik","Acil","Paraf (Mor)","Barış","Ulti","Özdebir"]
+  },
+  "Geometri": {
+    kolay: ["Aktif","ENS Yayınları","Mikro Orijinal"],
+    orta:  ["Üç Dört Beş (345)","Bilgi Sarmal","Toprak","Endemik","Kafadengi","Etkili Geometri"],
+    zor:   ["Orijinal","Acil","Karekök","Çözüm 3D","Paraf (Mor)","Endemik"]
+  },
+  "Fizik": {
+    kolay: ["Aktif","Okyanus (40 Seans)","Miray","Hız ve Renk"],
+    orta:  ["Üç Dört Beş (345)","Bilgi Sarmal","Palme","Hız ve Renk","Kafadengi","Çap"],
+    zor:   ["Çözüm 3D","Karaağaç","Apotemi","Aydın","Nihat Bilgin","Endemik"]
+  },
+  "Kimya": {
+    kolay: ["Aktif","Okyanus (40 Seans)"],
+    orta:  ["Üç Dört Beş (345)","Orbital","Bilgi Sarmal","Çap","Nitelik","Miray","Aydın"],
+    zor:   ["Çözüm 3D","Karaağaç","Apotemi","Limit","Endemik"]
+  },
+  "Biyoloji": {
+    kolay: ["Aktif","Hız ve Renk","ENS Yayınları"],
+    orta:  ["Palme","Üç Dört Beş (345)","Bilgi Sarmal","Biyotik","Simulator","Aydın"],
+    zor:   ["Apotemi","Çözüm 3D","Endemik","Paraf"]
+  },
+  "Tarih": {
+    kolay: ["ENS Yayınları","Kafa Dengi"],
+    orta:  ["Üç Dört Beş (345)","Bilgi Sarmal","Hız ve Renk","Palme","Benim Hocam"],
+    zor:   ["Limit","Karekök","Çözüm 3D","Endemik"]
+  },
+  "Coğrafya": {
+    kolay: ["ENS Yayınları","Tonguç Akademi"],
+    orta:  ["Üç Dört Beş (345)","Bilgi Sarmal","Hız ve Renk","Limit","Palme","Benim Hocam"],
+    zor:   ["Karekök","Bilgi Sarmal (Zor)","Limit (Zor)","Endemik"]
+  },
+  "Felsefe": {
+    kolay: ["ENS Yayınları","Hız ve Renk"],
+    orta:  ["Yayın Denizi","Bilgi Sarmal","Apotemi","Hız ve Renk"],
+    zor:   ["Limit","Bilgi Sarmal"]
+  },
+  "Din Kültürü": {
+    kolay: ["ENS Yayınları","Hız ve Renk"],
+    orta:  ["Yayın Denizi","Bilgi Sarmal","Apotemi","Hız ve Renk"],
+    zor:   ["Limit","Bilgi Sarmal"]
+  },
+  "Edebiyat": {
+    kolay: ["ENS Yayınları","Yayın Denizi Tek","Limit Eser Özetleri"],
+    orta:  ["Üç Dört Beş (345)","Bilgi Sarmal","Çözüm 3D","Benim Hocam","Kafadengi"],
+    zor:   ["Karekök","Limit","Endemik","Didaktik"]
   }
 };
-
 const bransDersler = Object.keys(bransData);
 
-// ── GENEL DENEME ───────────────────────────────────
+// ════════════════════════════════════════════════════
+// GENEL DENEME
+// ════════════════════════════════════════════════════
 const denemeSets = {
-  kolay: ["Aktif Yayınları","ENS Yayınları","Mikro Orijinal","Acil İlaç"],
-  orta:  ["Full Yayınları","Tanım Senaryo Serisi","Hız ve Renk","Üç Dört Beş (345)","Bilgi Sarmal Yıldızlar Yarışıyor","Bilgi Sarmal Soru Avcıları","ODF","Ankara Dekatlon","Kafadengi"],
-  zor:   ["Şöhretler Karması","Krallar Karması","Endemik Yayınları","Orijinal Yayınları","Yayın Denizi Pro","Didaktik","Denesis","Esen 3Renk"]
+  kolay:   ["ENS Yayınları","Kafa Dengi","Miray","Hız ve Renk","Tonguç","Mikro Orijinal"],
+  orta:    ["Üç Dört Beş (345)","Paraf","Toprak","Bilgi Sarmal (Kontrol)","Palme","Yayın Denizi"],
+  zor:     ["Çözüm 3D","Altın Karma","Limit","Özdebir","Ünlüler Karması","Krallar Karması"],
+  zorplus: ["Apotemi","Metin","Endemik","Çap","Aydın","Ulti"],
+  asamali: ["Üç Dört Beş (345)","Çözüm 3D","Rasyonel","Hız ve Renk","Paraf","Yayın Denizi"]
 };
 const denemeExtra = [
-  {n:"Altyapı Konu Özet Kartları",     t:"💳 Bilgi Kartları"},
-  {n:"Limit Eser Özetleri",            t:"💳 Bilgi Kartları"},
-  {n:"ENS Kamp (Kolay)",               t:"🏕️ Kamp"},
-  {n:"BES Kamp (Orta)",                t:"🏕️ Kamp"},
-  {n:"Sondaj Kamp (Orta)",             t:"🏕️ Kamp"},
-  {n:"Bilgi Sarmal Kamp (Zor)",        t:"🏕️ Kamp"},
-  {n:"Tümler Yaprak Test (Orta)",      t:"📄 Yaprak Test"},
+  {n:"Limit Eser Özetleri",          t:"💳 Bilgi Kartları"},
+  {n:"Bilgi Sarmal Yıldızlar Yarışıyor", t:"🏕️ Kamp"},
+  {n:"ENS Kamp (Kolay)",             t:"🏕️ Kamp"},
+  {n:"Sondaj Kamp (Orta)",           t:"🏕️ Kamp"},
+  {n:"Tümler Yaprak Test",           t:"📄 Yaprak Test"},
 ];
 
 // ════════════════════════════════════════════════════
@@ -805,39 +809,56 @@ function setPanel(name, btn) {
 }
 
 // ════════════════════════════════════════════════════
-// FILTERS
+// SINAV SEÇİCİ
 // ════════════════════════════════════════════════════
 function setSinav(p, val, el) {
-  st[p].sinav = (st[p].sinav===val && val!=='') ? '' : val;
-  st[p].ders = '';
-  refreshChips(p+'-sinav-row', val, {'':{cls:'sel'},'LGS':{cls:'sel-lgs'},'YKS':{cls:'sel-yks'}});
+  // toggle
+  if (st[p].sinav === val && val !== '') { val = ''; }
+  st[p].sinav = val;
+  st[p].ders  = '';
+
+  const sel = document.getElementById(p+'-sinav-sel');
+  sel.querySelectorAll('.sinav-btn').forEach(b => {
+    b.className = 'sinav-btn';
+    if (b.dataset.v === val) {
+      b.classList.add(val===''?'active-all':val==='LGS'?'active-lgs':'active-yks');
+    }
+  });
   buildDersScroll(p);
   render(p==='k'?'kitap':'youtube');
 }
+
+// ════════════════════════════════════════════════════
+// ZORLUK
+// ════════════════════════════════════════════════════
 function setZorluk(p, val, el) {
   st[p].zorluk = (st[p].zorluk===val) ? '' : val;
-  refreshChips(p+'-zorluk-row', st[p].zorluk, {'':{cls:'sel'},'kolay':{cls:'sel-kolay'},'orta':{cls:'sel-orta'},'zor':{cls:'sel-zor'},'joker':{cls:'sel-joker'}});
+  const rowId = p+'-zorluk-row';
+  document.querySelectorAll('#'+rowId+' .z-chip').forEach(c => {
+    c.className = 'z-chip';
+    if (c.dataset.v === st[p].zorluk) {
+      c.classList.add('zsel-'+(st[p].zorluk===''?'all':st[p].zorluk));
+    }
+  });
+  if (st[p].zorluk==='') document.querySelector('#'+rowId+' .z-chip[data-v=""]').classList.add('zsel-all');
   render(p==='k'?'kitap':'youtube');
 }
+
+// ════════════════════════════════════════════════════
+// DERS SCROLL
+// ════════════════════════════════════════════════════
 function setDers(p, val) {
   st[p].ders = (st[p].ders===val) ? '' : val;
   buildDersScroll(p);
   render(p==='k'?'kitap':'youtube');
 }
-function refreshChips(rowId, activeVal, map) {
-  document.querySelectorAll('#'+rowId+' .chip').forEach(c=>{
-    c.className = 'chip';
-    if (c.dataset.v === activeVal) c.classList.add(map[activeVal]?.cls || 'sel');
-    else if (activeVal==='' && c.dataset.v==='') c.classList.add(map['']?.cls||'sel');
-  });
-}
 function buildDersScroll(p) {
   const s = st[p].sinav;
   const list = s==='LGS' ? LGS_DERS : s==='YKS' ? YKS_DERS : ALL_DERS;
-  const el = document.getElementById(p+'-ders-scroll');
-  el.innerHTML = [''].concat(list).map(d=>
-    `<div class="ders-chip ${st[p].ders===d ? 'active':''}" onclick="setDers('${p}','${d}')">${d===''?'Tümü':d}</div>`
-  ).join('');
+  document.getElementById(p+'-ders-scroll').innerHTML =
+    [''].concat(list).map(d=>
+      `<div class="ders-chip ${st[p].ders===d?'active':''}" onclick="setDers('${p}','${d}')">${d===''?'Tüm Dersler':d}</div>`
+    ).join('');
 }
 
 // ════════════════════════════════════════════════════
@@ -871,12 +892,11 @@ function render(type) {
 }
 
 // ════════════════════════════════════════════════════
-// BRANŞ DENEMESİ
+// BRANŞ
 // ════════════════════════════════════════════════════
 let activeBransDers = bransDersler[0];
 function buildBransTabs() {
-  const tc = document.getElementById('brans-tabs');
-  tc.innerHTML = bransDersler.map(d=>
+  document.getElementById('brans-tabs').innerHTML = bransDersler.map(d=>
     `<div class="bdt ${d===activeBransDers?'active':''}" onclick="setBransDers('${d}')">${d}</div>`
   ).join('');
   renderBrans();
@@ -889,12 +909,11 @@ function setBransDers(d) {
 function renderBrans() {
   const data = bransData[activeBransDers];
   if(!data){document.getElementById('brans-content').innerHTML='';return;}
-  const sections = [
-    {label:'🟢 Kolay', key:'kolay'},
-    {label:'🟡 Orta',  key:'orta'},
-    {label:'🔴 Zor',   key:'zor'},
-  ];
-  document.getElementById('brans-content').innerHTML = sections.map(sec=>{
+  document.getElementById('brans-content').innerHTML = [
+    {label:'🟢 Kolay',key:'kolay'},
+    {label:'🟡 Orta', key:'orta'},
+    {label:'🔴 Zor',  key:'zor'},
+  ].map(sec=>{
     const items = data[sec.key]||[];
     if(!items.length) return '';
     return `<div class="brans-section">
@@ -913,14 +932,18 @@ function renderBrans() {
 }
 
 // ════════════════════════════════════════════════════
-// GENEL DENEME
+// GENEL DENEME PANELİ
 // ════════════════════════════════════════════════════
 function buildDenemePaneli() {
-  ['kolay','orta','zor'].forEach(z=>{
-    document.getElementById('d-'+z).innerHTML = denemeSets[z].map((n,i)=>
+  ['kolay','orta','zor','zorplus','asamali'].forEach(z=>{
+    const el = document.getElementById('d-'+z);
+    if (!el) return;
+    el.innerHTML = denemeSets[z].map((n,i)=>
       `<div class="card card-den" style="animation-delay:${i*0.03}s">
         <div class="card-name">${n}</div>
-        <div class="card-footer"><span class="badge b-${z}">${zLabel(z)}</span></div>
+        <div class="card-footer">
+          <span class="badge b-${z==='zorplus'?'zor':z==='asamali'?'orta':z}">${zLabel(z==='zorplus'?'zor':z==='asamali'?'orta':z)}</span>
+        </div>
       </div>`
     ).join('');
   });
@@ -935,6 +958,13 @@ function buildDenemePaneli() {
 // ════════════════════════════════════════════════════
 // INIT
 // ════════════════════════════════════════════════════
+// Set default active state for sinav buttons
+document.querySelectorAll('#k-sinav-sel .sinav-btn[data-v=""]').forEach(b=>b.classList.add('active-all'));
+document.querySelectorAll('#y-sinav-sel .sinav-btn[data-v=""]').forEach(b=>b.classList.add('active-all'));
+// Set default zorluk
+document.querySelector('#k-zorluk-row .z-chip[data-v=""]').classList.add('zsel-all');
+document.querySelector('#y-zorluk-row .z-chip[data-v=""]').classList.add('zsel-all');
+
 buildDersScroll('k');
 buildDersScroll('y');
 render('kitap');
