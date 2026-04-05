@@ -6,8 +6,8 @@ import {
 } from 'lucide-react';
 
 /**
- * MDK_DATA: Tüm kaynakların (LGS, YKS SAY/EA), kanalların ve denemelerin 
- * en kapsamlı ve güncel listesidir.
+ * MDK_DATA: Tüm Excel, PDF, Görsel ve Kod geçmişindeki verilerin 
+ * birleştirilmiş en güncel halidir.
  */
 const MDK_DATA = {
   YKS: {
@@ -15,7 +15,7 @@ const MDK_DATA = {
       { id: 1, ders: 'Matematik', seviye: 'Başlangıç', kaynaklar: ['Kafa Dengi - Hiç Matematik', 'Şenol Hoca - Alıştırmalarla Mat', 'Antrenmanlarla Matematik', 'Doktrin Sıfırdan Sonsuza', 'Tonguç - Matematiğe İlk Adım', 'Karekök 0', 'Mert Hoca Başlangıç', 'Aktif Matematik', 'Sonuç Yayınları Fasikül'] },
       { id: 2, ders: 'Matematik', seviye: 'Kolay', kaynaklar: ['Acil İlaç', 'Mikro Orijinal', '4K Yayınları', 'Testokul (+)', 'Eğitim Vadisi', 'Miray', 'Nego Temelden Zirveye', 'Matematik Kulübü', 'Şenol Hoca Merhaba TYT', 'Kafa Dengi SÖS', 'Okyanus 40 Seans (-)'] },
       { id: 3, ders: 'Matematik', seviye: 'Orta', kaynaklar: ['Üç Dört Beş (345)', 'Bilgi Sarmal', 'Metin Parkur', 'Rasyonel Yayınları', 'Vip', 'Çap', 'Hız ve Renk', 'Yayın Denizi Pro', 'Full Matematik', 'Okyanus Iceberg', 'Gür Yayınları', 'Toprak', 'Paraf (Mavi)', 'Yanıt', 'Soru Kalesi', 'Avantaj', 'Karekök (Orta)'] },
-      { id: 4, ders: 'Matematik', seviye: 'Zor', kaynaklar: ['Apotemi', 'Orijinal', 'Acil', '3D', 'Endemik', 'Kafadengi Challenger', 'Metin', 'Birey B/C', 'Polimat', 'Supara', 'Ergi', 'Ulti', 'Kida', 'Aydın', 'Derece Yayınları', 'Supara', 'Paylaşım'] },
+      { id: 4, ders: 'Matematik', seviye: 'Zor', kaynaklar: ['Apotemi', 'Orijinal', 'Acil', '3D', 'Endemik', 'Kafadengi Challenger', 'Metin', 'Birey B/C', 'Polimat', 'Supara', 'Ergi', 'Ulti', 'Kida', 'Aydın', 'Derece Yayınları', 'Paylaşım'] },
       { id: 5, ders: 'Geometri', seviye: 'Kolay-Orta', kaynaklar: ['Aktif', 'Mikro Orijinal', 'Acil İlaç', 'Karekök 0', '345', 'Bilgi Sarmal', 'Toprak'] },
       { id: 6, ders: 'Geometri', seviye: 'Zor', kaynaklar: ['Orijinal', 'Acil', 'Apotemi', '3D', 'Endemik', 'Karekök Zoru', 'Paraf (Zor)'] },
       { id: 7, ders: 'Fizik', seviye: 'Kolay', kaynaklar: ['Aktif', 'Okyanus 40 Seans', 'Paraf (Kolay)', 'Kafa Dengi Süper Öğreten', 'Hız ve Renk (Turuncu)', 'Bes Yayınları', 'Testokul', 'Kartezyen', 'Antrenman', 'Binot'] },
@@ -35,10 +35,10 @@ const MDK_DATA = {
       { id: 21, ders: 'Sosyal Bilimler', seviye: 'Zor', kaynaklar: ['Limit', 'Apotemi', 'Ulti', 'Didaktik Kalem', 'Endemik', 'Simya', 'Bilfen'] }
     ],
     youtube_kanallari: [
-      { ders: 'Türkçe/Edebiyat', seviye: 'Öneri', kanallar: ['Rüştü Hoca', 'Türkçenin Matematiği', 'Deniz Hoca', 'Benim Hocam (Kadir Gümüş)', 'Nazlı Hocam', 'Paragrafı Sevdiren Hoca'] },
-      { ders: 'Matematik/Geo', seviye: 'Öneri', kanallar: ['Bıyıklı Matematik', 'Rehber Matematik', 'Mert Hoca', 'Eyüp B.', 'Kenan Kara', 'Tunç Kurt', 'SML Hoca', 'Nurtaç Hoca', 'Matematiğin Güler Yüzü', 'Şenol Hoca'] },
-      { ders: 'Fen Bilimleri', seviye: 'Öneri', kanallar: ['Vip Fizik', 'Özcan Aykın', 'Dr. Biyoloji', 'Kimya Adası', 'Benim Hocam (Görkem Şahin)', 'Fizikfinito', 'Paraksilen Chemistry', 'Umut Öncül', 'Altuğ Güneş', 'Selin Hoca', 'Fizikevim', 'Ertan Sinan Şahin', 'Betül Hoca', 'FUNDAmentals'] },
-      { ders: 'Sosyal Bilimler', seviye: 'Öneri', kanallar: ['Sosyal Kale', 'Yavuz Tuna', 'Coğrafyanın Kodları', 'Benim Hocam', 'Sosyal Hocam', 'Felsefe Atölyesi', 'Yargı Plus', 'Selami Hoca', 'Sadettin Hoca'] }
+      { ders: 'Türkçe / Edebiyat', seviye: 'Metin Önerisi', kanallar: ['Rüştü Hoca', 'Türkçenin Matematiği', 'Deniz Hoca', 'Benim Hocam (Kadir Gümüş)', 'Nazlı Hocam', 'Paragrafı Sevdiren Hoca'] },
+      { ders: 'Matematik / Geometri', seviye: 'Metin Önerisi', kanallar: ['Bıyıklı Matematik', 'Rehber Matematik', 'Mert Hoca', 'Eyüp B.', 'Kenan Kara', 'Tunç Kurt', 'SML Hoca', 'Nurtaç Hoca', 'Matematiğin Güler Yüzü', 'Şenol Hoca'] },
+      { ders: 'Fen Bilimleri', seviye: 'Metin Önerisi', kanallar: ['Vip Fizik', 'Özcan Aykın', 'Dr. Biyoloji', 'Kimya Adası', 'Benim Hocam (Görkem Şahin)', 'Fizikfinito', 'Paraksilen Chemistry', 'Umut Öncül', 'Altuğ Güneş', 'Selin Hoca', 'Fizikevim', 'Ertan Sinan Şahin', 'Betül Hoca', 'FUNDAmentals'] },
+      { ders: 'Sosyal Bilimler', seviye: 'Metin Önerisi', kanallar: ['Sosyal Kale', 'Yavuz Tuna', 'Coğrafyanın Kodları', 'Benim Hocam', 'Sosyal Hocam', 'Felsefe Atölyesi', 'Yargı Plus', 'Selami Hoca', 'Sadettin Hoca'] }
     ],
     denemeler: [
       { tip: 'TYT Genel', seviye: 'Kolay', liste: ['Aktif Kuvvet', 'ENS', 'Mikro Orijinal', 'Acil İlaç', 'Kafa Dengi', 'Miray', 'Hız ve Renk'] },
@@ -71,8 +71,8 @@ const MDK_DATA = {
       { id: 110, ders: 'İnkılap / Din / İng', seviye: 'Karma Seviye', kaynaklar: ['Okyanus Classmate (İnk-Din)', 'Muba İlk Hasat (İnk)', 'Ankara Güçlendiren (İnk)', 'Eker Dinlendiren (Din)', 'Eker Dinlendiren (Din)', 'Zeka Küpü (Din)', 'More More (İng)', 'Tudem (İng)', 'Legend English (Practice/Test)', 'İsem (İnk)', 'Legend of English reading/writing', 'Sil Baştan'] }
     ],
     youtube_kanallari: [
-      { ders: 'Branş Hocaları', seviye: 'Öneri', kanallar: ['Hasan Güler (Türkçe)', 'Çopur Hoca (Mat)', 'Partikül Matematik', 'Derslike (Fen)', 'Sosyal Bilgiler Dersliği', 'Din Kültürüm', 'Sil Baştan (İng)', 'Alper Hocam (İnk)', 'LGS English', 'İdris Hoca'] },
-      { ders: 'Kamp & Akademi', seviye: 'Öneri', kanallar: ['Benim Hocam LGS', 'Tonguç Akademi', 'KR Akademi', 'LGS & Lise Hocam', 'Şenol Hoca', 'Hız Ortaokul', 'LGS Rehberim', 'Hoca Kafası'] }
+      { ders: 'Branş Hocaları', seviye: 'Metin Önerisi', kanallar: ['Hasan Güler (Türkçe)', 'Çopur Hoca (Mat)', 'Partikül Matematik', 'Derslike (Fen)', 'Sosyal Bilgiler Dersliği', 'Din Kültürüm', 'Sil Baştan (İng)', 'Alper Hocam (İnk)', 'LGS English', 'İdris Hoca'] },
+      { ders: 'Kamp & Akademi', seviye: 'Metin Önerisi', kanallar: ['Benim Hocam LGS', 'Tonguç Akademi', 'KR Akademi', 'LGS & Lise Hocam', 'Şenol Hoca', 'Hız Ortaokul', 'LGS Rehberim', 'Hoca Kafası'] }
     ],
     denemeler: [
       { tip: 'LGS Genel/Branş', seviye: 'Kolay', liste: ['Arı', 'Tonguç', 'ENS', 'Nar Deneme'] },
@@ -133,82 +133,83 @@ const App = () => {
 
   return (
     <div className="min-h-screen bg-[#f8fafc] font-sans text-slate-900 pb-12">
-      {/* Mobile Friendly Responsive Header */}
+      {/* Mobil Dostu Header */}
       <header className="bg-yellow-400 border-b-4 border-yellow-500 sticky top-0 z-50 shadow-lg">
         <div className="max-w-6xl mx-auto px-4 py-4">
-          <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
-            <div className="flex items-center gap-3">
-              <div className="bg-white p-2 rounded-xl shadow-md">
-                <GraduationCap className="text-yellow-600 w-8 h-8" />
+          <div className="flex flex-col gap-4">
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-2">
+                <div className="bg-white p-1.5 rounded-lg shadow-sm">
+                  <GraduationCap className="text-yellow-600 w-6 h-6" />
+                </div>
+                <div>
+                  <h1 className="text-lg font-black tracking-tighter text-slate-900 uppercase leading-none">MDK AKADEMİ</h1>
+                  <p className="text-[9px] font-bold text-yellow-900 uppercase tracking-widest mt-0.5">Kaynak Rehberliği 2026</p>
+                </div>
               </div>
-              <div>
-                <h1 className="text-xl font-black tracking-tighter text-slate-900 uppercase leading-none">MDK AKADEMİ</h1>
-                <p className="text-[10px] font-black text-yellow-900 uppercase tracking-widest mt-1">Kaynak Rehberi 2026</p>
+              <div className="flex bg-slate-900/10 p-1 rounded-xl backdrop-blur-sm">
+                {['YKS', 'LGS'].map(exam => (
+                  <button
+                    key={exam}
+                    onClick={() => { setSelectedExam(exam); setFilterSeviye('Hepsi'); setActiveTab('soru_bankalari'); }}
+                    className={`px-6 py-2 rounded-lg font-black transition-all text-xs ${
+                      selectedExam === exam ? 'bg-white text-slate-900 shadow-sm' : 'text-slate-800/60'
+                    }`}
+                  >
+                    {exam}
+                  </button>
+                ))}
               </div>
             </div>
-            
-            <div className="flex bg-slate-900/10 p-1 rounded-2xl backdrop-blur-sm">
-              {['YKS', 'LGS'].map(exam => (
-                <button
-                  key={exam}
-                  onClick={() => { setSelectedExam(exam); setFilterSeviye('Hepsi'); setActiveTab('soru_bankalari'); }}
-                  className={`flex-1 px-8 py-2.5 rounded-xl font-black transition-all text-sm ${
-                    selectedExam === exam ? 'bg-white text-slate-900 shadow-md' : 'text-slate-800/60 hover:text-slate-900'
-                  }`}
-                >
-                  {exam}
-                </button>
-              ))}
-            </div>
-          </div>
 
-          <div className="relative mt-4 group">
-            <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 w-5 h-5 group-focus-within:text-yellow-600 transition-colors" />
-            <input 
-              type="text"
-              placeholder="Yayın, hoca, deneme, kitap ara..."
-              className="w-full pl-12 pr-4 py-3.5 rounded-2xl border-none shadow-inner bg-white focus:bg-white focus:ring-4 focus:ring-yellow-600/10 transition-all text-base font-bold"
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-            />
+            <div className="relative group">
+              <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 w-4 h-4 group-focus-within:text-yellow-600 transition-colors" />
+              <input 
+                type="text"
+                placeholder="Kitap, hoca veya deneme ara..."
+                className="w-full pl-10 pr-4 py-2.5 rounded-xl border-none shadow-inner bg-white focus:bg-white focus:ring-4 focus:ring-yellow-600/10 transition-all text-sm font-bold"
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+              />
+            </div>
           </div>
         </div>
       </header>
 
       <main className="max-w-6xl mx-auto px-4 mt-6">
-        {/* Optimized Navigation: Grid that wraps on mobile */}
-        <div className="grid grid-cols-3 sm:grid-cols-3 md:grid-cols-6 gap-2 mb-8">
+        {/* Navigasyon: Mobilde 3'lü ızgara yapısı */}
+        <div className="grid grid-cols-3 md:grid-cols-6 gap-2 mb-6">
           {navItems.map((tab) => (
             <button
               key={tab.id}
               onClick={() => setActiveTab(tab.id)}
-              className={`flex flex-col items-center justify-center gap-2 p-3 rounded-2xl font-black transition-all border-2 relative overflow-hidden group ${
+              className={`flex flex-col items-center justify-center gap-2 p-3 rounded-xl font-black transition-all border-2 relative overflow-hidden group ${
                 activeTab === tab.id 
-                ? 'bg-slate-900 text-white border-slate-900 shadow-lg -translate-y-1' 
+                ? 'bg-slate-900 text-white border-slate-900 shadow-md' 
                 : 'bg-white text-slate-400 border-white hover:border-slate-100 shadow-sm'
               }`}
             >
-              <tab.icon className={`w-6 h-6 relative z-10 transition-transform ${activeTab === tab.id ? 'text-yellow-400' : 'text-slate-300'}`} />
-              <span className="text-[10px] uppercase tracking-tighter relative z-10 text-center leading-none">{tab.label}</span>
+              <tab.icon className={`w-5 h-5 relative z-10 ${activeTab === tab.id ? 'text-yellow-400' : 'text-slate-300'}`} />
+              <span className="text-[9px] uppercase tracking-tighter relative z-10 text-center">{tab.label}</span>
               {activeTab === tab.id && <div className="absolute inset-0 bg-gradient-to-br from-slate-800 to-slate-900 opacity-60" />}
             </button>
           ))}
         </div>
 
-        {/* Level Filters: Flex wrap for mobile screen fitting */}
-        <div className="flex flex-wrap items-center gap-2 mb-8 bg-white/50 p-2 rounded-2xl border border-slate-100 shadow-sm">
-          <div className="flex items-center gap-2 text-slate-400 font-black uppercase text-[10px] shrink-0 bg-white px-3 py-2 rounded-lg border border-slate-100">
-            <Filter size={14} />
+        {/* Filtreler: Ekrana sığması için wrap yapıldı */}
+        <div className="flex flex-wrap items-center gap-2 mb-6 bg-white/50 p-2 rounded-xl border border-slate-100 shadow-sm">
+          <div className="flex items-center gap-1.5 text-slate-400 font-black uppercase text-[9px] shrink-0 bg-white px-2.5 py-1.5 rounded-lg border border-slate-100">
+            <Filter size={12} />
             <span>Filtre</span>
           </div>
           {['Hepsi', 'Başlangıç', 'Kolay', 'Orta', 'Zor'].map((lvl) => (
             <button
               key={lvl}
               onClick={() => setFilterSeviye(lvl)}
-              className={`px-4 py-2 rounded-xl text-xs font-black transition-all uppercase tracking-wider ${
+              className={`px-3.5 py-1.5 rounded-lg text-[10px] font-black transition-all uppercase tracking-wider ${
                 filterSeviye === lvl 
-                ? 'bg-yellow-400 text-slate-900 shadow-md scale-105' 
-                : 'bg-white text-slate-400 border border-slate-100 hover:bg-slate-50'
+                ? 'bg-yellow-400 text-slate-900 shadow-sm' 
+                : 'bg-white text-slate-400 border border-slate-100'
               }`}
             >
               {lvl}
@@ -216,35 +217,35 @@ const App = () => {
           ))}
         </div>
 
-        {/* Dynamic Content Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {/* İçerik Kartları */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
           {filteredData.length > 0 ? (
             filteredData.map((item, index) => (
               <div 
                 key={index} 
-                className="bg-white rounded-[40px] border border-slate-50 shadow-md hover:shadow-xl transition-all duration-300 group overflow-hidden flex flex-col"
+                className="bg-white rounded-2xl border border-slate-50 shadow-sm hover:shadow-md transition-all duration-300 group overflow-hidden flex flex-col"
               >
-                <div className="p-6 border-b border-slate-50 bg-slate-50/20 flex justify-between items-start relative">
+                <div className="p-4 border-b border-slate-50 bg-slate-50/20 flex justify-between items-start relative">
                   <div className="z-10">
-                    <h3 className="text-xl font-black text-slate-900 uppercase tracking-tighter mb-2 leading-tight">
+                    <h3 className="text-sm font-black text-slate-900 uppercase tracking-tight mb-1 leading-tight">
                       {item.ders || item.tip || item.baslik}
                     </h3>
                     {item.seviye && (
-                      <div className={`inline-flex px-3 py-1.5 rounded-lg text-[9px] font-black border uppercase tracking-widest shadow-sm ${getSeviyeColor(item.seviye)}`}>
+                      <div className={`inline-flex px-2 py-1 rounded-md text-[8px] font-black border uppercase tracking-widest shadow-sm ${getSeviyeColor(item.seviye)}`}>
                         {item.seviye}
                       </div>
                     )}
                   </div>
-                  <div className="bg-white p-3 rounded-2xl shadow-sm text-yellow-500 transition-all duration-300 z-10 border border-slate-50">
-                    {activeTab === 'youtube_kanallari' ? <Youtube size={24} /> : (activeTab === 'okuma_listesi' ? <LibraryBig size={24} /> : <Star size={24} />)}
+                  <div className="bg-white p-2 rounded-xl shadow-sm text-yellow-500 z-10 border border-slate-50">
+                    {activeTab === 'youtube_kanallari' ? <Youtube size={16} /> : (activeTab === 'okuma_listesi' ? <LibraryBig size={16} /> : <Star size={16} />)}
                   </div>
                 </div>
-                <div className="p-6 flex-grow bg-white">
-                  <div className="space-y-4">
+                <div className="p-4 flex-grow bg-white">
+                  <div className="space-y-3">
                     {(item.kaynaklar || item.kanallar || item.liste || item.icerik).map((val, i) => (
-                      <div key={i} className="flex items-start gap-4 group/item">
-                        <div className="mt-1.5 w-2.5 h-2.5 rounded-full bg-yellow-400 shrink-0 shadow-sm group-hover/item:scale-125 transition-all duration-300" />
-                        <span className="text-slate-800 font-bold text-base leading-tight tracking-tight uppercase">
+                      <div key={i} className="flex items-start gap-3 group/item">
+                        <div className="mt-1.5 w-1.5 h-1.5 rounded-full bg-yellow-400 shrink-0 shadow-sm" />
+                        <span className="text-slate-800 font-bold text-xs leading-tight tracking-tight uppercase">
                           {val}
                         </span>
                       </div>
@@ -254,44 +255,44 @@ const App = () => {
               </div>
             ))
           ) : (
-            <div className="col-span-full py-20 text-center bg-white rounded-[60px] border-4 border-dashed border-slate-100 shadow-inner">
-              <div className="bg-slate-50 w-24 h-24 rounded-full flex items-center justify-center mx-auto mb-6 text-slate-200">
-                <Search size={48} />
+            <div className="col-span-full py-16 text-center bg-white rounded-3xl border-2 border-dashed border-slate-100 shadow-inner">
+              <div className="bg-slate-50 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 text-slate-200">
+                <Search size={32} />
               </div>
-              <h3 className="text-2xl font-black text-slate-900 mb-4 tracking-tighter uppercase">İçerik Bulunamadı</h3>
-              <p className="text-slate-400 font-bold text-sm max-w-xs mx-auto leading-relaxed italic uppercase">
-                Aradığın kriterde {selectedExam} verisi şu an sistemde yok. Filtreleri temizle.
+              <h3 className="text-lg font-black text-slate-900 mb-2 uppercase">İçerik Bulunamadı</h3>
+              <p className="text-slate-400 font-bold text-xs max-w-xs mx-auto leading-relaxed italic uppercase">
+                Aradığın kriterde veri bulunamadı.
               </p>
             </div>
           )}
         </div>
 
-        {/* Motivational Banner - Mobile Optimized Height */}
-        <div className="mt-12 bg-slate-900 rounded-[50px] p-10 text-white relative overflow-hidden shadow-2xl border-b-[15px] border-yellow-400">
+        {/* Motivasyon Alanı */}
+        <div className="mt-10 bg-slate-900 rounded-3xl p-8 text-white relative overflow-hidden shadow-xl border-b-[8px] border-yellow-400">
           <div className="relative z-10 flex flex-col items-center text-center">
-            <div className="bg-yellow-400 p-6 rounded-full shadow-lg mb-6">
-              <Trophy size={48} className="text-slate-900" />
+            <div className="bg-yellow-400 p-4 rounded-full shadow-lg mb-4">
+              <Trophy size={32} className="text-slate-900" />
             </div>
-            <h2 className="text-3xl font-black italic mb-4 tracking-tighter uppercase leading-none">
+            <h2 className="text-xl font-black italic mb-2 tracking-tighter uppercase leading-none">
               HEDEFE <span className="text-yellow-400">ODAKLAN.</span>
             </h2>
-            <p className="text-slate-400 text-base font-medium leading-relaxed italic max-w-md">
-              Bu rehber, binlerce derece öğrencisinin başarı stratejilerinden süzülen "Altın Formül"dür.
-              <span className="text-white block mt-4 font-black text-lg tracking-tighter uppercase not-italic">#BaşarıTesadüfDeğildir</span>
+            <p className="text-slate-400 text-xs font-medium leading-relaxed italic max-w-xs">
+              Bu rehber, binlerce derece öğrencisinin stratejilerinden süzülen "Altın Formül"dür.
+              <span className="text-white block mt-3 font-black text-sm tracking-tighter uppercase not-italic">#BaşarıTesadüfDeğildir</span>
             </p>
           </div>
-          <div className="absolute top-[-100px] right-[-100px] w-[300px] h-[300px] bg-yellow-400/10 rounded-full blur-[80px]" />
-          <div className="absolute bottom-[-100px] left-[-50px] w-[250px] h-[250px] bg-blue-600/10 rounded-full blur-[80px]" />
+          <div className="absolute top-[-50px] right-[-50px] w-[150px] h-[150px] bg-yellow-400/10 rounded-full blur-[40px]" />
+          <div className="absolute bottom-[-50px] left-[-30px] w-[120px] h-[120px] bg-blue-600/10 rounded-full blur-[40px]" />
         </div>
       </main>
 
-      <footer className="mt-16 pb-12 text-center relative">
-        <div className="w-32 h-1 bg-yellow-400 mx-auto mb-8 rounded-full opacity-30" />
-        <p className="text-slate-400 text-[11px] font-black tracking-[0.4em] uppercase mb-6">
+      <footer className="mt-12 pb-10 text-center relative">
+        <div className="w-20 h-0.5 bg-yellow-400 mx-auto mb-6 rounded-full opacity-30" />
+        <p className="text-slate-400 text-[9px] font-black tracking-[0.3em] uppercase mb-4">
           MDK AKADEMİ • DERECE FABRİKASI
         </p>
-        <div className="flex justify-center gap-2">
-          {[...Array(5)].map((_, i) => <div key={i} className={`h-1.5 rounded-full bg-slate-200 ${i === 2 ? 'w-12 bg-yellow-400 shadow-sm' : 'w-4'}`} />)}
+        <div className="flex justify-center gap-1.5">
+          {[...Array(5)].map((_, i) => <div key={i} className={`h-1 rounded-full bg-slate-200 ${i === 2 ? 'w-8 bg-yellow-400 shadow-sm' : 'w-2.5'}`} />)}
         </div>
       </footer>
 
