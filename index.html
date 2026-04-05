@@ -41,9 +41,31 @@ const MDK_DATA = {
       { ders: 'Sosyal Bilimler', seviye: 'Öneri', kanallar: ['Sosyal Kale', 'Yavuz Tuna', 'Coğrafyanın Kodları', 'Benim Hocam', 'Sosyal Hocam', 'Felsefe Atölyesi', 'Yargı Plus', 'Selami Hoca', 'Sadettin Hoca'] }
     ],
     denemeler: [
+      // GENEL DENEMELER
       { tip: 'TYT Genel', seviye: 'Kolay', liste: ['Aktif Kuvvet', 'ENS', 'Mikro Orijinal', 'Acil İlaç', 'Kafa Dengi', 'Miray', 'Hız ve Renk'] },
       { tip: 'TYT Genel', seviye: 'Orta', liste: ['Full', '345', 'Bilgi Sarmal (Yıldızlar)', 'Hız ve Renk', 'Toprak', 'Ankara Dekatlon', 'Paraf', 'Tanım Senaryo', 'ODF'] },
-      { tip: 'TYT Genel', seviye: 'Zor', liste: ['Orijinal', '3D', 'Apotemi', 'Krallar Karması', 'Şöhretler Karması', 'Metin', 'Endemik', 'Limit', 'Özdebir', 'Aydın'] }
+      { tip: 'TYT Genel', seviye: 'Zor', liste: ['Orijinal', '3D', 'Apotemi', 'Krallar Karması', 'Şöhretler Karması', 'Metin', 'Endemik', 'Limit', 'Özdebir', 'Aydın'] },
+      
+      // BRANŞ DENEMELERİ (image_036fc5 verileri eklendi)
+      { tip: 'Türkçe Branş', seviye: 'Kolay', liste: ['ENS', 'Hız ve Renk'] },
+      { tip: 'Türkçe Branş', seviye: 'Orta', liste: ['Bilgi Sarmal', 'Yayın Denizi'] },
+      { tip: 'Türkçe Branş', seviye: 'Zor', liste: ['Üç Dört Beş (345)', '3D', 'Apotemi', 'Limit'] },
+      
+      { tip: 'Matematik Branş', seviye: 'Kolay', liste: ['Aktif', 'Acil İlaç'] },
+      { tip: 'Matematik Branş', seviye: 'Orta', liste: ['Üç Dört Beş (345)', 'Bilgi Sarmal'] },
+      { tip: 'Matematik Branş', seviye: 'Zor', liste: ['3D', 'Orijinal', 'Apotemi', 'Metin'] },
+      
+      { tip: 'Sosyal Branş', seviye: 'Kolay', liste: ['ENS', 'Hız ve Renk'] },
+      { tip: 'Sosyal Branş', seviye: 'Orta', liste: ['Bilgi Sarmal', 'Üç Dört Beş (345)'] },
+      { tip: 'Sosyal Branş', seviye: 'Zor', liste: ['3D', 'Apotemi'] },
+      
+      { tip: 'Fen Branş', seviye: 'Kolay', liste: ['ENS', 'Hız ve Renk'] },
+      { tip: 'Fen Branş', seviye: 'Orta', liste: ['Bilgi Sarmal', 'Üç Dört Beş (345)', 'Orbital', 'Biyotik'] },
+      { tip: 'Fen Branş', seviye: 'Zor', liste: ['Apotemi', '3D', 'Paraf (Mor)'] },
+      
+      { tip: 'Geometri Branş', seviye: 'Kolay', liste: ['Aktif', 'Mikro Orijinal', 'Acil İlaç'] },
+      { tip: 'Geometri Branş', seviye: 'Orta', liste: ['Bilgi Sarmal', 'Toprak', 'Üç Dört Beş (345)'] },
+      { tip: 'Geometri Branş', seviye: 'Zor', liste: ['Orijinal', 'Acil', 'Karekök', '3D', 'Paraf (Mor)'] }
     ],
     okuma_listesi: [
       { baslik: 'Kültürel Birikim', icerik: ['Dokuzuncu Hariciye Koğuşu - Peyami Safa', 'Kürk Mantolu Madonna - Sabahattin Ali', 'Mai ve Siyah - Halit Ziya', 'Aylak Adam - Yusuf Atılgan', 'Yaban - Yakup Kadri', 'Çalıkuşu - Reşat Nuri', 'Bize Göre - Ahmet Haşim', 'Kuyucaklı Yusuf - Sabahattin Ali', 'Sergüzeşt - Samipaşazade Sezai', 'Şair Evlenmesi - Şinasi', 'İntibah - Namık Kemal'] },
@@ -60,7 +82,7 @@ const MDK_DATA = {
   LGS: {
     soru_bankalari: [
       { id: 101, ders: 'Matematik', seviye: 'Kolay', kaynaklar: ['Hiper Zeka - Hiper Matematik', 'Nartest - Tane Tane', 'Mozaik İntro', 'İsem Akıllı Defter', 'Fenomen A (Sıfırdan Mantık)', 'Sadık Uygun', 'Tonguç Matematiğe İlk Adım', 'Arı Matemito', 'Newton Adım Adım', 'Av Favori', 'Matematus', 'Antrenman', 'Editör', 'Nige', 'Berkay', 'Ses Koro', 'İdol Başlangıç', 'Günay Bumerang'] },
-      { id: 102, ders: 'Matematik', seviye: 'Orta', kaynaklar: ['Bilfen Pro&Test', 'Hız', 'Mozaik', 'Ankara Güçlendiren', 'Fenomen Fasikül', 'Okyanus Classmate', 'Full Wonder', 'Ulti', 'Öncelik Etkinlikli', 'Hiper Zeka Sinerji', 'Gezegen Madalyon', 'Okyanus Premaster', 'Metin Parkur', 'Nartest İlk Adım', 'Etkili', 'Muba Mutlak Başarı', 'KVA', 'Zeka Küpü', 'İşleyen Zeka 3lü Kuvvet', 'Son Viraj Formula'] },
+      { id: 102, ders: 'Matematik', seviye: 'Orta', kaynaklar: ['Bilfen Pro&Test', 'Hız', 'Mozaik', 'Ankara Güçlendiren', 'Fenomen Fasikül', 'Okyanus Classmate', 'Full Wonder', 'Ulti', 'Öncelik Etkinlikli', 'Hiper Zeka Sinerji', 'Gezegen Madalyon', 'Okyanus Premaster', 'Metin Parkur', 'Nartest İlk Adım', 'Etkili', 'Muba Mutlak Başarı'] },
       { id: 103, ders: 'Matematik', seviye: 'Zor', kaynaklar: ['Okyanus Master', 'Köşebilgi Ultra', 'Newton Allstar', 'Sinan Kuzucu', 'Bilfen Pro&Bil', 'Nartest Prestige', 'Esen', 'DNA', 'Kuzucu', 'Nartest Power', 'Fenomen B', 'Nitelik Süper', 'Nartest Kırmızı Şampiyon', 'Netbil', 'Arı Var', 'Ankara Kazandıran'] },
       { id: 104, ders: 'Türkçe', seviye: 'Kolay', kaynaklar: ['Hız', 'Okyanus', 'Tonguç', 'Mozaik Defter', 'Arı Akıllı Defter', 'Fenomen A', 'İşleyen Zeka Yörünge', 'Zeka Küpü', 'Av Kazanım', 'Newton Adım Adım', 'Arı Paragrafın Ritmi', 'Poster Notları KR'] },
       { id: 105, ders: 'Türkçe', seviye: 'Orta', kaynaklar: ['Arı Başarı Var', 'Karekök', 'Ankara Güçlendiren', 'Muba', 'Tanım', 'Fenomen B', 'Günay Zoom', 'Okyanus Mod', 'Nartest Mod', 'Limit', 'Nitelik Süper', 'Çanta', 'Konsantrasyon'] },
@@ -71,8 +93,8 @@ const MDK_DATA = {
       { id: 110, ders: 'İnkılap / Din / İng', seviye: 'Karma Seviye', kaynaklar: ['Okyanus Classmate (İnk-Din)', 'Muba İlk Hasat (İnk)', 'Ankara Güçlendiren (İnk)', 'Eker Dinlendiren (Din)', 'Eker Dinlendiren (Din)', 'Zeka Küpü (Din)', 'More More (İng)', 'Tudem (İng)', 'Legend English (Practice/Test)', 'İsem (İnk)', 'Legend of English reading/writing', 'Sil Baştan'] }
     ],
     youtube_kanallari: [
-      { ders: 'Branş Hocaları', seviye: 'Öneri', kanallar: ['Hasan Güler (Türkçe)', 'Çopur Hoca (Mat)', 'Partikül Matematik', 'Derslike (Fen)', 'Sosyal Bilgiler Dersliği', 'Din Kültürüm', 'Sil Baştan (İng)', 'Alper Hocam (İnk)', 'LGS English', 'İdris Hoca'] },
-      { ders: 'Kamp & Akademi', seviye: 'Öneri', kanallar: ['Benim Hocam LGS', 'Tonguç Akademi', 'KR Akademi', 'LGS & Lise Hocam', 'Şenol Hoca', 'Hız Ortaokul', 'LGS Rehberim', 'Hoca Kafası'] }
+      { ders: 'Branş Hocaları', seviye: 'Metin Önerisi', kanallar: ['Hasan Güler (Türkçe)', 'Çopur Hoca (Mat)', 'Partikül Matematik', 'Derslike (Fen)', 'Sosyal Bilgiler Dersliği', 'Din Kültürüm', 'Sil Baştan (İng)', 'Alper Hocam (İnk)', 'LGS English', 'İdris Hoca'] },
+      { ders: 'Kamp & Akademi', seviye: 'Metin Önerisi', kanallar: ['Benim Hocam LGS', 'Tonguç Akademi', 'KR Akademi', 'LGS & Lise Hocam', 'Şenol Hoca', 'Hız Ortaokul', 'LGS Rehberim', 'Hoca Kafası'] }
     ],
     denemeler: [
       { tip: 'LGS Genel/Branş', seviye: 'Kolay', liste: ['Arı', 'Tonguç', 'ENS', 'Nar Deneme'] },
@@ -143,7 +165,7 @@ const App = () => {
                   <GraduationCap className="text-yellow-600 w-6 h-6" />
                 </div>
                 <div>
-                  <h1 className="text-lg font-black tracking-tighter text-slate-900 leading-none">MDK AKADEMİ</h1>
+                  <h1 className="text-lg font-black tracking-tighter text-slate-900 uppercase leading-none">MDK AKADEMİ</h1>
                   <p className="text-[9px] font-bold text-yellow-900 uppercase tracking-widest mt-0.5">Rehberlik 2026</p>
                 </div>
               </div>
@@ -167,7 +189,7 @@ const App = () => {
               <input 
                 type="text"
                 placeholder="Kaynak, hoca veya deneme ara..."
-                className="w-full pl-10 pr-4 py-2.5 rounded-xl border-none shadow-inner bg-white focus:bg-white focus:ring-4 focus:ring-yellow-600/10 transition-all text-sm font-bold placeholder:text-slate-300"
+                className="w-full pl-10 pr-4 py-2.5 rounded-xl border-none shadow-inner bg-white focus:bg-white focus:ring-4 focus:ring-yellow-600/10 transition-all text-sm font-bold placeholder:text-slate-300 uppercase"
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
               />
@@ -206,7 +228,7 @@ const App = () => {
             <button
               key={lvl}
               onClick={() => setFilterSeviye(lvl)}
-              className={`px-3 py-1.5 rounded-lg text-[10px] font-black transition-all uppercase tracking-wider ${
+              className={`px-3.5 py-1.5 rounded-lg text-[10px] font-black transition-all uppercase tracking-wider ${
                 filterSeviye === lvl 
                 ? 'bg-yellow-400 text-slate-900 shadow-sm' 
                 : 'bg-white text-slate-400 border border-slate-100'
@@ -225,8 +247,8 @@ const App = () => {
                 key={index} 
                 className="bg-white rounded-2xl border border-slate-50 shadow-sm hover:shadow-md transition-all duration-300 group flex flex-col"
               >
-                <div className="p-4 border-b border-slate-50 bg-slate-50/20 flex justify-between items-start">
-                  <div>
+                <div className="p-4 border-b border-slate-50 bg-slate-50/20 flex justify-between items-start relative">
+                  <div className="z-10 flex-1 pr-2">
                     <h3 className="text-sm font-black text-slate-900 uppercase tracking-tight mb-1 leading-tight">
                       {item.ders || item.tip || item.baslik}
                     </h3>
@@ -244,7 +266,7 @@ const App = () => {
                   <div className="space-y-3">
                     {(item.kaynaklar || item.kanallar || item.liste || item.icerik).map((val, i) => (
                       <div key={i} className="flex items-start gap-3">
-                        <div className="mt-1.5 w-1.5 h-1.5 rounded-full bg-yellow-400 shrink-0" />
+                        <div className="mt-1.5 w-1.5 h-1.5 rounded-full bg-yellow-400 shrink-0 shadow-sm" />
                         <span className="text-slate-800 font-bold text-xs leading-tight tracking-tight uppercase">
                           {val}
                         </span>
@@ -259,7 +281,7 @@ const App = () => {
               <div className="bg-slate-50 w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-4 text-slate-200">
                 <Search size={24} />
               </div>
-              <p className="text-slate-400 font-bold text-xs uppercase tracking-widest">Aramana Uygun İçerik Yok</p>
+              <p className="text-slate-400 font-bold text-[10px] uppercase tracking-widest px-4">ARADIĞIN KRİTERDE İÇERİK BULUNAMADI. LÜTFEN FİLTREYİ TEMİZLE VEYA FARKLI BİR ARAMA YAP.</p>
             </div>
           )}
         </div>
@@ -274,8 +296,8 @@ const App = () => {
               HEDEFE <span className="text-yellow-400">ODAKLAN.</span>
             </h2>
             <p className="text-slate-400 text-[10px] font-medium leading-relaxed italic max-w-xs">
-              Bu rehber, binlerce derece öğrencisinin stratejilerinden süzülen "Altın Formül"dür.
-              <span className="text-white block mt-3 font-black text-xs tracking-tighter uppercase not-italic">#BaşarıTesadüfDeğildir</span>
+              BU REHBER, BİNLERCE DERECE ÖĞRENCİSİNİN STRATEJİLERİNDEN SÜZÜLEN "ALTIN FORMÜL"DÜR.
+              <span className="text-white block mt-3 font-black text-sm tracking-tighter uppercase not-italic">#BAŞARITESADÜFDEĞİLDİR</span>
             </p>
           </div>
           <div className="absolute top-[-50px] right-[-50px] w-[150px] h-[150px] bg-yellow-400/10 rounded-full blur-[40px]" />
@@ -283,12 +305,12 @@ const App = () => {
         </div>
       </main>
 
-      <footer className="mt-10 pb-10 text-center">
-        <p className="text-slate-400 text-[9px] font-black tracking-[0.3em] uppercase mb-4">
-          MDK AKADEMİ • DERECE FABRİKASI
+      <footer className="mt-10 pb-10 text-center px-4">
+        <p className="text-slate-400 text-[8px] font-black tracking-[0.3em] uppercase mb-4">
+          MDK AKADEMİ • TÜRKİYE'NİN DERECE FABRİKASI
         </p>
-        <div className="flex justify-center gap-1">
-          {[...Array(5)].map((_, i) => <div key={i} className={`h-1 rounded-full bg-slate-200 ${i === 2 ? 'w-8 bg-yellow-400 shadow-sm' : 'w-2.5'}`} />)}
+        <div className="flex justify-center gap-1.5">
+          {[...Array(5)].map((_, i) => <div key={i} className={`h-1 rounded-full bg-slate-200 ${i === 2 ? 'w-8 bg-yellow-400 shadow-sm' : 'w-2'}`} />)}
         </div>
       </footer>
 
@@ -302,7 +324,7 @@ const App = () => {
           font-display: swap;
           src: url(https://fonts.gstatic.com/s/inter/v13/UcCO3FwrK3iLTeHuS_fvQtMwCp50KnMw2boKoduKmMEVuGKYMZhrib2Bg-4.woff2) format('woff2');
         }
-        body { font-family: 'Inter', system-ui, -apple-system, sans-serif; background-color: #f8fafc; }
+        body { font-family: 'Inter', system-ui, -apple-system, sans-serif; background-color: #f8fafc; text-transform: uppercase; }
       `}} />
     </div>
   );
